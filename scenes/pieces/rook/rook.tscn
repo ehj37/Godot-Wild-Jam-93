@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://5kbxsqevlaud"]
+
+[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_dpcu8"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_dpcu8"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACgAAAAUklGRpgAAABXRUJQVlA4TIsAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gatIturo4uCeXAW5KICDA+LfFOzJvr8j+j8B9tGOVXIkEkeRokePrtVee71BzkHeWb9BW0IyDHLCZJ/XNcoNkvy7sEDyczmKAiaZhNLITDIEb9xGEfjw3bCDYI5GBorJAGB7AA==")
+size_override = Vector2(36, 36)
+
+[node name="Rook" type="Node2D" unique_id=869427859]
+script = ExtResource("1_dpcu8")
+metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1307037906]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_dpcu8")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/pieces/rook/rook.aseprite",
+"source_uid": 5985039672084606314
+}
+metadata/_aseprite_wizard_source_file_hash_ = "776bf902d69ef06414c9d1fee6ff9fe8"

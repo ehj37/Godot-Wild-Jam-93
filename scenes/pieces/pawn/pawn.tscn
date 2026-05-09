@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://chsq7xisphgil"]
+
+[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_wgsma"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wgsma"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACoAAAAUklGRqAAAABXRUJQVlA4TJMAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gavYduNGYqAXlYDFIHklsPEnZVev+3dE/yfA/lZAwp5QBplCTC4USeV4i51MwSYTcb5BIpUY5OZCVZVyqToJhvsdJgbpCkgIMcj0Hg6SaMWY0jsozuiMY5GNeOSN4vo1Y5UNAybAugEAbksA")
+size_override = Vector2(36, 36)
+
+[node name="Pawn" type="Node2D" unique_id=1015032063]
+script = ExtResource("1_wgsma")
+metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1246729682]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_wgsma")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/pieces/pawn/pawn.aseprite",
+"source_uid": 4991018301077654836
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ae80117799097502572b3308d9f594e3"

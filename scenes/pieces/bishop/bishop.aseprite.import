@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bx0b0jdgauyk5"
+path="res://.godot/imported/bishop.aseprite-89ff5db62f33179505be9858ea784738.res"
+
+[deps]
+
+source_file="res://scenes/pieces/bishop/bishop.aseprite"
+dest_files=["res://.godot/imported/bishop.aseprite-89ff5db62f33179505be9858ea784738.res"]
+
+[params]
+

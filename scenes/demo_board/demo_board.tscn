@@ -1,0 +1,31 @@
+[gd_scene format=4 uid="uid://qta2emoyh57r"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_qlsax"]
+_data = PackedByteArray("AAADAAUAAAABAAAATgEAAE4BAABmAAAAUklGRl4AAABXRUJQVlA4TFIAAAAvTUFTAA8w8DH98x8c0CZuI2/2+1c/zLcPt4BbQ0T/hQQJNqeADw8uHPDhwYWzMlJZ4Z4Pqaxwz4dUVrjnQyor3PMhlRXu+ZDKCvd8SGWFez4A")
+size_override = Vector2(334, 334)
+
+[node name="DemoBoard" type="Sprite2D" unique_id=441634602]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_qlsax")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/demo_board/demo_board.aseprite",
+"source_uid": 7897136182812191007
+}
+metadata/_aseprite_wizard_source_file_hash_ = "75ecc0a1cb45fa9c6db8f500b924c83d"

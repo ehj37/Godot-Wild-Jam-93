@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cddxlvuxm3a6w"
+path="res://.godot/imported/pawn.aseprite-a857c8aa73f7140cce221e7110e7fce6.res"
+
+[deps]
+
+source_file="res://scenes/pieces/pawn/pawn.aseprite"
+dest_files=["res://.godot/imported/pawn.aseprite-a857c8aa73f7140cce221e7110e7fce6.res"]
+
+[params]
+

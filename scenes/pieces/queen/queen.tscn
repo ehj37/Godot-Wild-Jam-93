@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://bdl8eri7robli"]
+
+[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_mbn11"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_mbn11"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC6AAAAUklGRrIAAABXRUJQVlA4TKYAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYNIkqvq4iCbYCD3MJA3GPj5NwV1V6Agov8TYJ+WcqOltC9KaEJXbAC0mBxcsTrcW4nZ7r5YUtelTIXynkCJOqCVhLt7Zri3hGk9ZMl6biUFHxAoM6G/Vm8lAfCabgrV8YdfK6FrdT+ukDiva0ORyWN/R0+KVE3oKhEzSbJn")
+size_override = Vector2(36, 36)
+
+[node name="Queen" type="Node2D" unique_id=1549790735]
+script = ExtResource("1_mbn11")
+metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=275530499]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_mbn11")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/pieces/queen/queen.aseprite",
+"source_uid": 6599454386817102361
+}
+metadata/_aseprite_wizard_source_file_hash_ = "588b3149bab45faedf57dd79072cec86"

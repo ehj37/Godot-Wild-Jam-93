@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://c8q3juyiv7ag2"]
+
+[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_namrv"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_namrv"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC0AAAAUklGRqwAAABXRUJQVlA4TKAAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYNIkqRo1sH2goEdFEApIGL8m+Ji+z4BEf2fgPi7kjeH1e+9OQIZfcJoRkI6lVnOWbUZccIWpkBGnzCakZnpzMxhhKoUZof2CwI5J2wf649mAHxMDy31+7G3JQqKJUEVaGVeAMdYyguOXFK+1ErXzBxqKxGSFK8B")
+size_override = Vector2(36, 36)
+
+[node name="Bishop" type="Node2D" unique_id=2137323389]
+script = ExtResource("1_namrv")
+metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=411332080]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_namrv")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/pieces/bishop/bishop.aseprite",
+"source_uid": 4052479370677720434
+}
+metadata/_aseprite_wizard_source_file_hash_ = "b861044df0c2a94e4ccfca2b9f37e244"

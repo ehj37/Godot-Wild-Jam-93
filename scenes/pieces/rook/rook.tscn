@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://5kbxsqevlaud"]
 
 [ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_dpcu8"]
+[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_88pmu"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_dpcu8"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACgAAAAUklGRpgAAABXRUJQVlA4TIsAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gatIturo4uCeXAW5KICDA+LfFOzJvr8j+j8B9tGOVXIkEkeRokePrtVee71BzkHeWb9BW0IyDHLCZJ/XNcoNkvy7sEDyczmKAiaZhNLITDIEb9xGEfjw3bCDYI5GBorJAGB7AA==")
@@ -12,6 +13,7 @@ metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1307037906]
 texture_filter = 1
+material = ExtResource("2_88pmu")
 texture = SubResource("PortableCompressedTexture2D_dpcu8")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}

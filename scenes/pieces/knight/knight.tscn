@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ctrktiu5vmyoj"]
 
 [ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_m7apw"]
+[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_cx8at"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m7apw"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAADGAAAAUklGRr4AAABXRUJQVlA4TLEAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYPa2oKGv8H/iQXEBOxZYMe/fynhxy1BRP8noPy5a03bkh+bLbhACwKqUt4BNssIqJxKeGe4WYLxqZkm1Fl/KwI08UdVxG6zBiBJZaFaSY7QC/uvPmvHWnntVkrtYWtK+bdB21MiWguU6RABNeGdYbUE00yMIkNccAcZcUdcKFFcHaqspCWpjAEA")
@@ -12,6 +13,7 @@ metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=748296036]
 texture_filter = 1
+material = ExtResource("2_cx8at")
 texture = SubResource("PortableCompressedTexture2D_m7apw")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}

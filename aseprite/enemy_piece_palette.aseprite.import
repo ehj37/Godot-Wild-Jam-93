@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://4gopkj4iwikj"
+path="res://.godot/imported/enemy_piece_palette.aseprite-8901df7670b85b283514c8a889ae013f.res"
+
+[deps]
+
+source_file="res://aseprite/enemy_piece_palette.aseprite"
+dest_files=["res://.godot/imported/enemy_piece_palette.aseprite-8901df7670b85b283514c8a889ae013f.res"]
+
+[params]
+

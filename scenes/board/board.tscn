@@ -1,0 +1,34 @@
+[gd_scene format=4 uid="uid://bosca8xpswa8q"]
+
+[ext_resource type="Script" uid="uid://c5ryf5e04ae4a" path="res://scenes/board/board.gd" id="1_s78fa"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_s78fa"]
+_data = PackedByteArray("AAADAAUAAAABAAAAUAEAAFABAADqAAAAUklGRuIAAABXRUJQVlA4TNYAAAAvT8FTACcgECBE+K/wZ4NA0mYpxvoHeMUTZNvMYxBzvfDnP4D/LKo2cFXbClShEEAbuEzAWhRwoH+u+wbuJ0T0n2HbtmHEB9pufkJo2nbEcpyItfoJx/8as65EmAdCq59QaOI5gfG/xiwPhF6JsOonFJp4TmD8rzHrSoR5ILT6CYUmnhMY/2vM8kDolQirfkKhiecExv8as65EmAdCq59QaOI5gfG/xiwPhF6JsEInBA8jNPGcwPhfY9aVCBMMeEIPhP7nCYUmnhMY/2vM8kDolQgrfkID")
+size_override = Vector2(336, 336)
+
+[node name="Board" type="Sprite2D" unique_id=1073423775]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_s78fa")
+script = ExtResource("1_s78fa")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/board.aseprite",
+"source_uid": 7037132931071513700
+}
+metadata/_aseprite_wizard_source_file_hash_ = "619afd8d57a0c2b45f57497cf4ee5e2c"

@@ -1,6 +1,6 @@
 class_name Board
 
-extends Node2D
+extends Sprite2D
 
 const CELL_SIDE_LENGTH: int = 42
 const ORIGIN: Vector2i = Vector2i(-4 * CELL_SIDE_LENGTH, 4 * CELL_SIDE_LENGTH)
@@ -56,10 +56,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	for child: Node2D in get_children():
-		if child is Piece:
-			var board_coordinates: Vector2i = get_board_coordinate(child.global_position)
-			_pieces[board_coordinates] = child
+	var pieces: Array = find_children("*", "Piece", true, false)
+	for piece: Piece in pieces:
+		var board_coordinates: Vector2i = get_board_coordinate(piece.global_position)
+		_pieces[board_coordinates] = piece
 
 
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:

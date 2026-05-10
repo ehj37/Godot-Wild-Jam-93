@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bpxieccmj6oce"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_4b5kn"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_g1yli"]
+[ext_resource type="PackedScene" uid="uid://ctrktiu5vmyoj" path="res://scenes/pieces/knight/knight.tscn" id="3_18cq6"]
+[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="4_ijbm8"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="5_ijbm8"]
+[ext_resource type="PackedScene" uid="uid://c8q3juyiv7ag2" path="res://scenes/pieces/bishop/bishop.tscn" id="6_7wiph"]
+
+[node name="Sacrifice" type="Node2D" unique_id=741898718]
+script = ExtResource("1_4b5kn")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=437984305]
+
+[node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_g1yli")]
+
+[node name="Player" type="Node2D" parent="Board" unique_id=825123881]
+
+[node name="Pawn2" parent="Board/Player" unique_id=772228785 instance=ExtResource("4_ijbm8")]
+position = Vector2(-21, 147)
+is_player = true
+is_target = false
+
+[node name="Pawn4" parent="Board/Player" unique_id=655870819 instance=ExtResource("4_ijbm8")]
+position = Vector2(63, 147)
+is_player = true
+is_target = false
+
+[node name="Pawn5" parent="Board/Player" unique_id=1015032063 instance=ExtResource("4_ijbm8")]
+position = Vector2(-105, 147)
+is_player = true
+is_target = false
+
+[node name="Knight" parent="Board/Player" unique_id=784984646 instance=ExtResource("3_18cq6")]
+position = Vector2(147, 105)
+is_player = true
+is_target = false
+
+[node name="Enemy" type="Node2D" parent="Board" unique_id=400025907]
+
+[node name="Rook2" parent="Board/Enemy" unique_id=197834642 instance=ExtResource("5_ijbm8")]
+position = Vector2(-147, 147)
+is_target = false
+
+[node name="Pawn5" parent="Board/Enemy" unique_id=1973370014 instance=ExtResource("4_ijbm8")]
+position = Vector2(147, -21)
+is_target = false
+
+[node name="Pawn7" parent="Board/Enemy" unique_id=606439012 instance=ExtResource("4_ijbm8")]
+position = Vector2(-63, -21)
+is_target = false
+
+[node name="Pawn9" parent="Board/Enemy" unique_id=1801828053 instance=ExtResource("4_ijbm8")]
+position = Vector2(-105, 105)
+is_target = false
+
+[node name="Pawn10" parent="Board/Enemy" unique_id=255104233 instance=ExtResource("4_ijbm8")]
+position = Vector2(-21, 105)
+is_target = false
+
+[node name="Pawn11" parent="Board/Enemy" unique_id=371210536 instance=ExtResource("4_ijbm8")]
+position = Vector2(63, 105)
+is_target = false
+
+[node name="Pawn12" parent="Board/Enemy" unique_id=1136127948 instance=ExtResource("4_ijbm8")]
+position = Vector2(-21, -63)
+is_target = false
+
+[node name="Pawn13" parent="Board/Enemy" unique_id=1152061526 instance=ExtResource("4_ijbm8")]
+position = Vector2(21, -21)
+is_target = false
+
+[node name="Pawn14" parent="Board/Enemy" unique_id=357431826 instance=ExtResource("4_ijbm8")]
+position = Vector2(63, -63)
+is_target = false
+
+[node name="Pawn" parent="Board/Enemy" unique_id=2130786087 instance=ExtResource("4_ijbm8")]
+position = Vector2(105, -21)
+is_target = false
+
+[node name="Bishop" parent="Board/Enemy" unique_id=2137323389 instance=ExtResource("6_7wiph")]
+position = Vector2(-147, -63)
+is_target = true
+
+[node name="Pawn2" parent="Board/Enemy" unique_id=540622740 instance=ExtResource("4_ijbm8")]
+position = Vector2(105, -147)
+is_target = false
+
+[node name="Pawn3" parent="Board/Enemy" unique_id=213617562 instance=ExtResource("4_ijbm8")]
+position = Vector2(-21, -147)
+is_target = false
+
+[node name="Pawn4" parent="Board/Enemy" unique_id=253018534 instance=ExtResource("4_ijbm8")]
+position = Vector2(-63, -105)
+is_target = false
+
+[node name="Pawn" parent="." unique_id=768603106 instance=ExtResource("4_ijbm8")]
+position = Vector2(-147, -147)
+is_target = false

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ic4kaql04vqa" path="res://scenes/pieces/queen/queen.gd" id="1_3i28x"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_3i28x"]
+[ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_6n2g7"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_mbn11"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC6AAAAUklGRrIAAABXRUJQVlA4TKYAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYNIkqvq4iCbYCD3MJA3GPj5NwV1V6Agov8TYJ+WcqOltC9KaEJXbAC0mBxcsTrcW4nZ7r5YUtelTIXynkCJOqCVhLt7Zri3hGk9ZMl6biUFHxAoM6G/Vm8lAfCabgrV8YdfK6FrdT+ukDiva0ORyWN/R0+KVE3oKhEzSbJn")
@@ -9,7 +10,11 @@ size_override = Vector2(36, 36)
 
 [node name="Queen" type="Node2D" unique_id=1549790735]
 script = ExtResource("1_3i28x")
+is_target = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_6n2g7")]
+position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=275530499]
 texture_filter = 1
@@ -37,3 +42,6 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 6599454386817102361
 }
 metadata/_aseprite_wizard_source_file_hash_ = "588b3149bab45faedf57dd79072cec86"
+
+[node name="TargetFireFront" parent="." unique_id=1476836745 instance=ExtResource("2_6n2g7")]
+position = Vector2(0, 16)

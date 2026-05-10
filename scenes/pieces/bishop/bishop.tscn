@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c8q3juyiv7ag2"]
 
 [ext_resource type="Script" uid="uid://dexe22l3b7mjp" path="res://scenes/pieces/bishop/bishop.gd" id="1_tnbtm"]
+[ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_djns7"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_tnbtm"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_namrv"]
@@ -9,7 +10,11 @@ size_override = Vector2(36, 36)
 
 [node name="Bishop" type="Node2D" unique_id=2137323389]
 script = ExtResource("1_tnbtm")
+is_target = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_djns7")]
+position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411332080]
 texture_filter = 1
@@ -37,3 +42,6 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 4052479370677720434
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b861044df0c2a94e4ccfca2b9f37e244"
+
+[node name="TargetFireFront" parent="." unique_id=132843582 instance=ExtResource("2_djns7")]
+position = Vector2(0, 16)

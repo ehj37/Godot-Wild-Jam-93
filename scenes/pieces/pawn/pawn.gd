@@ -24,10 +24,16 @@ func is_valid_move(from: Vector2i, to: Vector2i, pieces: Dictionary) -> bool:
 			return false
 
 		if is_player:
-			if from.y != 1:
+			if from.y == 1:
+				if pieces.has(Vector2i(from.x, 2)):
+					return false
+			else:
 				return false
 		else:
-			if from.y != 6:
+			if from.y == 6:
+				if pieces.has(Vector2i(from.x, 5)):
+					return false
+			else:
 				return false
 
 		if pieces.has(to):

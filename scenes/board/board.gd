@@ -36,25 +36,23 @@ func _input(event: InputEvent) -> void:
 		var event_mouse_button: InputEventMouseButton = event
 		if event_mouse_button.button_index == MOUSE_BUTTON_LEFT:
 			var mouse_position: Vector2 = get_global_mouse_position()
-			var board_coordinate: Vector2i = get_board_coordinate(mouse_position)
+			var mouse_board_coordinate: Vector2i = get_board_coordinate(mouse_position)
 			if event_mouse_button.pressed:
 				if _selected_piece:
-					if board_coordinate == Vector2i(-1, -1) || _pieces.has(board_coordinate):
-						pass
-					else:
+					if mouse_board_coordinate != Vector2i(-1, -1):
 						var current_board_coordinate: Vector2i = get_board_coordinate(
 							_selected_piece.global_position
 						)
-						_pieces.erase(current_board_coordinate)
-						_pieces[board_coordinate] = _selected_piece
-						_selected_piece.global_position = get_global_position_from_board_coordinate(
-							board_coordinate
+						var is_valid_move: bool = _selected_piece.is_valid_move(
+							current_board_coordinate, mouse_board_coordinate, _pieces
 						)
+						if is_valid_move:
+							_move_piece(_selected_piece, mouse_board_coordinate)
 
 					_selected_piece = null
 			else:
 				if !_selected_piece:
-					_selected_piece = _pieces.get(board_coordinate, null)
+					_selected_piece = _pieces.get(mouse_board_coordinate)
 
 
 func _ready() -> void:
@@ -62,3 +60,16 @@ func _ready() -> void:
 		if child is Piece:
 			var board_coordinates: Vector2i = get_board_coordinate(child.global_position)
 			_pieces[board_coordinates] = child
+
+
+func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
+	var piece_to_remove: Piece = _pieces.get(new_board_coordinate)
+	if piece_to_remove:
+		_pieces.erase(new_board_coordinate)
+		piece_to_remove.queue_free()
+
+	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
+	_pieces.erase(current_board_coordinate)
+
+	piece.global_position = get_global_position_from_board_coordinate(new_board_coordinate)
+	_pieces[new_board_coordinate] = piece

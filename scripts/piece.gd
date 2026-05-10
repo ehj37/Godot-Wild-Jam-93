@@ -10,7 +10,7 @@ extends Node2D
 		_set_palette()
 
 
-func _can_reach(_coordinate: Vector2i) -> bool:
+func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces: Dictionary) -> bool:
 	return false
 
 

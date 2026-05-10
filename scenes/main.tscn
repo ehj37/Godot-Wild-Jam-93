@@ -14,51 +14,114 @@
 
 [node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_tipki")]
 
-[node name="King" parent="Board" unique_id=842364951 instance=ExtResource("2_0wfyh")]
+[node name="EnemyRook" parent="Board" unique_id=854614475 instance=ExtResource("6_tipki")]
+position = Vector2(-147, -147)
+
+[node name="EnemyKnight" parent="Board" unique_id=784984646 instance=ExtResource("7_85g3d")]
+position = Vector2(-105, -147)
+
+[node name="EnemyBishop" parent="Board" unique_id=751513040 instance=ExtResource("4_tbgi4")]
+position = Vector2(-63, -147)
+
+[node name="EnemyKing" parent="Board" unique_id=842364951 instance=ExtResource("2_0wfyh")]
+position = Vector2(-21, -147)
+
+[node name="EnemyQueen" parent="Board" unique_id=1549790735 instance=ExtResource("3_jyhfs")]
+position = Vector2(21, -147)
+
+[node name="EnemyBishop2" parent="Board" unique_id=2137323389 instance=ExtResource("4_tbgi4")]
+position = Vector2(63, -147)
+
+[node name="EnemyKnight2" parent="Board" unique_id=731418617 instance=ExtResource("7_85g3d")]
+position = Vector2(105, -147)
+
+[node name="EnemyRook2" parent="Board" unique_id=869427859 instance=ExtResource("6_tipki")]
+position = Vector2(147, -147)
+
+[node name="EnemyPawn" parent="Board" unique_id=1015032063 instance=ExtResource("5_o6xl0")]
+position = Vector2(-147, -105)
+
+[node name="EnemyPawn2" parent="Board" unique_id=1113851260 instance=ExtResource("5_o6xl0")]
+position = Vector2(-105, -105)
+
+[node name="EnemyPawn3" parent="Board" unique_id=1452788650 instance=ExtResource("5_o6xl0")]
+position = Vector2(-63, -105)
+
+[node name="EnemyPawn4" parent="Board" unique_id=758877359 instance=ExtResource("5_o6xl0")]
+position = Vector2(-21, -105)
+
+[node name="EnemyPawn5" parent="Board" unique_id=834241221 instance=ExtResource("5_o6xl0")]
+position = Vector2(21, -105)
+
+[node name="EnemyPawn6" parent="Board" unique_id=469289531 instance=ExtResource("5_o6xl0")]
+position = Vector2(63, -105)
+
+[node name="EnemyPawn7" parent="Board" unique_id=403600973 instance=ExtResource("5_o6xl0")]
+position = Vector2(105, -105)
+
+[node name="EnemyPawn8" parent="Board" unique_id=796844897 instance=ExtResource("5_o6xl0")]
+position = Vector2(147, -105)
+
+[node name="PlayerRook" parent="Board" unique_id=221726699 instance=ExtResource("6_tipki")]
+position = Vector2(-147, 147)
+is_player = true
+
+[node name="PlayerKnight" parent="Board" unique_id=294479302 instance=ExtResource("7_85g3d")]
+position = Vector2(-105, 147)
+is_player = true
+
+[node name="PlayerBishop" parent="Board" unique_id=1973176569 instance=ExtResource("4_tbgi4")]
+position = Vector2(-63, 147)
+is_player = true
+
+[node name="PlayerQueen" parent="Board" unique_id=131176524 instance=ExtResource("3_jyhfs")]
+position = Vector2(-21, 147)
+is_player = true
+
+[node name="PlayerKing" parent="Board" unique_id=1858836435 instance=ExtResource("2_0wfyh")]
 position = Vector2(21, 147)
 is_player = true
 
-[node name="Queen" parent="Board" unique_id=1549790735 instance=ExtResource("3_jyhfs")]
-position = Vector2(-21, 147)
-
-[node name="Bishop" parent="Board" unique_id=2137323389 instance=ExtResource("4_tbgi4")]
+[node name="PlayerBishop2" parent="Board" unique_id=1559469956 instance=ExtResource("4_tbgi4")]
 position = Vector2(63, 147)
+is_player = true
 
-[node name="Bishop2" parent="Board" unique_id=751513040 instance=ExtResource("4_tbgi4")]
-position = Vector2(-63, 147)
-
-[node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("5_o6xl0")]
-position = Vector2(-147, 105)
-
-[node name="Pawn2" parent="Board" unique_id=1113851260 instance=ExtResource("5_o6xl0")]
-position = Vector2(-105, 105)
-
-[node name="Pawn3" parent="Board" unique_id=1452788650 instance=ExtResource("5_o6xl0")]
-position = Vector2(-63, 105)
-
-[node name="Pawn4" parent="Board" unique_id=758877359 instance=ExtResource("5_o6xl0")]
-position = Vector2(-21, 105)
-
-[node name="Pawn5" parent="Board" unique_id=834241221 instance=ExtResource("5_o6xl0")]
-position = Vector2(21, 105)
-
-[node name="Pawn6" parent="Board" unique_id=469289531 instance=ExtResource("5_o6xl0")]
-position = Vector2(63, 105)
-
-[node name="Pawn7" parent="Board" unique_id=403600973 instance=ExtResource("5_o6xl0")]
-position = Vector2(105, 105)
-
-[node name="Pawn8" parent="Board" unique_id=796844897 instance=ExtResource("5_o6xl0")]
-position = Vector2(147, 105)
-
-[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("6_tipki")]
-position = Vector2(147, 147)
-
-[node name="Rook2" parent="Board" unique_id=854614475 instance=ExtResource("6_tipki")]
-position = Vector2(-147, 147)
-
-[node name="Knight" parent="Board" unique_id=784984646 instance=ExtResource("7_85g3d")]
-position = Vector2(-105, 147)
-
-[node name="Knight2" parent="Board" unique_id=731418617 instance=ExtResource("7_85g3d")]
+[node name="PlayerKnight2" parent="Board" unique_id=1286454296 instance=ExtResource("7_85g3d")]
 position = Vector2(105, 147)
+is_player = true
+
+[node name="PlayerRook2" parent="Board" unique_id=1922266555 instance=ExtResource("6_tipki")]
+position = Vector2(147, 147)
+is_player = true
+
+[node name="PlayerPawn" parent="Board" unique_id=1026924315 instance=ExtResource("5_o6xl0")]
+position = Vector2(-147, 105)
+is_player = true
+
+[node name="PlayerPawn2" parent="Board" unique_id=1086438062 instance=ExtResource("5_o6xl0")]
+position = Vector2(-105, 105)
+is_player = true
+
+[node name="PlayerPawn3" parent="Board" unique_id=1979135829 instance=ExtResource("5_o6xl0")]
+position = Vector2(-63, 105)
+is_player = true
+
+[node name="PlayerPawn4" parent="Board" unique_id=845969370 instance=ExtResource("5_o6xl0")]
+position = Vector2(-21, 105)
+is_player = true
+
+[node name="PlayerPawn5" parent="Board" unique_id=259771067 instance=ExtResource("5_o6xl0")]
+position = Vector2(21, 105)
+is_player = true
+
+[node name="PlayerPawn6" parent="Board" unique_id=849800821 instance=ExtResource("5_o6xl0")]
+position = Vector2(63, 105)
+is_player = true
+
+[node name="PlayerPawn7" parent="Board" unique_id=1957791048 instance=ExtResource("5_o6xl0")]
+position = Vector2(105, 105)
+is_player = true
+
+[node name="PlayerPawn8" parent="Board" unique_id=1162213178 instance=ExtResource("5_o6xl0")]
+position = Vector2(147, 105)
+is_player = true

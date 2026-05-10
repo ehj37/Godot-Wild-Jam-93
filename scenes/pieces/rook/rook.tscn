@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://5kbxsqevlaud"]
 
-[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_dpcu8"]
+[ext_resource type="Script" uid="uid://ddqlgc6mqigy4" path="res://scenes/pieces/rook/rook.gd" id="1_88pmu"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_88pmu"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_dpcu8"]
@@ -8,7 +8,7 @@ _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACgAAAAUklGRpgAAABXRUJQVlA4TIs
 size_override = Vector2(36, 36)
 
 [node name="Rook" type="Node2D" unique_id=869427859]
-script = ExtResource("1_dpcu8")
+script = ExtResource("1_88pmu")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1307037906]

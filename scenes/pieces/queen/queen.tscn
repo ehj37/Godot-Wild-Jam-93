@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bdl8eri7robli"]
 
-[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_mbn11"]
+[ext_resource type="Script" uid="uid://ic4kaql04vqa" path="res://scenes/pieces/queen/queen.gd" id="1_3i28x"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_3i28x"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_mbn11"]
@@ -8,7 +8,7 @@ _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC6AAAAUklGRrIAAABXRUJQVlA4TKY
 size_override = Vector2(36, 36)
 
 [node name="Queen" type="Node2D" unique_id=1549790735]
-script = ExtResource("1_mbn11")
+script = ExtResource("1_3i28x")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=275530499]

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://c8q3juyiv7ag2"]
 
-[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_namrv"]
+[ext_resource type="Script" uid="uid://dexe22l3b7mjp" path="res://scenes/pieces/bishop/bishop.gd" id="1_tnbtm"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_tnbtm"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_namrv"]
@@ -8,7 +8,7 @@ _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC0AAAAUklGRqwAAABXRUJQVlA4TKA
 size_override = Vector2(36, 36)
 
 [node name="Bishop" type="Node2D" unique_id=2137323389]
-script = ExtResource("1_namrv")
+script = ExtResource("1_tnbtm")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411332080]

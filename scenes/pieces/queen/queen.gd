@@ -1,0 +1,57 @@
+@tool
+
+class_name Queen
+
+extends Piece
+
+
+# gdlint:disable = max-returns
+func is_valid_move(from: Vector2i, to: Vector2i, pieces: Dictionary) -> bool:
+	if from == to:
+		return false
+
+	var x_diff_magnitude: int = absi(from.x - to.x)
+	var y_diff_magnitude: int = absi(from.y - to.y)
+	var min_x: int = min(from.x, to.x)
+	var max_x: int = max(from.x, to.x)
+	var min_y: int = min(from.y, to.y)
+	var max_y: int = max(from.y, to.y)
+
+	if from.x == to.x:
+		var between_coords: Array = pieces.keys().filter(
+			func(coords: Vector2i) -> bool: return (
+				coords.x == to.x && coords.y > min_y && coords.y < max_y
+			)
+		)
+		if !between_coords.is_empty():
+			return false
+	elif from.y == to.y:
+		var between_coords: Array = pieces.keys().filter(
+			func(coords: Vector2i) -> bool: return (
+				coords.y == to.y && coords.x > min_x && coords.x < max_x
+			)
+		)
+		if !between_coords.is_empty():
+			return false
+	elif x_diff_magnitude == y_diff_magnitude:
+		var diagonal_coords: Array = pieces.keys().filter(
+			func(coords: Vector2i) -> bool: var diff: Vector2i = coords - from ; return (
+				absi(diff.x) == absi(diff.y)
+			)
+		)
+		var between_coords: Array = diagonal_coords.filter(
+			func(coords: Vector2i) -> bool: return (
+				coords.x > min_x && coords.x < max_x && coords.y > min_y && coords.y < max_y
+			)
+		)
+		if !between_coords.is_empty():
+			return false
+	else:
+		return false
+
+	if pieces.has(to):
+		var conflicting_piece: Piece = pieces[to]
+		if conflicting_piece.is_player == is_player:
+			return false
+
+	return true

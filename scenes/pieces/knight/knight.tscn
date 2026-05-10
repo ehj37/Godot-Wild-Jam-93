@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://ctrktiu5vmyoj"]
 
-[ext_resource type="Script" uid="uid://ctya1tplf224y" path="res://scripts/piece.gd" id="1_m7apw"]
+[ext_resource type="Script" uid="uid://br2n3yvrhbdsw" path="res://scenes/pieces/knight/knight.gd" id="1_cx8at"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_cx8at"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m7apw"]
@@ -8,7 +8,7 @@ _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAADGAAAAUklGRr4AAABXRUJQVlA4TLE
 size_override = Vector2(36, 36)
 
 [node name="Knight" type="Node2D" unique_id=784984646]
-script = ExtResource("1_m7apw")
+script = ExtResource("1_cx8at")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=748296036]

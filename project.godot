@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Godot Wild Jam 93"
-run/main_scene="uid://2ammtu3f1dxq"
+run/main_scene="uid://bpxieccmj6oce"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioManager="*uid://bf7773r8ju12q"
 
 [debug]
 

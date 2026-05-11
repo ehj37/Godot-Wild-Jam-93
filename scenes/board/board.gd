@@ -21,11 +21,20 @@ var _pieces: Dictionary = {}
 var _selected_piece: Piece
 var _is_player_turn: bool = true
 
+@onready var _pawn_promotion_dialog: PawnPromotionDialog = $PawnPromotionDialog
+# PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
 @onready var _bishop_packed_scene: PackedScene = preload("res://scenes/pieces/bishop/bishop.tscn")
 @onready var _knight_packed_scene: PackedScene = preload("res://scenes/pieces/knight/knight.tscn")
-@onready var _pawn_promotion_dialog: PawnPromotionDialog = $PawnPromotionDialog
+# AUDIO STREAMS
+@onready
+var _piece_move_audio_stream: AudioStreamOggVorbis = preload("res://audio_streams/piece_move.ogg")
+@onready
+var _piece_take_audio_stream: AudioStreamOggVorbis = preload("res://audio_streams/piece_take.ogg")
+@onready var _target_taken_audio_stream: AudioStreamOggVorbis = preload(
+	"res://audio_streams/target_taken.ogg"
+)
 
 
 # Returns (-1, -1) for coords outside of the board
@@ -94,8 +103,15 @@ func _ready() -> void:
 
 
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
+	AudioManager.play(_piece_move_audio_stream)
+
 	var piece_to_remove: Piece = _pieces.get(new_board_coordinate)
 	if piece_to_remove:
+		if piece_to_remove.is_target:
+			AudioManager.play(_target_taken_audio_stream)
+		else:
+			AudioManager.play(_piece_take_audio_stream)
+
 		_pieces.erase(new_board_coordinate)
 		piece_to_remove.queue_free()
 

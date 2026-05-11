@@ -10,7 +10,6 @@ size_override = Vector2(36, 36)
 
 [node name="Queen" type="Node2D" unique_id=1549790735]
 script = ExtResource("1_3i28x")
-is_target = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_6n2g7")]

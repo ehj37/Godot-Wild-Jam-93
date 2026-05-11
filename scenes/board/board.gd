@@ -21,6 +21,12 @@ var _pieces: Dictionary = {}
 var _selected_piece: Piece
 var _is_player_turn: bool = true
 
+@onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
+@onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
+@onready var _bishop_packed_scene: PackedScene = preload("res://scenes/pieces/bishop/bishop.tscn")
+@onready var _knight_packed_scene: PackedScene = preload("res://scenes/pieces/knight/knight.tscn")
+@onready var _pawn_promotion_dialog: PawnPromotionDialog = $PawnPromotionDialog
+
 
 # Returns (-1, -1) for coords outside of the board
 func get_board_coordinate(global_coordinate: Vector2) -> Vector2i:
@@ -84,6 +90,8 @@ func _ready() -> void:
 		var board_coordinates: Vector2i = get_board_coordinate(piece.global_position)
 		_pieces[board_coordinates] = piece
 
+	_pawn_promotion_dialog.visible = false
+
 
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	var piece_to_remove: Piece = _pieces.get(new_board_coordinate)
@@ -94,8 +102,51 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
 	_pieces.erase(current_board_coordinate)
 
+	var new_global_position: Vector2 = get_global_position_from_board_coordinate(
+		new_board_coordinate
+	)
+
 	piece.global_position = get_global_position_from_board_coordinate(new_board_coordinate)
 	_pieces[new_board_coordinate] = piece
+
+	if piece is Pawn:
+		if piece.is_player && new_board_coordinate.y == 7:
+			_pawn_promotion_dialog.show()
+			var chosen_piece_type: PawnPromotionDialog.PieceType = await (
+				_pawn_promotion_dialog.piece_type_picked
+			)
+
+			_pawn_promotion_dialog.hide()
+			var piece_packed_scene: PackedScene
+			match chosen_piece_type:
+				PawnPromotionDialog.PieceType.QUEEN:
+					piece_packed_scene = _queen_packed_scene
+				PawnPromotionDialog.PieceType.ROOK:
+					piece_packed_scene = _rook_packed_scene
+				PawnPromotionDialog.PieceType.BISHOP:
+					piece_packed_scene = _bishop_packed_scene
+				PawnPromotionDialog.PieceType.KNIGHT:
+					piece_packed_scene = _knight_packed_scene
+				_:
+					push_error(
+						"Encountered unexpected chosen piece type from pawn promotion dialog."
+					)
+
+			var promotion_piece: Piece = piece_packed_scene.instantiate()
+			promotion_piece.is_player = true
+			promotion_piece.is_target = piece.is_target
+			piece.get_parent().add_child(promotion_piece)
+			piece.queue_free()
+			promotion_piece.global_position = new_global_position
+			_pieces[new_board_coordinate] = promotion_piece
+		elif !piece.is_player && new_board_coordinate.y == 0:
+			var queen: Queen = _queen_packed_scene.instantiate()
+			queen.is_player = false
+			queen.is_target = piece.is_target
+			piece.get_parent().add_child(queen)
+			piece.queue_free()
+			queen.global_position = new_global_position
+			_pieces[new_board_coordinate] = queen
 
 
 func _win_condition_met() -> bool:
@@ -141,7 +192,7 @@ func _take_enemy_turn() -> void:
 			var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
 			_move_piece(attack.enemy_piece, player_board_coord)
 		_:
-			print("TODO: Enemy has multiple attacks")
+			print("Enemy has multiple attacks")
 			var candidate_enemy_pieces: Array = []
 			var candidate_player_pieces: Array = []
 			for attack: EnemyAttack in possible_attacks:

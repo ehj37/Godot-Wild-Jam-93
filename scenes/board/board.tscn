@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bosca8xpswa8q"]
 
 [ext_resource type="Script" uid="uid://c5ryf5e04ae4a" path="res://scenes/board/board.gd" id="1_s78fa"]
+[ext_resource type="PackedScene" uid="uid://baxf5pr6kucta" path="res://scenes/board/pawn_promotion_dialog/pawn_promotion_dialog.tscn" id="2_jnyf0"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_s78fa"]
 _data = PackedByteArray("AAADAAUAAAABAAAAUAEAAFABAADqAAAAUklGRuIAAABXRUJQVlA4TNYAAAAvT8FTACcgECBE+K/wZ4NA0mYpxvoHeMUTZNvMYxBzvfDnP4D/LKo2cFXbClShEEAbuEzAWhRwoH+u+wbuJ0T0n2HbtmHEB9pufkJo2nbEcpyItfoJx/8as65EmAdCq59QaOI5gfG/xiwPhF6JsOonFJp4TmD8rzHrSoR5ILT6CYUmnhMY/2vM8kDolQirfkKhiecExv8as65EmAdCq59QaOI5gfG/xiwPhF6JsEInBA8jNPGcwPhfY9aVCBMMeEIPhP7nCYUmnhMY/2vM8kDolQgrfkID")
@@ -32,3 +33,6 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 7037132931071513700
 }
 metadata/_aseprite_wizard_source_file_hash_ = "619afd8d57a0c2b45f57497cf4ee5e2c"
+
+[node name="PawnPromotionDialog" parent="." unique_id=1461739217 instance=ExtResource("2_jnyf0")]
+visible = false

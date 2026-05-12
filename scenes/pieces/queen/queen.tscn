@@ -5,9 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_6n2g7"]
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_xqvnh"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_yka63"]
-size_override = Vector2(24, 24)
-
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_mbn11"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC6AAAAUklGRrIAAABXRUJQVlA4TKYAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYNIkqvq4iCbYCD3MJA3GPj5NwV1V6Agov8TYJ+WcqOltC9KaEJXbAC0mBxcsTrcW4nZ7r5YUtelTIXynkCJOqCVhLt7Zri3hGk9ZMl6biUFHxAoM6G/Vm8lAfCabgrV8YdfK6FrdT+ukDiva0ORyWN/R0+KVE3oKhEzSbJn")
 size_override = Vector2(36, 36)
@@ -18,7 +15,6 @@ metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_xqvnh")]
 position = Vector2(0, 8)
-texture = SubResource("PortableCompressedTexture2D_yka63")
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_6n2g7")]
 position = Vector2(0, 16)

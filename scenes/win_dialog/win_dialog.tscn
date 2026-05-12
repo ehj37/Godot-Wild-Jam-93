@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c0edtbxxhclfr"]
+
+[ext_resource type="Script" uid="uid://bra3fbkke72fn" path="res://scenes/win_dialog/win_dialog.gd" id="1_vx7f2"]
+
+[node name="WinDialog" type="PanelContainer" unique_id=836941109]
+script = ExtResource("1_vx7f2")
+
+[node name="Label" type="Label" parent="." unique_id=1988109108]
+layout_mode = 2
+text = "ALL BOUNTIES CLAIMED"

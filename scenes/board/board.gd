@@ -22,7 +22,9 @@ var _piece_to_board_coord: Dictionary = {}
 var _selected_piece: Piece
 var _is_player_turn: bool = true
 
-@onready var _pawn_promotion_dialog: PawnPromotionDialog = $PawnPromotionDialog
+@onready var _pawn_promotion_dialog: PawnPromotionDialog = $CenterContainer/PawnPromotionDialog
+@onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
+@onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -79,9 +81,13 @@ func _ready() -> void:
 		_piece_to_board_coord[piece] = board_coordinate
 
 	_pawn_promotion_dialog.visible = false
+	_turn_dialog.visible = false
+	_win_dialog.visible = false
 
 
-func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
+# Returns the moved piece, which may or may not be the same as the provided
+# piece in the event of pawn promotion.
+func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> Piece:
 	AudioManager.play(_piece_move_audio_stream)
 
 	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
@@ -105,6 +111,7 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	_pieces_by_board_coord[new_board_coordinate] = piece
 	_piece_to_board_coord[piece] = new_board_coordinate
 
+	var moved_piece: Piece = piece
 	if piece is Pawn:
 		if piece.is_player && new_board_coordinate.y == 7:
 			_pawn_promotion_dialog.show()
@@ -131,22 +138,28 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 			var promotion_piece: Piece = piece_packed_scene.instantiate()
 			promotion_piece.is_player = true
 			promotion_piece.is_target = piece.is_target
+			promotion_piece.is_selected = piece.is_selected
 			piece.get_parent().add_child(promotion_piece)
 			_piece_to_board_coord.erase(piece)
 			piece.queue_free()
 			promotion_piece.global_position = new_global_position
 			_pieces_by_board_coord[new_board_coordinate] = promotion_piece
 			_piece_to_board_coord[promotion_piece] = new_board_coordinate
+			moved_piece = promotion_piece
 		elif !piece.is_player && new_board_coordinate.y == 0:
 			var queen: Queen = _queen_packed_scene.instantiate()
 			queen.is_player = false
 			queen.is_target = piece.is_target
+			queen.is_selected = piece.is_selected
 			piece.get_parent().add_child(queen)
 			_piece_to_board_coord.erase(piece)
 			piece.queue_free()
 			queen.global_position = new_global_position
 			_pieces_by_board_coord[new_board_coordinate] = queen
 			_piece_to_board_coord[queen] = new_board_coordinate
+			moved_piece = queen
+
+	return moved_piece
 
 
 func _win_condition_met() -> bool:
@@ -177,9 +190,10 @@ func _handle_player_turn_click() -> void:
 				current_board_coordinate, mouse_board_coordinate, _pieces_by_board_coord
 			)
 			if is_valid_move:
-				_move_piece(_selected_piece, mouse_board_coordinate)
+				_selected_piece = await _move_piece(_selected_piece, mouse_board_coordinate)
+
 				if _win_condition_met():
-					print("TODO: Level beaten, do something")
+					_win_dialog.show()
 				else:
 					_is_player_turn = false
 					_take_enemy_turn()
@@ -225,6 +239,12 @@ func _get_valid_attacks(
 
 
 func _take_enemy_turn() -> void:
+	_turn_dialog.is_player_turn = false
+	_turn_dialog.show()
+	await get_tree().create_timer(1.0).timeout
+
+	_turn_dialog.hide()
+
 	# I love GDScript it's great
 	var enemy_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
 		func(piece: Piece) -> bool: return !piece.is_player
@@ -255,7 +275,8 @@ func _take_enemy_turn() -> void:
 
 			var player_piece: Piece = attack.attacked_piece
 			var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-			_move_piece(enemy_piece, player_board_coord)
+			await _move_piece(enemy_piece, player_board_coord)
+
 			enemy_piece.is_selected = false
 		_:
 			print("Enemy has multiple attacks")
@@ -290,7 +311,8 @@ func _take_enemy_turn() -> void:
 				await get_tree().create_timer(0.5).timeout
 				var player_piece: Piece = attack.attacked_piece
 				var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-				_move_piece(enemy_piece, player_board_coord)
+				await _move_piece(enemy_piece, player_board_coord)
+
 				enemy_piece.is_selected = false
 			else:
 				print("Multiple attacks, further tiebreaking needed")
@@ -310,7 +332,8 @@ func _take_enemy_turn() -> void:
 
 				var player_piece: Piece = attack.attacked_piece
 				var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-				_move_piece(enemy_piece, player_board_coord)
+				await _move_piece(enemy_piece, player_board_coord)
+
 				enemy_piece.is_selected = false
 
 	_is_player_turn = true

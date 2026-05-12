@@ -1,6 +1,6 @@
 class_name PawnPromotionDialog
 
-extends CanvasLayer
+extends PanelContainer
 
 signal piece_type_picked(piece_type: PieceType)
 

@@ -1,8 +1,13 @@
 [gd_scene format=4 uid="uid://chsq7xisphgil"]
 
 [ext_resource type="Script" uid="uid://brwr8f4h1joa7" path="res://scenes/pieces/pawn/pawn.gd" id="1_s4c4q"]
+[ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_end6c"]
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_f8xul"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_s4c4q"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_171i7"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAABCAAAAUklGRjoAAABXRUJQVlA4TC4AAAAvF8AFEA8wjNMxyfMf8FAV26ZFApFEI7IAxv66zwQR/U/5lWhhjQ/BOkTjhSUK")
+size_override = Vector2(24, 24)
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wgsma"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACoAAAAUklGRqAAAABXRUJQVlA4TJMAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gavYduNGYqAXlYDFIHklsPEnZVev+3dE/yfA/lZAwp5QBplCTC4USeV4i51MwSYTcb5BIpUY5OZCVZVyqToJhvsdJgbpCkgIMcj0Hg6SaMWY0jsozuiMY5GNeOSN4vo1Y5UNAybAugEAbksA")
@@ -10,8 +15,11 @@ size_override = Vector2(36, 36)
 
 [node name="Pawn" type="Node2D" unique_id=1015032063]
 script = ExtResource("1_s4c4q")
-is_target = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_end6c")]
+position = Vector2(0, 8)
+texture = SubResource("PortableCompressedTexture2D_171i7")
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_f8xul")]
 position = Vector2(0, 16)

@@ -66,31 +66,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var event_mouse_button: InputEventMouseButton = event
 		if event_mouse_button.button_index == MOUSE_BUTTON_LEFT:
-			var mouse_position: Vector2 = get_global_mouse_position()
-			var mouse_board_coordinate: Vector2i = get_board_coordinate(mouse_position)
 			if event_mouse_button.pressed:
-				if _selected_piece:
-					if mouse_board_coordinate != Vector2i(-1, -1):
-						var current_board_coordinate: Vector2i = get_board_coordinate(
-							_selected_piece.global_position
-						)
-						var is_valid_move: bool = _selected_piece.is_valid_move(
-							current_board_coordinate, mouse_board_coordinate, _pieces
-						)
-						if is_valid_move:
-							_move_piece(_selected_piece, mouse_board_coordinate)
-							if _win_condition_met():
-								print("TODO: Level beaten, do something")
-							else:
-								_is_player_turn = false
-								_take_enemy_turn()
-
-					_selected_piece = null
-			else:
-				if !_selected_piece:
-					var piece_at_mouse: Piece = _pieces.get(mouse_board_coordinate)
-					if piece_at_mouse && piece_at_mouse.is_player:
-						_selected_piece = _pieces.get(mouse_board_coordinate)
+				_handle_player_turn_click()
 
 
 func _ready() -> void:
@@ -172,6 +149,41 @@ func _win_condition_met() -> bool:
 	return target_pieces.is_empty()
 
 
+func _handle_player_turn_click() -> void:
+	var mouse_position: Vector2 = get_global_mouse_position()
+	var mouse_board_coordinate: Vector2i = get_board_coordinate(mouse_position)
+	if _selected_piece:
+		if mouse_board_coordinate != Vector2i(-1, -1):
+			var piece_at_mouse_board_coordinate: Piece = _pieces.get(mouse_board_coordinate)
+			if piece_at_mouse_board_coordinate && piece_at_mouse_board_coordinate.is_player:
+				_selected_piece.is_selected = false
+				_selected_piece = piece_at_mouse_board_coordinate
+				piece_at_mouse_board_coordinate.is_selected = true
+				return
+
+			var current_board_coordinate: Vector2i = get_board_coordinate(
+				_selected_piece.global_position
+			)
+			var is_valid_move: bool = _selected_piece.is_valid_move(
+				current_board_coordinate, mouse_board_coordinate, _pieces
+			)
+			if is_valid_move:
+				_move_piece(_selected_piece, mouse_board_coordinate)
+				if _win_condition_met():
+					print("TODO: Level beaten, do something")
+				else:
+					_is_player_turn = false
+					_take_enemy_turn()
+
+		_selected_piece.is_selected = false
+		_selected_piece = null
+	else:
+		var piece_at_mouse: Piece = _pieces.get(mouse_board_coordinate)
+		if piece_at_mouse && piece_at_mouse.is_player:
+			_selected_piece = _pieces.get(mouse_board_coordinate)
+			_selected_piece.is_selected = true
+
+
 func _take_enemy_turn() -> void:
 	var player_pieces: Array = _pieces.values().filter(
 		func(piece: Piece) -> bool: return piece.is_player
@@ -205,8 +217,14 @@ func _take_enemy_turn() -> void:
 		1:
 			print("One possible enemy attack.")
 			var attack: EnemyAttack = possible_attacks[0]
+			await get_tree().create_timer(0.5).timeout
+
+			attack.enemy_piece.is_selected = true
+			await get_tree().create_timer(0.5).timeout
+
 			var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
 			_move_piece(attack.enemy_piece, player_board_coord)
+			attack.enemy_piece.is_selected = false
 		_:
 			print("Enemy has multiple attacks")
 			var candidate_enemy_pieces: Array = []
@@ -218,6 +236,11 @@ func _take_enemy_turn() -> void:
 				if !candidate_player_pieces.has(attack.player_piece):
 					candidate_player_pieces.append(attack.player_piece)
 
+			for piece: Piece in candidate_enemy_pieces:
+				piece.is_selected = true
+
+			await get_tree().create_timer(0.5).timeout
+
 			candidate_enemy_pieces.sort_custom(_compare_pieces)
 			var attacking_enemy_piece: Piece = candidate_enemy_pieces[0]
 			var attacks_for_enemy_piece: Array = possible_attacks.filter(
@@ -228,8 +251,13 @@ func _take_enemy_turn() -> void:
 			if attacks_for_enemy_piece.size() == 1:
 				print("One attack, no further tiebreaking needed")
 				var attack: EnemyAttack = attacks_for_enemy_piece[0]
+				for piece: Piece in candidate_enemy_pieces:
+					piece.is_selected = piece == attack.enemy_piece
+
+				await get_tree().create_timer(0.5).timeout
 				var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
 				_move_piece(attack.enemy_piece, player_board_coord)
+				attack.enemy_piece.is_selected = false
 			else:
 				print("Multiple attacks, further tiebreaking needed")
 				candidate_player_pieces.sort_custom(_compare_pieces)
@@ -240,8 +268,14 @@ func _take_enemy_turn() -> void:
 					)
 				)
 				var attack: EnemyAttack = attacks_for_enemy_piece[attack_i]
+				for piece: Piece in candidate_enemy_pieces:
+					piece.is_selected = piece == attack.enemy_piece
+
+				await get_tree().create_timer(0.5).timeout
+
 				var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
 				_move_piece(attack.enemy_piece, player_board_coord)
+				attack.enemy_piece.is_selected = false
 
 	_is_player_turn = true
 

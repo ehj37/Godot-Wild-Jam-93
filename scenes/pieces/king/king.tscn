@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blfqbsxut6vd1" path="res://scenes/pieces/king/king.gd" id="1_vyx7p"]
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_bd63c"]
+[ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_c00m1"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_vyx7p"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_6xkmu"]
@@ -10,8 +11,10 @@ size_override = Vector2(36, 36)
 
 [node name="King" type="Node2D" unique_id=842364951]
 script = ExtResource("1_vyx7p")
-is_target = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_c00m1")]
+position = Vector2(0, 8)
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_bd63c")]
 position = Vector2(0, 16)

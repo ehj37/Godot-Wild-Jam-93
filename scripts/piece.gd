@@ -14,6 +14,11 @@ extends Node2D
 		is_target = new_value
 		_set_target_particles()
 
+var is_selected: bool = false:
+	set(new_value):
+		is_selected = new_value
+		_set_selected_indicator()
+
 
 func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces: Dictionary) -> bool:
 	return false
@@ -22,6 +27,7 @@ func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces: Dictionary) -> bool:
 func _ready() -> void:
 	_set_palette()
 	_set_target_particles()
+	_set_selected_indicator()
 
 
 func _set_palette() -> void:
@@ -35,3 +41,8 @@ func _set_target_particles() -> void:
 	var target_fire_front: TargetFire = $TargetFireFront
 	target_fire_back.set_emitting(is_target)
 	target_fire_front.set_emitting(is_target)
+
+
+func _set_selected_indicator() -> void:
+	var selected_indicator: Sprite2D = $SelectedIndicator
+	selected_indicator.visible = is_selected

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c837iw4npsysx"
+path="res://.godot/imported/selected_indicator.aseprite-abbd9650a2bbef1244fc7a2bd7acc287.res"
+
+[deps]
+
+source_file="res://scenes/selected_indicator/selected_indicator.aseprite"
+dest_files=["res://.godot/imported/selected_indicator.aseprite-abbd9650a2bbef1244fc7a2bd7acc287.res"]
+
+[params]
+

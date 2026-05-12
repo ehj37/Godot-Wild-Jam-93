@@ -1,0 +1,31 @@
+[gd_scene format=4 uid="uid://gdajp0vk18nt"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_xct01"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAABCAAAAUklGRjoAAABXRUJQVlA4TC4AAAAvF8AFEA8wjNMxyfMf8FAV26ZFApFEI7IAxv66zwQR/U/5lWhhjQ/BOkTjhSUK")
+size_override = Vector2(24, 24)
+
+[node name="SelectedIndicator" type="Sprite2D" unique_id=1677880840]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_xct01")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/selected_indicator/selected_indicator.aseprite",
+"source_uid": 7148834215599183163
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9a73dc2fe18814ad62fa5e6f2bb271c7"

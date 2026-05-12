@@ -10,8 +10,6 @@
 script = ExtResource("1_3kqdl")
 metadata/_custom_type_script = "uid://twfgb1kflgb"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1323102298]
-
 [node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_gs2wg")]
 
 [node name="Player" type="Node2D" parent="Board" unique_id=633832245]

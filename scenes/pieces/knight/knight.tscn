@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://br2n3yvrhbdsw" path="res://scenes/pieces/knight/knight.gd" id="1_cx8at"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_cx8at"]
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_t32bd"]
+[ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_ysb8v"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m7apw"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAADGAAAAUklGRr4AAABXRUJQVlA4TLEAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYPa2oKGv8H/iQXEBOxZYMe/fynhxy1BRP8noPy5a03bkh+bLbhACwKqUt4BNssIqJxKeGe4WYLxqZkm1Fl/KwI08UdVxG6zBiBJZaFaSY7QC/uvPmvHWnntVkrtYWtK+bdB21MiWguU6RABNeGdYbUE00yMIkNccAcZcUdcKFFcHaqspCWpjAEA")
@@ -10,8 +11,10 @@ size_override = Vector2(36, 36)
 
 [node name="Knight" type="Node2D" unique_id=784984646]
 script = ExtResource("1_cx8at")
-is_target = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
+
+[node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_ysb8v")]
+position = Vector2(0, 8)
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_t32bd")]
 position = Vector2(0, 16)

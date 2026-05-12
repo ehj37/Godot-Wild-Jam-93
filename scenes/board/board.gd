@@ -3,21 +3,22 @@ class_name Board
 extends Sprite2D
 
 
-class EnemyAttack:
-	var enemy_piece: Piece
-	var player_piece: Piece
+class Attack:
+	var attacking_piece: Piece
+	var attacked_piece: Piece
 
 	@warning_ignore("shadowed_variable")
 
-	func _init(enemy_piece: Piece, player_piece: Piece) -> void:
-		self.enemy_piece = enemy_piece
-		self.player_piece = player_piece
+	func _init(attacking_piece: Piece, attacked_piece: Piece) -> void:
+		self.attacking_piece = attacking_piece
+		self.attacked_piece = attacked_piece
 
 
 const CELL_SIDE_LENGTH: int = 42
 const ORIGIN: Vector2i = Vector2i(-4 * CELL_SIDE_LENGTH, 4 * CELL_SIDE_LENGTH)
 
-var _pieces: Dictionary = {}
+var _pieces_by_board_coord: Dictionary = {}
+var _piece_to_board_coord: Dictionary = {}
 var _selected_piece: Piece
 var _is_player_turn: bool = true
 
@@ -73,8 +74,9 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	var pieces: Array = find_children("*", "Piece", true, false)
 	for piece: Piece in pieces:
-		var board_coordinates: Vector2i = get_board_coordinate(piece.global_position)
-		_pieces[board_coordinates] = piece
+		var board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
+		_pieces_by_board_coord[board_coordinate] = piece
+		_piece_to_board_coord[piece] = board_coordinate
 
 	_pawn_promotion_dialog.visible = false
 
@@ -82,25 +84,26 @@ func _ready() -> void:
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	AudioManager.play(_piece_move_audio_stream)
 
-	var piece_to_remove: Piece = _pieces.get(new_board_coordinate)
+	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
 	if piece_to_remove:
 		if piece_to_remove.is_target:
 			AudioManager.play(_target_taken_audio_stream)
 		else:
 			AudioManager.play(_piece_take_audio_stream)
 
-		_pieces.erase(new_board_coordinate)
+		_pieces_by_board_coord.erase(new_board_coordinate)
+		_piece_to_board_coord.erase(piece_to_remove)
 		piece_to_remove.queue_free()
 
 	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
-	_pieces.erase(current_board_coordinate)
+	_pieces_by_board_coord.erase(current_board_coordinate)
 
 	var new_global_position: Vector2 = get_global_position_from_board_coordinate(
 		new_board_coordinate
 	)
-
 	piece.global_position = get_global_position_from_board_coordinate(new_board_coordinate)
-	_pieces[new_board_coordinate] = piece
+	_pieces_by_board_coord[new_board_coordinate] = piece
+	_piece_to_board_coord[piece] = new_board_coordinate
 
 	if piece is Pawn:
 		if piece.is_player && new_board_coordinate.y == 7:
@@ -129,21 +132,25 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 			promotion_piece.is_player = true
 			promotion_piece.is_target = piece.is_target
 			piece.get_parent().add_child(promotion_piece)
+			_piece_to_board_coord.erase(piece)
 			piece.queue_free()
 			promotion_piece.global_position = new_global_position
-			_pieces[new_board_coordinate] = promotion_piece
+			_pieces_by_board_coord[new_board_coordinate] = promotion_piece
+			_piece_to_board_coord[promotion_piece] = new_board_coordinate
 		elif !piece.is_player && new_board_coordinate.y == 0:
 			var queen: Queen = _queen_packed_scene.instantiate()
 			queen.is_player = false
 			queen.is_target = piece.is_target
 			piece.get_parent().add_child(queen)
+			_piece_to_board_coord.erase(piece)
 			piece.queue_free()
 			queen.global_position = new_global_position
-			_pieces[new_board_coordinate] = queen
+			_pieces_by_board_coord[new_board_coordinate] = queen
+			_piece_to_board_coord[queen] = new_board_coordinate
 
 
 func _win_condition_met() -> bool:
-	var target_pieces: Array = _pieces.values().filter(
+	var target_pieces: Array = _pieces_by_board_coord.values().filter(
 		func(piece: Piece) -> bool: return piece.is_target
 	)
 	return target_pieces.is_empty()
@@ -154,7 +161,9 @@ func _handle_player_turn_click() -> void:
 	var mouse_board_coordinate: Vector2i = get_board_coordinate(mouse_position)
 	if _selected_piece:
 		if mouse_board_coordinate != Vector2i(-1, -1):
-			var piece_at_mouse_board_coordinate: Piece = _pieces.get(mouse_board_coordinate)
+			var piece_at_mouse_board_coordinate: Piece = _pieces_by_board_coord.get(
+				mouse_board_coordinate
+			)
 			if piece_at_mouse_board_coordinate && piece_at_mouse_board_coordinate.is_player:
 				_selected_piece.is_selected = false
 				_selected_piece = piece_at_mouse_board_coordinate
@@ -165,7 +174,7 @@ func _handle_player_turn_click() -> void:
 				_selected_piece.global_position
 			)
 			var is_valid_move: bool = _selected_piece.is_valid_move(
-				current_board_coordinate, mouse_board_coordinate, _pieces
+				current_board_coordinate, mouse_board_coordinate, _pieces_by_board_coord
 			)
 			if is_valid_move:
 				_move_piece(_selected_piece, mouse_board_coordinate)
@@ -178,63 +187,88 @@ func _handle_player_turn_click() -> void:
 		_selected_piece.is_selected = false
 		_selected_piece = null
 	else:
-		var piece_at_mouse: Piece = _pieces.get(mouse_board_coordinate)
+		var piece_at_mouse: Piece = _pieces_by_board_coord.get(mouse_board_coordinate)
 		if piece_at_mouse && piece_at_mouse.is_player:
-			_selected_piece = _pieces.get(mouse_board_coordinate)
+			_selected_piece = _pieces_by_board_coord.get(mouse_board_coordinate)
 			_selected_piece.is_selected = true
 
 
+func _get_valid_attacks(
+	attacking_piece_candidates: Array[Piece], attacked_piece_candidates: Array[Piece]
+) -> Array[Attack]:
+	# Gross, but should be fine in practice. It's an 8x8 grid with generally few
+	# player pieces.
+	var possible_attacks: Array[Attack] = []
+	for attacked_piece_candidate: Piece in attacked_piece_candidates:
+		var attacked_piece_candidate_board_coord: Vector2i = get_board_coordinate(
+			attacked_piece_candidate.global_position
+		)
+		for attacking_piece_candidate: Piece in attacking_piece_candidates:
+			var attacking_piece_candidate_board_coord: Vector2i
+			if _piece_to_board_coord.has(attacking_piece_candidate):
+				attacking_piece_candidate_board_coord = _piece_to_board_coord[attacking_piece_candidate]
+			else:
+				attacking_piece_candidate_board_coord = get_board_coordinate(
+					attacking_piece_candidate.global_position
+				)
+
+			if attacking_piece_candidate.is_valid_move(
+				attacking_piece_candidate_board_coord,
+				attacked_piece_candidate_board_coord,
+				_pieces_by_board_coord
+			):
+				possible_attacks.append(
+					Attack.new(attacking_piece_candidate, attacked_piece_candidate)
+				)
+
+	return possible_attacks
+
+
 func _take_enemy_turn() -> void:
-	var player_pieces: Array = _pieces.values().filter(
-		func(piece: Piece) -> bool: return piece.is_player
-	)
-	var enemy_pieces: Array = _pieces.values().filter(
+	# I love GDScript it's great
+	var enemy_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
 		func(piece: Piece) -> bool: return !piece.is_player
 	)
-	var piece_to_board_coord: Dictionary = {}
+	var player_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
+		func(piece: Piece) -> bool: return piece.is_player
+	)
+	var enemy_pieces: Array[Piece]
+	enemy_pieces.assign(enemy_pieces_untyped)
+	var player_pieces: Array[Piece]
+	player_pieces.assign(player_pieces_untyped)
 
 	# Gross, but should be fine in practice. It's an 8x8 grid with generally few
 	# player pieces.
-	var possible_attacks: Array[EnemyAttack] = []
-	for player_piece: Piece in player_pieces:
-		var player_board_coord: Vector2i = get_board_coordinate(player_piece.global_position)
-		piece_to_board_coord[player_piece] = player_board_coord
-		for enemy_piece: Piece in enemy_pieces:
-			var enemy_board_coord: Vector2i
-			if piece_to_board_coord.has(enemy_piece):
-				enemy_board_coord = piece_to_board_coord[enemy_piece]
-			else:
-				enemy_board_coord = get_board_coordinate(enemy_piece.global_position)
-				piece_to_board_coord[enemy_piece] = enemy_board_coord
-
-			if enemy_piece.is_valid_move(enemy_board_coord, player_board_coord, _pieces):
-				possible_attacks.append(EnemyAttack.new(enemy_piece, player_piece))
-
+	var possible_attacks: Array[Attack] = _get_valid_attacks(enemy_pieces, player_pieces)
 	var possible_attack_count: int = possible_attacks.size()
 	match possible_attack_count:
 		0:
 			print("Enemy has no attacks")
 		1:
 			print("One possible enemy attack.")
-			var attack: EnemyAttack = possible_attacks[0]
+			var attack: Attack = possible_attacks[0]
 			await get_tree().create_timer(0.5).timeout
 
-			attack.enemy_piece.is_selected = true
+			var enemy_piece: Piece = attack.attacking_piece
+			enemy_piece.is_selected = true
 			await get_tree().create_timer(0.5).timeout
 
-			var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
-			_move_piece(attack.enemy_piece, player_board_coord)
-			attack.enemy_piece.is_selected = false
+			var player_piece: Piece = attack.attacked_piece
+			var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
+			_move_piece(enemy_piece, player_board_coord)
+			enemy_piece.is_selected = false
 		_:
 			print("Enemy has multiple attacks")
 			var candidate_enemy_pieces: Array = []
 			var candidate_player_pieces: Array = []
-			for attack: EnemyAttack in possible_attacks:
-				if !candidate_enemy_pieces.has(attack.enemy_piece):
-					candidate_enemy_pieces.append(attack.enemy_piece)
+			for attack: Attack in possible_attacks:
+				var enemy_piece: Piece = attack.attacking_piece
+				if !candidate_enemy_pieces.has(enemy_piece):
+					candidate_enemy_pieces.append(enemy_piece)
 
-				if !candidate_player_pieces.has(attack.player_piece):
-					candidate_player_pieces.append(attack.player_piece)
+				var player_piece: Piece = attack.attacked_piece
+				if !candidate_player_pieces.has(player_piece):
+					candidate_player_pieces.append(player_piece)
 
 			for piece: Piece in candidate_enemy_pieces:
 				piece.is_selected = true
@@ -244,38 +278,40 @@ func _take_enemy_turn() -> void:
 			candidate_enemy_pieces.sort_custom(_compare_pieces)
 			var attacking_enemy_piece: Piece = candidate_enemy_pieces[0]
 			var attacks_for_enemy_piece: Array = possible_attacks.filter(
-				func(attack: EnemyAttack) -> bool: return (
-					attack.enemy_piece == attacking_enemy_piece
-				)
+				func(attack: Attack) -> bool: return attack.attacking_piece == attacking_enemy_piece
 			)
 			if attacks_for_enemy_piece.size() == 1:
 				print("One attack, no further tiebreaking needed")
-				var attack: EnemyAttack = attacks_for_enemy_piece[0]
+				var attack: Attack = attacks_for_enemy_piece[0]
+				var enemy_piece: Piece = attack.attacking_piece
 				for piece: Piece in candidate_enemy_pieces:
-					piece.is_selected = piece == attack.enemy_piece
+					piece.is_selected = piece == enemy_piece
 
 				await get_tree().create_timer(0.5).timeout
-				var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
-				_move_piece(attack.enemy_piece, player_board_coord)
-				attack.enemy_piece.is_selected = false
+				var player_piece: Piece = attack.attacked_piece
+				var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
+				_move_piece(enemy_piece, player_board_coord)
+				enemy_piece.is_selected = false
 			else:
 				print("Multiple attacks, further tiebreaking needed")
 				candidate_player_pieces.sort_custom(_compare_pieces)
 				var player_piece_to_attack: Piece = candidate_enemy_pieces[0]
 				var attack_i: int = attacks_for_enemy_piece.find_custom(
-					func(attack_for_enemy_piece: EnemyAttack) -> bool: return (
-						attack_for_enemy_piece.player_piece == player_piece_to_attack
+					func(attack_for_enemy_piece: Attack) -> bool: return (
+						attack_for_enemy_piece.attacked_piece == player_piece_to_attack
 					)
 				)
-				var attack: EnemyAttack = attacks_for_enemy_piece[attack_i]
+				var attack: Attack = attacks_for_enemy_piece[attack_i]
+				var enemy_piece: Piece = attack.attacking_piece
 				for piece: Piece in candidate_enemy_pieces:
-					piece.is_selected = piece == attack.enemy_piece
+					piece.is_selected = piece == enemy_piece
 
 				await get_tree().create_timer(0.5).timeout
 
-				var player_board_coord: Vector2i = piece_to_board_coord[attack.player_piece]
-				_move_piece(attack.enemy_piece, player_board_coord)
-				attack.enemy_piece.is_selected = false
+				var player_piece: Piece = attack.attacked_piece
+				var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
+				_move_piece(enemy_piece, player_board_coord)
+				enemy_piece.is_selected = false
 
 	_is_player_turn = true
 

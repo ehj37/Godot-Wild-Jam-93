@@ -38,3 +38,122 @@ metadata/_aseprite_wizard_source_file_hash_ = "619afd8d57a0c2b45f57497cf4ee5e2c"
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1588986359]
+position = Vector2(0, 10)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=559803789]
+offset_left = -168.0
+offset_top = 159.0
+offset_right = 168.0
+offset_bottom = 199.0
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=508009471]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "a"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=1043670250]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "b"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer" unique_id=393343881]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "c"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer" unique_id=1625543888]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "d"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="HBoxContainer" unique_id=705845223]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "e"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="HBoxContainer" unique_id=220098232]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "f"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="HBoxContainer" unique_id=170429400]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "g"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="HBoxContainer" unique_id=635255001]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "h"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1960163859]
+offset_left = -210.0
+offset_top = -168.0
+offset_right = -170.0
+offset_bottom = 168.0
+theme_override_constants/separation = 0
+
+[node name="Label8" type="Label" parent="VBoxContainer" unique_id=888698925]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label7" type="Label" parent="VBoxContainer" unique_id=1421536]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="VBoxContainer" unique_id=126196171]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer" unique_id=1524805472]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer" unique_id=1298080313]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=332322464]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1035259983]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=321497923]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -20,7 +20,7 @@ const ORIGIN: Vector2i = Vector2i(-4 * CELL_SIDE_LENGTH, 4 * CELL_SIDE_LENGTH)
 var _pieces_by_board_coord: Dictionary = {}
 var _piece_to_board_coord: Dictionary = {}
 var _selected_piece: Piece
-var _is_player_turn: bool = true
+var _listen_for_player_board_inputs: bool = true
 
 @onready var _pawn_promotion_dialog: PawnPromotionDialog = $CenterContainer/PawnPromotionDialog
 @onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
@@ -63,7 +63,7 @@ func get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Ve
 
 
 func _input(event: InputEvent) -> void:
-	if !_is_player_turn:
+	if !_listen_for_player_board_inputs:
 		return
 
 	if event is InputEventMouseButton:
@@ -85,9 +85,7 @@ func _ready() -> void:
 	_win_dialog.visible = false
 
 
-# Returns the moved piece, which may or may not be the same as the provided
-# piece in the event of pawn promotion.
-func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> Piece:
+func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	AudioManager.play_effect(_piece_move_audio_stream)
 
 	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
@@ -104,62 +102,26 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> Piece:
 	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
 	_pieces_by_board_coord.erase(current_board_coordinate)
 
-	var new_global_position: Vector2 = get_global_position_from_board_coordinate(
-		new_board_coordinate
-	)
 	piece.global_position = get_global_position_from_board_coordinate(new_board_coordinate)
 	_pieces_by_board_coord[new_board_coordinate] = piece
 	_piece_to_board_coord[piece] = new_board_coordinate
 
-	var moved_piece: Piece = piece
-	if piece is Pawn:
-		if piece.is_player && new_board_coordinate.y == 7:
-			_pawn_promotion_dialog.show()
-			var chosen_piece_type: PawnPromotionDialog.PieceType = await (
-				_pawn_promotion_dialog.piece_type_picked
-			)
 
-			_pawn_promotion_dialog.hide()
-			var piece_packed_scene: PackedScene
-			match chosen_piece_type:
-				PawnPromotionDialog.PieceType.QUEEN:
-					piece_packed_scene = _queen_packed_scene
-				PawnPromotionDialog.PieceType.ROOK:
-					piece_packed_scene = _rook_packed_scene
-				PawnPromotionDialog.PieceType.BISHOP:
-					piece_packed_scene = _bishop_packed_scene
-				PawnPromotionDialog.PieceType.KNIGHT:
-					piece_packed_scene = _knight_packed_scene
-				_:
-					push_error(
-						"Encountered unexpected chosen piece type from pawn promotion dialog."
-					)
+func _replace_piece(old_piece: Piece, new_piece: Piece) -> void:
+	new_piece.is_player = old_piece.is_player
+	new_piece.is_target = old_piece.is_target
+	new_piece.is_selected = old_piece.is_selected
+	new_piece.global_position = old_piece.global_position
+	var board_coord: Vector2i = _piece_to_board_coord[old_piece]
+	_piece_to_board_coord[new_piece] = board_coord
+	_piece_to_board_coord.erase(old_piece)
+	_pieces_by_board_coord[board_coord] = new_piece
 
-			var promotion_piece: Piece = piece_packed_scene.instantiate()
-			promotion_piece.is_player = true
-			promotion_piece.is_target = piece.is_target
-			promotion_piece.is_selected = piece.is_selected
-			piece.get_parent().add_child(promotion_piece)
-			_piece_to_board_coord.erase(piece)
-			piece.queue_free()
-			promotion_piece.global_position = new_global_position
-			_pieces_by_board_coord[new_board_coordinate] = promotion_piece
-			_piece_to_board_coord[promotion_piece] = new_board_coordinate
-			moved_piece = promotion_piece
-		elif !piece.is_player && new_board_coordinate.y == 0:
-			var queen: Queen = _queen_packed_scene.instantiate()
-			queen.is_player = false
-			queen.is_target = piece.is_target
-			queen.is_selected = piece.is_selected
-			piece.get_parent().add_child(queen)
-			_piece_to_board_coord.erase(piece)
-			piece.queue_free()
-			queen.global_position = new_global_position
-			_pieces_by_board_coord[new_board_coordinate] = queen
-			_piece_to_board_coord[queen] = new_board_coordinate
-			moved_piece = queen
+	if old_piece == _selected_piece:
+		_selected_piece = new_piece
 
-	return moved_piece
+	old_piece.get_parent().add_child(new_piece)
+	old_piece.queue_free()
 
 
 func _win_condition_met() -> bool:
@@ -167,6 +129,17 @@ func _win_condition_met() -> bool:
 		func(piece: Piece) -> bool: return piece.is_target
 	)
 	return target_pieces.is_empty()
+
+
+func _is_promotion_candidate(piece: Piece) -> bool:
+	if !(piece is Pawn):
+		return false
+
+	var board_coord: Vector2i = _piece_to_board_coord[piece]
+	if piece.is_player:
+		return board_coord.y == 7
+
+	return board_coord.y == 0
 
 
 func _handle_player_turn_click() -> void:
@@ -190,12 +163,40 @@ func _handle_player_turn_click() -> void:
 				current_board_coordinate, mouse_board_coordinate, _pieces_by_board_coord
 			)
 			if is_valid_move:
-				_selected_piece = await _move_piece(_selected_piece, mouse_board_coordinate)
+				# The player has committed to a move at this point, so don't
+				# want to pay attention to any other board clicks they do.
+				_listen_for_player_board_inputs = false
+
+				_move_piece(_selected_piece, mouse_board_coordinate)
 
 				if _win_condition_met():
 					_win_dialog.show()
 				else:
-					_is_player_turn = false
+					if _is_promotion_candidate(_selected_piece):
+						_pawn_promotion_dialog.show()
+						var chosen_piece_type: PawnPromotionDialog.PieceType = await (
+							_pawn_promotion_dialog.piece_type_picked
+						)
+
+						_pawn_promotion_dialog.hide()
+						var piece_packed_scene: PackedScene
+						match chosen_piece_type:
+							PawnPromotionDialog.PieceType.QUEEN:
+								piece_packed_scene = _queen_packed_scene
+							PawnPromotionDialog.PieceType.ROOK:
+								piece_packed_scene = _rook_packed_scene
+							PawnPromotionDialog.PieceType.BISHOP:
+								piece_packed_scene = _bishop_packed_scene
+							PawnPromotionDialog.PieceType.KNIGHT:
+								piece_packed_scene = _knight_packed_scene
+							_:
+								push_error(
+									"Encountered unexpected chosen piece type from pawn promotion dialog."
+								)
+
+						var promotion_piece: Piece = piece_packed_scene.instantiate()
+						_replace_piece(_selected_piece, promotion_piece)
+
 					_take_enemy_turn()
 
 		_selected_piece.is_selected = false
@@ -257,6 +258,8 @@ func _take_enemy_turn() -> void:
 	var player_pieces: Array[Piece]
 	player_pieces.assign(player_pieces_untyped)
 
+	var attack: Attack
+
 	# Gross, but should be fine in practice. It's an 8x8 grid with generally few
 	# player pieces.
 	var possible_attacks: Array[Attack] = _get_valid_attacks(enemy_pieces, player_pieces)
@@ -266,31 +269,22 @@ func _take_enemy_turn() -> void:
 			print("Enemy has no attacks")
 		1:
 			print("One possible enemy attack.")
-			var attack: Attack = possible_attacks[0]
-			await get_tree().create_timer(0.5).timeout
+			attack = possible_attacks[0]
 
-			var enemy_piece: Piece = attack.attacking_piece
-			enemy_piece.is_selected = true
-			await get_tree().create_timer(0.5).timeout
-
-			var player_piece: Piece = attack.attacked_piece
-			var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-			await _move_piece(enemy_piece, player_board_coord)
-
-			enemy_piece.is_selected = false
 		_:
 			print("Enemy has multiple attacks")
 			var candidate_enemy_pieces: Array = []
 			var candidate_player_pieces: Array = []
-			for attack: Attack in possible_attacks:
-				var enemy_piece: Piece = attack.attacking_piece
+			for possible_attack: Attack in possible_attacks:
+				var enemy_piece: Piece = possible_attack.attacking_piece
 				if !candidate_enemy_pieces.has(enemy_piece):
 					candidate_enemy_pieces.append(enemy_piece)
 
-				var player_piece: Piece = attack.attacked_piece
+				var player_piece: Piece = possible_attack.attacked_piece
 				if !candidate_player_pieces.has(player_piece):
 					candidate_player_pieces.append(player_piece)
 
+			# Show every piece that could attack as selected
 			for piece: Piece in candidate_enemy_pieces:
 				piece.is_selected = true
 
@@ -299,21 +293,11 @@ func _take_enemy_turn() -> void:
 			candidate_enemy_pieces.sort_custom(_compare_pieces)
 			var attacking_enemy_piece: Piece = candidate_enemy_pieces[0]
 			var attacks_for_enemy_piece: Array = possible_attacks.filter(
-				func(attack: Attack) -> bool: return attack.attacking_piece == attacking_enemy_piece
+				func(a: Attack) -> bool: return a.attacking_piece == attacking_enemy_piece
 			)
 			if attacks_for_enemy_piece.size() == 1:
 				print("One attack, no further tiebreaking needed")
-				var attack: Attack = attacks_for_enemy_piece[0]
-				var enemy_piece: Piece = attack.attacking_piece
-				for piece: Piece in candidate_enemy_pieces:
-					piece.is_selected = piece == enemy_piece
-
-				await get_tree().create_timer(0.5).timeout
-				var player_piece: Piece = attack.attacked_piece
-				var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-				await _move_piece(enemy_piece, player_board_coord)
-
-				enemy_piece.is_selected = false
+				attack = attacks_for_enemy_piece[0]
 			else:
 				print("Multiple attacks, further tiebreaking needed")
 				candidate_player_pieces.sort_custom(_compare_pieces)
@@ -323,20 +307,30 @@ func _take_enemy_turn() -> void:
 						attack_for_enemy_piece.attacked_piece == player_piece_to_attack
 					)
 				)
-				var attack: Attack = attacks_for_enemy_piece[attack_i]
-				var enemy_piece: Piece = attack.attacking_piece
-				for piece: Piece in candidate_enemy_pieces:
-					piece.is_selected = piece == enemy_piece
+				attack = attacks_for_enemy_piece[attack_i]
 
-				await get_tree().create_timer(0.5).timeout
+			for piece: Piece in candidate_enemy_pieces:
+				piece.is_selected = piece == attack.attacking_piece
 
-				var player_piece: Piece = attack.attacked_piece
-				var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-				await _move_piece(enemy_piece, player_board_coord)
+	if attack:
+		await get_tree().create_timer(0.5).timeout
 
-				enemy_piece.is_selected = false
+		var enemy_piece: Piece = attack.attacking_piece
+		enemy_piece.is_selected = true
+		await get_tree().create_timer(0.5).timeout
 
-	_is_player_turn = true
+		var player_piece: Piece = attack.attacked_piece
+		var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
+		_move_piece(enemy_piece, player_board_coord)
+
+		if _is_promotion_candidate(enemy_piece):
+			var queen: Queen = _queen_packed_scene.instantiate()
+			_replace_piece(enemy_piece, queen)
+			queen.is_selected = false
+		else:
+			enemy_piece.is_selected = false
+
+	_listen_for_player_board_inputs = true
 
 
 func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:

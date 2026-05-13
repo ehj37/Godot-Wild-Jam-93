@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dj5barmb8xyuc"]
+
+[ext_resource type="Script" uid="uid://pawhmijnx2ek" path="res://scenes/screen_fade_manager/screen_fade_manager.gd" id="1_2gjma"]
+
+[node name="ScreenFadeManager" type="CanvasLayer" unique_id=254085859]
+script = ExtResource("1_2gjma")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=597682963]
+custom_minimum_size = Vector2(640, 360)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

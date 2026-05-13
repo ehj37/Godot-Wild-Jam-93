@@ -88,14 +88,14 @@ func _ready() -> void:
 # Returns the moved piece, which may or may not be the same as the provided
 # piece in the event of pawn promotion.
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> Piece:
-	AudioManager.play(_piece_move_audio_stream)
+	AudioManager.play_effect(_piece_move_audio_stream)
 
 	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
 	if piece_to_remove:
 		if piece_to_remove.is_target:
-			AudioManager.play(_target_taken_audio_stream)
+			AudioManager.play_effect(_target_taken_audio_stream)
 		else:
-			AudioManager.play(_piece_take_audio_stream)
+			AudioManager.play_effect(_piece_take_audio_stream)
 
 		_pieces_by_board_coord.erase(new_board_coordinate)
 		_piece_to_board_coord.erase(piece_to_remove)
@@ -349,3 +349,7 @@ func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:
 		return false
 
 	return piece_a_board_coord.x > piece_b_board_coord.x
+
+
+func _on_reset_button_pressed() -> void:
+	get_tree().reload_current_scene()

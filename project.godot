@@ -15,9 +15,15 @@ run/main_scene="uid://bpxieccmj6oce"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dytbwc3eycrrb"
+
 [autoload]
 
 AudioManager="*uid://bf7773r8ju12q"
+ScreenFadeManager="*uid://dj5barmb8xyuc"
+LevelManager="*uid://hybmqkn55ca4"
 
 [debug]
 

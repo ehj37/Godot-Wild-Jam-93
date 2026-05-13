@@ -175,3 +175,12 @@ layout_mode = 2
 [node name="PawnPromotionDialog" parent="CenterContainer" unique_id=1461739217 instance=ExtResource("2_jnyf0")]
 visible = false
 layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="." unique_id=1286052738]
+offset_left = 199.0
+offset_top = 150.0
+offset_right = 313.0
+offset_bottom = 181.0
+text = "RESET BOARD"
+
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

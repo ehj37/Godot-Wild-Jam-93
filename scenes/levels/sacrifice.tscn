@@ -81,3 +81,6 @@ position = Vector2(-147, -147)
 
 [node name="Pawn8" parent="Board/Enemy" unique_id=1221756156 instance=ExtResource("4_ijbm8")]
 position = Vector2(-21, 63)
+
+[node name="Knight" parent="." unique_id=262065444 instance=ExtResource("3_18cq6")]
+position = Vector2(-105, 63)

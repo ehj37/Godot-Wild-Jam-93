@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dpojcfc2domi2"
+path="res://.godot/imported/dark_wood_palette.aseprite-cec5e086e3aa117ed81739d972272c38.res"
+
+[deps]
+
+source_file="res://aseprite/dark_wood_palette.aseprite"
+dest_files=["res://.godot/imported/dark_wood_palette.aseprite-cec5e086e3aa117ed81739d972272c38.res"]
+
+[params]
+

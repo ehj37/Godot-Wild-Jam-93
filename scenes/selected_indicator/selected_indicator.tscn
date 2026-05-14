@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://gdajp0vk18nt"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_xct01"]
-_data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAABCAAAAUklGRjoAAABXRUJQVlA4TC4AAAAvF8AFEA8wjNMxyfMf8FAV26ZFApFEI7IAxv66zwQR/U/5lWhhjQ/BOkTjhSUK")
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAAA+AAAAUklGRjYAAABXRUJQVlA4TCoAAAAvF8AFEA8QEYMcQlVsmxYJRBKNyAIY++s+E0T0P+VXooU1PgTrEI0Xlig=")
 size_override = Vector2(24, 24)
 
 [node name="SelectedIndicator" type="Sprite2D" unique_id=1677880840]
@@ -28,4 +28,4 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://scenes/selected_indicator/selected_indicator.aseprite",
 "source_uid": 7148834215599183163
 }
-metadata/_aseprite_wizard_source_file_hash_ = "9a73dc2fe18814ad62fa5e6f2bb271c7"
+metadata/_aseprite_wizard_source_file_hash_ = "bc70ebc73b375e8c7dc20102998f6647"

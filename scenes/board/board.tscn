@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://b8nyaij25qte8" path="res://scenes/turn_dialog/turn_dialog.tscn" id="3_knosr"]
 [ext_resource type="PackedScene" uid="uid://c0edtbxxhclfr" path="res://scenes/win_dialog/win_dialog.tscn" id="4_q07he"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_s78fa"]
-_data = PackedByteArray("AAADAAUAAAABAAAAUAEAAFABAADqAAAAUklGRuIAAABXRUJQVlA4TNYAAAAvT8FTACcgECBE+K/wZ4NA0mYpxvoHeMUTZNvMYxBzvfDnP4D/LKo2cFXbClShEEAbuEzAWhRwoH+u+wbuJ0T0n2HbtmHEB9pufkJo2nbEcpyItfoJx/8as65EmAdCq59QaOI5gfG/xiwPhF6JsOonFJp4TmD8rzHrSoR5ILT6CYUmnhMY/2vM8kDolQirfkKhiecExv8as65EmAdCq59QaOI5gfG/xiwPhF6JsEInBA8jNPGcwPhfY9aVCBMMeEIPhP7nCYUmnhMY/2vM8kDolQgrfkID")
-size_override = Vector2(336, 336)
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_q07he"]
+_data = PackedByteArray("AAADAAUAAAABAAAAUAEAAFEBAAC2AQAAUklGRq4BAABXRUJQVlA4TKEBAAAvTwFUADegqG0bONh29wDtOyIBEjLdMb5yv0lR20Zsqut5i9PNfwC8HREhfV+8bASQW1uL3nzGwusMDSAqSHpAWXtin/Hrv4tc8et9GRER/Vektg2DIWeTjkdYmDw74XBzT9jLGzbC4eGRsJM3fPfPeaJNRmRIm9QxXP7HPBONQJuUN3QCbVLd8NgJuVRCUje0MBm5hOKGI49a3TD6Fx2R4fI/5ploBHVD3KQT5A1LJaRjJ2R1QwsTNly6rjqG2x+LjuH385kv/2OeiUagTcobOoE2qW547IRcKiGpG1qYjFxCccORR61uGP2Ljshw+R/zTDSCuiFu0gnyhqUS0rETsrqhhQkbLl1XHcPtj0XH8Pv5zJf/Mc9EI9Am5Q2dQJtUNzx2Qi6VkNQNLUxGLqG44cijVjeM/kVHZLj8j3kmGkHdEDfpBHnDUgnp2AlZyBDKWJiw4dJ11THc/lh0DL+fz3z5H/NMNAJtUt7QCbRJdcNjJ+RSCUnd0MJk5BKKG448anXD6F90RIbL/5hnohHUDXGTTpA3LJWQjp2Q1Q0tSgwA")
+size_override = Vector2(336, 337)
 
 [node name="Board" type="Sprite2D" unique_id=1073423775]
 texture_filter = 1
-texture = SubResource("PortableCompressedTexture2D_s78fa")
+texture = SubResource("PortableCompressedTexture2D_q07he")
 script = ExtResource("1_s78fa")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -34,7 +34,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://scenes/board/board.aseprite",
 "source_uid": 7037132931071513700
 }
-metadata/_aseprite_wizard_source_file_hash_ = "619afd8d57a0c2b45f57497cf4ee5e2c"
+metadata/_aseprite_wizard_source_file_hash_ = "d28fb3bad412d48ec0457286f07798e8"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1588986359]
 position = Vector2(0, 10)

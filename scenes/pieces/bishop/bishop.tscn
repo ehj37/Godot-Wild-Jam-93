@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_djns7"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_tnbtm"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_namrv"]
-_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC0AAAAUklGRqwAAABXRUJQVlA4TKAAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gYNIkqRo1sH2goEdFEApIGL8m+Ji+z4BEf2fgPi7kjeH1e+9OQIZfcJoRkI6lVnOWbUZccIWpkBGnzCakZnpzMxhhKoUZof2CwI5J2wf649mAHxMDy31+7G3JQqKJUEVaGVeAMdYyguOXFK+1ErXzBxqKxGSFK8B")
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_djns7"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACqAAAAUklGRqIAAABXRUJQVlA4TJUAAAAvI8AIECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDg4a26ojcMAtGOhzQE4NkDz/pthw9ycgov8TUP6u5K1htfuqjkBGWzCqkZBOZIYzI7pRJvRiCmS0BaMamZnOyhxGUYSK2aD+gkDOhP6xtlUD4GPadNTu7apHT0BwpIcI0Ml62PsRnl7ppGlCVz0pRZLKawA=")
 size_override = Vector2(36, 36)
 
 [node name="Bishop" type="Node2D" unique_id=2137323389]
@@ -22,7 +22,7 @@ position = Vector2(0, 16)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411332080]
 texture_filter = 1
 material = ExtResource("2_tnbtm")
-texture = SubResource("PortableCompressedTexture2D_namrv")
+texture = SubResource("PortableCompressedTexture2D_djns7")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -44,7 +44,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://scenes/pieces/bishop/bishop.aseprite",
 "source_uid": 4052479370677720434
 }
-metadata/_aseprite_wizard_source_file_hash_ = "b861044df0c2a94e4ccfca2b9f37e244"
+metadata/_aseprite_wizard_source_file_hash_ = "4686264ffae131d2a8a19d516c607795"
 
 [node name="TargetFireFront" parent="." unique_id=132843582 instance=ExtResource("2_djns7")]
 position = Vector2(0, 16)

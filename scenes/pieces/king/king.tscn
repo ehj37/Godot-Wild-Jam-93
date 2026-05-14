@@ -5,8 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_c00m1"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_vyx7p"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_6xkmu"]
-_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC6AAAAUklGRrIAAABXRUJQVlA4TKYAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7AYRGtgJG4IAHNcBzQFbBJfg3Re+/1EFE/yeg/Su1dOzZIzvbM/v7JEOgXpPBqm3bnjU9qg1segLRgRW0p4UC/WxsmD2w7WTbM2iy1cJxb48gEig5sH42nh4ABHpUO88qjf3MXroG35K49kWVA/fCCt6SvqkydGCpV1qTpPYd")
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_c00m1"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAABCAAAAUklGRjoAAABXRUJQVlA4TC4AAAAvF8AFEA8wjNMxyfMf8FAV26ZFApFEI7IAxv66zwQR/U/5lWhhjQ/BOkTjhSUK")
+size_override = Vector2(24, 24)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_nd1w6"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAAC0AAAAUklGRqwAAABXRUJQVlA4TKAAAAAvI8AIECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDhAa2QoYgQNewcDhgKwCkuffFL3/UgcR/Z+A9q/U0nFXj+zsruzvkwyBek0Gq3Zte9X0qDaw6QlEB2bQnhYK9LNxYfXAtpNrr6DJVgvH3j2CSKDkwPzZeHoAEOhR7TyzNO6zemkbvEti2xtVDuwNM3hL+qbK0IGpXmlNktp3")
 size_override = Vector2(36, 36)
 
 [node name="King" type="Node2D" unique_id=842364951]
@@ -15,6 +19,7 @@ metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_c00m1")]
 position = Vector2(0, 8)
+texture = SubResource("PortableCompressedTexture2D_c00m1")
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_bd63c")]
 position = Vector2(0, 16)
@@ -22,7 +27,7 @@ position = Vector2(0, 16)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1220549073]
 texture_filter = 1
 material = ExtResource("2_vyx7p")
-texture = SubResource("PortableCompressedTexture2D_6xkmu")
+texture = SubResource("PortableCompressedTexture2D_nd1w6")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -44,7 +49,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://scenes/pieces/king/king.aseprite",
 "source_uid": 8094524310010042728
 }
-metadata/_aseprite_wizard_source_file_hash_ = "dc766eef244dc05fe29763c1fecde904"
+metadata/_aseprite_wizard_source_file_hash_ = "01ac8bd745fbb21c17db3ecd40b07c28"
 
 [node name="TargetFireFront" parent="." unique_id=1844131420 instance=ExtResource("2_bd63c")]
 position = Vector2(0, 16)

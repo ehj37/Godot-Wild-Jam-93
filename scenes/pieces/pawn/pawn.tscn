@@ -9,8 +9,8 @@
 _data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAABCAAAAUklGRjoAAABXRUJQVlA4TC4AAAAvF8AFEA8wjNMxyfMf8FAV26ZFApFEI7IAxv66zwQR/U/5lWhhjQ/BOkTjhSUK")
 size_override = Vector2(24, 24)
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wgsma"]
-_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACoAAAAUklGRqAAAABXRUJQVlA4TJMAAAAvI8AIECegkG0E6F6D8zc8HyEB4f8Nx7xQhQSE/wP880Kc/wAAnOp7gavYduNGYqAXlYDFIHklsPEnZVev+3dE/yfA/lZAwp5QBplCTC4USeV4i51MwSYTcb5BIpUY5OZCVZVyqToJhvsdJgbpCkgIMcj0Hg6SaMWY0jsozuiMY5GNeOSN4vo1Y5UNAybAugEAbksA")
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_end6c"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACkAAAAUklGRpwAAABXRUJQVlA4TI8AAAAvI8AIECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDq4i260biYFuVAJNEaQ3BDwj/qTs6vb9HdH/CbC/FZBwJJRBphCTC0VSOd/iIFOwyUTcb5BIJQZ5caGqSrlWbYJh32FikK6AhBCDTO/hJIlWjCm9g+KMzjgX2YhH3iiuXzNW2TBgAqwbAOC2BAA=")
 size_override = Vector2(36, 36)
 
 [node name="Pawn" type="Node2D" unique_id=1015032063]
@@ -27,7 +27,7 @@ position = Vector2(0, 16)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1246729682]
 texture_filter = 1
 material = ExtResource("2_s4c4q")
-texture = SubResource("PortableCompressedTexture2D_wgsma")
+texture = SubResource("PortableCompressedTexture2D_end6c")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -49,7 +49,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://scenes/pieces/pawn/pawn.aseprite",
 "source_uid": 4991018301077654836
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ae80117799097502572b3308d9f594e3"
+metadata/_aseprite_wizard_source_file_hash_ = "544c253f21f307f5f47d0d9243b4e9d6"
 
 [node name="TargetFireFront" parent="." unique_id=973735130 instance=ExtResource("2_f8xul")]
 position = Vector2(0, 16)

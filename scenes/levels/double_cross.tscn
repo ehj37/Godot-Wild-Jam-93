@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://chr568ysjbjmq"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_2kwsk"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_h0k1d"]
+[ext_resource type="PackedScene" uid="uid://c8q3juyiv7ag2" path="res://scenes/pieces/bishop/bishop.tscn" id="4_5vj1f"]
+[ext_resource type="PackedScene" uid="uid://ctrktiu5vmyoj" path="res://scenes/pieces/knight/knight.tscn" id="4_6m6xa"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_dn2y2"]
+
+[node name="DoubleCross" type="Node2D" unique_id=2128199871]
+script = ExtResource("1_2kwsk")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_h0k1d")]
+
+[node name="Player" type="Node2D" parent="Board" unique_id=1077180199]
+
+[node name="Enemy" type="Node2D" parent="Board" unique_id=1176516094]
+
+[node name="Bishop2" parent="Board" unique_id=1477807828 instance=ExtResource("4_5vj1f")]
+position = Vector2(-147, 21)
+is_player = true
+
+[node name="Knight" parent="Board" unique_id=784984646 instance=ExtResource("4_6m6xa")]
+position = Vector2(-21, 147)
+is_player = true
+is_target = true
+
+[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_dn2y2")]
+position = Vector2(21, 63)
+is_target = true

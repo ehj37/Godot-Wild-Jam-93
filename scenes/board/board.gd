@@ -330,7 +330,10 @@ func _take_enemy_turn() -> void:
 		else:
 			enemy_piece.is_selected = false
 
-	_listen_for_player_board_inputs = true
+	if _win_condition_met():
+		_win_dialog.show()
+	else:
+		_listen_for_player_board_inputs = true
 
 
 func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:

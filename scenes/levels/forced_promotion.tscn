@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dfm1f1eyincfg"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_8t50r"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_7love"]
+[ext_resource type="PackedScene" uid="uid://c8q3juyiv7ag2" path="res://scenes/pieces/bishop/bishop.tscn" id="3_p33v1"]
+[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="4_wdxls"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="5_ey7iv"]
+
+[node name="ForcedPromotion" type="Node2D" unique_id=2051933807]
+script = ExtResource("1_8t50r")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_7love")]
+
+[node name="Bishop" parent="Board" unique_id=2137323389 instance=ExtResource("3_p33v1")]
+position = Vector2(-105, -105)
+is_player = true
+is_target = true
+
+[node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("4_wdxls")]
+position = Vector2(63, 21)
+
+[node name="Bishop2" parent="Board" unique_id=1521902420 instance=ExtResource("3_p33v1")]
+position = Vector2(105, -63)
+is_player = true
+is_target = true
+
+[node name="Bishop3" parent="Board" unique_id=333660076 instance=ExtResource("3_p33v1")]
+position = Vector2(-63, -21)
+
+[node name="Bishop4" parent="Board" unique_id=1178386670 instance=ExtResource("3_p33v1")]
+position = Vector2(63, -63)
+
+[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("5_ey7iv")]
+position = Vector2(-147, 21)
+is_player = true
+
+[node name="Rook2" parent="Board" unique_id=1482274642 instance=ExtResource("5_ey7iv")]
+position = Vector2(147, -105)
+is_player = true
+
+[node name="Rook3" parent="Board" unique_id=223395062 instance=ExtResource("5_ey7iv")]
+position = Vector2(-105, -147)
+is_player = true
+
+[node name="Pawn2" parent="Board" unique_id=2078981870 instance=ExtResource("4_wdxls")]
+position = Vector2(105, -21)

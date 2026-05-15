@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c4aaukyvbog8c"]
+
+[ext_resource type="Script" uid="uid://fx5mdwffbye0" path="res://scenes/upgraded_button/upgraded_button.gd" id="1_molnk"]
+
+[node name="UpgradedButton" type="Button" unique_id=1766392538]
+script = ExtResource("1_molnk")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

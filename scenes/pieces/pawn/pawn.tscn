@@ -5,10 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_f8xul"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_s4c4q"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_171i7"]
-_data = PackedByteArray("AAADAAUAAAABAAAAGAAAABgAAABCAAAAUklGRjoAAABXRUJQVlA4TC4AAAAvF8AFEA8wjNMxyfMf8FAV26ZFApFEI7IAxv66zwQR/U/5lWhhjQ/BOkTjhSUK")
-size_override = Vector2(24, 24)
-
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_end6c"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACkAAAAUklGRpwAAABXRUJQVlA4TI8AAAAvI8AIECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDq4i260biYFuVAJNEaQ3BDwj/qTs6vb9HdH/CbC/FZBwJJRBphCTC0VSOd/iIFOwyUTcb5BIJQZ5caGqSrlWbYJh32FikK6AhBCDTO/hJIlWjCm9g+KMzjgX2YhH3iiuXzNW2TBgAqwbAOC2BAA=")
 size_override = Vector2(36, 36)
@@ -18,8 +14,8 @@ script = ExtResource("1_s4c4q")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_end6c")]
+visible = false
 position = Vector2(0, 8)
-texture = SubResource("PortableCompressedTexture2D_171i7")
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_f8xul")]
 position = Vector2(0, 16)

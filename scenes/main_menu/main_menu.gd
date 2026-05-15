@@ -1,17 +1,21 @@
-extends Node2D
+extends Control
 
-@onready var _main_buttons_container: VBoxContainer = $PanelContainer/MainButtonsContainer
-@onready var _start_button: Button = $PanelContainer/MainButtonsContainer/StartButton
-@onready var _settings_button: Button = $PanelContainer/MainButtonsContainer/SettingsButton
-@onready var _settings_container: VBoxContainer = $PanelContainer/SettingsContainer
+@onready
+var _main_buttons_container: VBoxContainer = $PanelContainer/MarginContainer/MainButtonsContainer
+@onready var _start_button: Button = get_node(
+	"PanelContainer/MarginContainer/MainButtonsContainer/StartButton"
+)
+@onready
+var _settings_button: Button = $PanelContainer/MarginContainer/MainButtonsContainer/SettingsButton
+@onready var _settings_container: VBoxContainer = $PanelContainer/MarginContainer/SettingsContainer
 @onready var _main_volume_slider: HSlider = get_node(
-	"PanelContainer/SettingsContainer/MainAudioContainer/MainVolumeSlider"
+	"PanelContainer/MarginContainer/SettingsContainer/MainAudioContainer/MainVolumeSlider"
 )
 @onready var _sound_effect_volume_slider: HSlider = get_node(
-	"PanelContainer/SettingsContainer/SoundEffectsContainer/SoundEffectVolumeSlider"
+	"PanelContainer/MarginContainer/SettingsContainer/SoundEffectsContainer/SoundEffectVolumeSlider"
 )
 @onready var _music_volume_slider: HSlider = get_node(
-	"PanelContainer/SettingsContainer/MusicContainer/MusicVolumeSlider"
+	"PanelContainer/MarginContainer/SettingsContainer/MusicContainer/MusicVolumeSlider"
 )
 
 

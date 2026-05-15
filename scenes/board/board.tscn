@@ -1,17 +1,23 @@
 [gd_scene format=4 uid="uid://bosca8xpswa8q"]
 
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_exf0g"]
 [ext_resource type="Script" uid="uid://c5ryf5e04ae4a" path="res://scenes/board/board.gd" id="1_s78fa"]
 [ext_resource type="PackedScene" uid="uid://baxf5pr6kucta" path="res://scenes/board/pawn_promotion_dialog/pawn_promotion_dialog.tscn" id="2_jnyf0"]
-[ext_resource type="PackedScene" uid="uid://b8nyaij25qte8" path="res://scenes/turn_dialog/turn_dialog.tscn" id="3_knosr"]
-[ext_resource type="PackedScene" uid="uid://c0edtbxxhclfr" path="res://scenes/win_dialog/win_dialog.tscn" id="4_q07he"]
+[ext_resource type="PackedScene" uid="uid://b8nyaij25qte8" path="res://scenes/board/turn_dialog/turn_dialog.tscn" id="3_knosr"]
+[ext_resource type="PackedScene" uid="uid://c0edtbxxhclfr" path="res://scenes/board/win_dialog/win_dialog.tscn" id="4_q07he"]
+[ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="5_kymhv"]
+[ext_resource type="PackedScene" uid="uid://bu60m7hty61gt" path="res://scenes/board/bounty_board/bounty_board.tscn" id="7_dej46"]
+[ext_resource type="PackedScene" uid="uid://bun0chqbpqxoq" path="res://scenes/board/happenins_section/happenins_section.tscn" id="7_exf0g"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_q07he"]
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ci4ar"]
 _data = PackedByteArray("AAADAAUAAAABAAAAUAEAAFEBAAC2AQAAUklGRq4BAABXRUJQVlA4TKEBAAAvTwFUADegqG0bONh29wDtOyIBEjLdMb5yv0lR20Zsqut5i9PNfwC8HREhfV+8bASQW1uL3nzGwusMDSAqSHpAWXtin/Hrv4tc8et9GRER/Vektg2DIWeTjkdYmDw74XBzT9jLGzbC4eGRsJM3fPfPeaJNRmRIm9QxXP7HPBONQJuUN3QCbVLd8NgJuVRCUje0MBm5hOKGI49a3TD6Fx2R4fI/5ploBHVD3KQT5A1LJaRjJ2R1QwsTNly6rjqG2x+LjuH385kv/2OeiUagTcobOoE2qW547IRcKiGpG1qYjFxCccORR61uGP2Ljshw+R/zTDSCuiFu0gnyhqUS0rETsrqhhQkbLl1XHcPtj0XH8Pv5zJf/Mc9EI9Am5Q2dQJtUNzx2Qi6VkNQNLUxGLqG44cijVjeM/kVHZLj8j3kmGkHdEDfpBHnDUgnp2AlZyBDKWJiw4dJ11THc/lh0DL+fz3z5H/NMNAJtUt7QCbRJdcNjJ+RSCUnd0MJk5BKKG448anXD6F90RIbL/5hnohHUDXGTTpA3LJWQjp2Q1Q0tSgwA")
 size_override = Vector2(336, 337)
 
-[node name="Board" type="Sprite2D" unique_id=1073423775]
+[node name="Board" type="Control" unique_id=1012986915]
 texture_filter = 1
-texture = SubResource("PortableCompressedTexture2D_q07he")
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_exf0g")
 script = ExtResource("1_s78fa")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -36,10 +42,37 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d28fb3bad412d48ec0457286f07798e8"
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1788052749]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_ci4ar")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/board.aseprite",
+"source_uid": 7037132931071513700
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d28fb3bad412d48ec0457286f07798e8"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1588986359]
-position = Vector2(0, 10)
+position = Vector2(89, 9)
 
 [node name="Letters" type="HBoxContainer" parent="." unique_id=559803789]
+layout_mode = 0
 offset_left = -168.0
 offset_top = 159.0
 offset_right = 168.0
@@ -49,55 +82,56 @@ theme_override_constants/separation = 0
 [node name="Label" type="Label" parent="Letters" unique_id=508009471]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "a"
+text = "A"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Letters" unique_id=1043670250]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "b"
+text = "B"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Letters" unique_id=393343881]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "c"
+text = "C"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Letters" unique_id=1625543888]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "d"
+text = "D"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Letters" unique_id=705845223]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "e"
+text = "E"
 horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="Letters" unique_id=220098232]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "f"
+text = "F"
 horizontal_alignment = 1
 
 [node name="Label7" type="Label" parent="Letters" unique_id=170429400]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "g"
+text = "G"
 horizontal_alignment = 1
 
 [node name="Label8" type="Label" parent="Letters" unique_id=635255001]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
-text = "h"
+text = "H"
 horizontal_alignment = 1
 
 [node name="Numbers" type="VBoxContainer" parent="." unique_id=1960163859]
-offset_left = -210.0
+layout_mode = 0
+offset_left = -195.0
 offset_top = -168.0
-offset_right = -170.0
+offset_right = -155.0
 offset_bottom = 168.0
 theme_override_constants/separation = 0
 
@@ -159,6 +193,7 @@ vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1739776385]
 z_index = 5
+layout_mode = 0
 offset_left = -168.0
 offset_top = -168.0
 offset_right = 168.0
@@ -176,11 +211,26 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="ResetButton" type="Button" parent="." unique_id=1286052738]
-offset_left = 199.0
-offset_top = 150.0
-offset_right = 313.0
-offset_bottom = 181.0
+[node name="ResetButton" parent="." unique_id=1766392538 instance=ExtResource("5_kymhv")]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 144.0
+offset_right = 404.0
+offset_bottom = 184.0
 text = "RESET BOARD"
+autowrap_mode = 2
+
+[node name="RightPanel" type="VBoxContainer" parent="." unique_id=1775474612]
+layout_mode = 0
+offset_left = 189.0
+offset_top = -168.0
+offset_right = 333.0
+offset_bottom = -67.0
+
+[node name="BountyBoard" parent="RightPanel" unique_id=394650227 instance=ExtResource("7_dej46")]
+layout_mode = 2
+
+[node name="HappeninSection" parent="RightPanel" unique_id=1725440760 instance=ExtResource("7_exf0g")]
+layout_mode = 2
 
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

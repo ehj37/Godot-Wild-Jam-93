@@ -1,6 +1,6 @@
 class_name Board
 
-extends Sprite2D
+extends Control
 
 
 class Attack:
@@ -25,6 +25,7 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _pawn_promotion_dialog: PawnPromotionDialog = $CenterContainer/PawnPromotionDialog
 @onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
 @onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
+@onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -37,6 +38,12 @@ var _piece_move_audio_stream: AudioStreamOggVorbis = preload("res://audio_stream
 var _piece_take_audio_stream: AudioStreamOggVorbis = preload("res://audio_streams/piece_take.ogg")
 @onready var _target_taken_audio_stream: AudioStreamOggVorbis = preload(
 	"res://audio_streams/target_taken.ogg"
+)
+@onready var _piece_selected_audio_stream: AudioStreamOggVorbis = preload(
+	"res://audio_streams/piece_selected.ogg"
+)
+@onready var _piece_unselected_audio_stream: AudioStreamOggVorbis = preload(
+	"res://audio_streams/piece_unselected.ogg"
 )
 
 
@@ -150,9 +157,16 @@ func _handle_player_turn_click() -> void:
 			var piece_at_mouse_board_coordinate: Piece = _pieces_by_board_coord.get(
 				mouse_board_coordinate
 			)
+			if piece_at_mouse_board_coordinate == _selected_piece:
+				_selected_piece.is_selected = false
+				_selected_piece = null
+				AudioManager.play_effect(_piece_unselected_audio_stream)
+				return
+
 			if piece_at_mouse_board_coordinate && piece_at_mouse_board_coordinate.is_player:
 				_selected_piece.is_selected = false
 				_selected_piece = piece_at_mouse_board_coordinate
+				AudioManager.play_effect(_piece_selected_audio_stream)
 				piece_at_mouse_board_coordinate.is_selected = true
 				return
 
@@ -198,6 +212,10 @@ func _handle_player_turn_click() -> void:
 						_replace_piece(_selected_piece, promotion_piece)
 
 					_take_enemy_turn()
+			else:
+				AudioManager.play_effect(_piece_unselected_audio_stream)
+		else:
+			AudioManager.play_effect(_piece_unselected_audio_stream)
 
 		_selected_piece.is_selected = false
 		_selected_piece = null
@@ -205,6 +223,7 @@ func _handle_player_turn_click() -> void:
 		var piece_at_mouse: Piece = _pieces_by_board_coord.get(mouse_board_coordinate)
 		if piece_at_mouse && piece_at_mouse.is_player:
 			_selected_piece = _pieces_by_board_coord.get(mouse_board_coordinate)
+			AudioManager.play_effect(_piece_selected_audio_stream)
 			_selected_piece.is_selected = true
 
 
@@ -334,6 +353,7 @@ func _take_enemy_turn() -> void:
 		_win_dialog.show()
 	else:
 		_listen_for_player_board_inputs = true
+		# TODO: Show turn dialog for player
 
 
 func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:

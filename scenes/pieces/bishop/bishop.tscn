@@ -14,6 +14,7 @@ script = ExtResource("1_tnbtm")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_b60td")]
+visible = false
 position = Vector2(0, 8)
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_djns7")]

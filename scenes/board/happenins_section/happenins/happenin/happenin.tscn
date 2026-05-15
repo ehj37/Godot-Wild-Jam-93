@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b80d1daiaen5g"]
+
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_3jsws"]
+[ext_resource type="Script" uid="uid://bhf1beaneq4vj" path="res://scenes/board/happenins_section/happenins/happenin/happenin.gd" id="2_t1wk8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jsws"]
+bg_color = Color(0.57254905, 0.34901962, 0.22352941, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3647059, 0.19607843, 0.08627451, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+
+[node name="Happenin" type="PanelContainer" unique_id=845801533]
+theme = ExtResource("1_3jsws")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jsws")
+script = ExtResource("2_t1wk8")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=101253540]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1393674283]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "BANDIT PAWN: A2 TO A4"

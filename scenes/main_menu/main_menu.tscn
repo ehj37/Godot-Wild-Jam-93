@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://cds0j4bkx486c"]
 
 [ext_resource type="Script" uid="uid://7kfbrbdl3p52" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_ob46e"]
+[ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="3_ob46e"]
 
-[node name="MainMenu" type="Node2D" unique_id=231084890]
+[node name="MainMenu" type="Control" unique_id=620696778]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_ob46e")
 script = ExtResource("1_fsom3")
 
 [node name="TitleLabel" type="Label" parent="." unique_id=824296585]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 18.0
 offset_right = 177.0
@@ -13,70 +19,79 @@ offset_bottom = 41.0
 text = "ROOKS 'N' CROOKS"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=388456569]
-offset_left = 444.0
-offset_top = 46.0
-offset_right = 484.0
-offset_bottom = 86.0
+layout_mode = 0
+offset_left = 369.0
+offset_top = 20.0
+offset_right = 603.0
+offset_bottom = 158.0
 
-[node name="MainButtonsContainer" type="VBoxContainer" parent="PanelContainer" unique_id=48071391]
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=60997543]
+layout_mode = 2
+
+[node name="MainButtonsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=48071391]
+custom_minimum_size = Vector2(124, 48)
 layout_mode = 2
 alignment = 1
 
-[node name="StartButton" type="Button" parent="PanelContainer/MainButtonsContainer" unique_id=1386342651]
+[node name="StartButton" parent="PanelContainer/MarginContainer/MainButtonsContainer" unique_id=1766392538 instance=ExtResource("3_ob46e")]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "START"
 
-[node name="SettingsButton" type="Button" parent="PanelContainer/MainButtonsContainer" unique_id=1735492359]
+[node name="SettingsButton" parent="PanelContainer/MarginContainer/MainButtonsContainer" unique_id=972025524 instance=ExtResource("3_ob46e")]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "SETTINGS"
 
-[node name="SettingsContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1599579909]
+[node name="SettingsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1599579909]
+visible = false
 layout_mode = 2
 
-[node name="MainAudioContainer" type="VBoxContainer" parent="PanelContainer/SettingsContainer" unique_id=1399782888]
+[node name="MainAudioContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/SettingsContainer" unique_id=1399782888]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/SettingsContainer/MainAudioContainer" unique_id=53370120]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/SettingsContainer/MainAudioContainer" unique_id=53370120]
 layout_mode = 2
 text = "MAIN VOLUME"
 
-[node name="MainVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainer/MainAudioContainer" unique_id=248745826]
+[node name="MainVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/SettingsContainer/MainAudioContainer" unique_id=248745826]
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="SoundEffectsContainer" type="VBoxContainer" parent="PanelContainer/SettingsContainer" unique_id=424551730]
+[node name="SoundEffectsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/SettingsContainer" unique_id=424551730]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/SettingsContainer/SoundEffectsContainer" unique_id=87820334]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/SettingsContainer/SoundEffectsContainer" unique_id=87820334]
 layout_mode = 2
 text = "SOUND EFFECT VOLUME"
 
-[node name="SoundEffectVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainer/SoundEffectsContainer" unique_id=249944680]
+[node name="SoundEffectVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/SettingsContainer/SoundEffectsContainer" unique_id=249944680]
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="MusicContainer" type="VBoxContainer" parent="PanelContainer/SettingsContainer" unique_id=929596517]
+[node name="MusicContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/SettingsContainer" unique_id=929596517]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/SettingsContainer/MusicContainer" unique_id=4351383]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/SettingsContainer/MusicContainer" unique_id=4351383]
 layout_mode = 2
 text = "MUSIC VOLUME"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainer/MusicContainer" unique_id=1573884651]
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/SettingsContainer/MusicContainer" unique_id=1573884651]
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="BackButton" type="Button" parent="PanelContainer/SettingsContainer" unique_id=221578793]
+[node name="BackButton" parent="PanelContainer/MarginContainer/SettingsContainer" unique_id=1142376784 instance=ExtResource("3_ob46e")]
+custom_minimum_size = Vector2(56, 24)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "BACK"
 
-[connection signal="pressed" from="PanelContainer/MainButtonsContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="PanelContainer/MainButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="value_changed" from="PanelContainer/SettingsContainer/MainAudioContainer/MainVolumeSlider" to="." method="_on_main_volume_slider_value_changed"]
-[connection signal="value_changed" from="PanelContainer/SettingsContainer/SoundEffectsContainer/SoundEffectVolumeSlider" to="." method="_on_sound_effect_volume_slider_value_changed"]
-[connection signal="value_changed" from="PanelContainer/SettingsContainer/MusicContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
-[connection signal="pressed" from="PanelContainer/SettingsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/MainButtonsContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/MainButtonsContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/SettingsContainer/MainAudioContainer/MainVolumeSlider" to="." method="_on_main_volume_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/SettingsContainer/SoundEffectsContainer/SoundEffectVolumeSlider" to="." method="_on_sound_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/SettingsContainer/MusicContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/SettingsContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_fik02"]
 [ext_resource type="Script" uid="uid://gmmdiglv3vi4" path="res://scenes/board/happenins_section/happenins_section.gd" id="2_hmetx"]
-[ext_resource type="PackedScene" uid="uid://b80d1daiaen5g" path="res://scenes/board/happenins_section/happenins/happenin/happenin.tscn" id="3_smqqg"]
 
 [sub_resource type="Theme" id="Theme_ci4ar"]
 default_font_size = 6
@@ -38,6 +37,3 @@ horizontal_alignment = 1
 [node name="Happenins" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=459462012]
 layout_mode = 2
 theme = SubResource("Theme_ci4ar")
-
-[node name="Happenin" parent="MarginContainer/VBoxContainer/Happenins" unique_id=845801533 instance=ExtResource("3_smqqg")]
-layout_mode = 2

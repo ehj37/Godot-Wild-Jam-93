@@ -14,8 +14,12 @@ class Attack:
 		self.attacked_piece = attacked_piece
 
 
+enum PieceType { PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING }
+
 const CELL_SIDE_LENGTH: int = 42
 const ORIGIN: Vector2i = Vector2i(-4 * CELL_SIDE_LENGTH, 4 * CELL_SIDE_LENGTH)
+const HORIZONTAL_LABELS: Array[String] = ["A", "B", "C", "D", "E", "F", "F", "H"]
+const VERTICAL_LABELS: Array[String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
 var _pieces_by_board_coord: Dictionary = {}
 var _piece_to_board_coord: Dictionary = {}
@@ -47,26 +51,51 @@ var _piece_take_audio_stream: AudioStreamOggVorbis = preload("res://audio_stream
 )
 
 
-# Returns (-1, -1) for coords outside of the board
-func get_board_coordinate(global_coordinate: Vector2) -> Vector2i:
-	var x_from_origin: float = global_coordinate.x - ORIGIN.x
-	var y_from_origin: float = global_coordinate.y - ORIGIN.y
-	if (
-		x_from_origin < 0
-		|| x_from_origin > 8 * CELL_SIDE_LENGTH
-		|| y_from_origin > 0
-		|| y_from_origin < -8 * CELL_SIDE_LENGTH
-	):
-		return Vector2i(-1, -1)
-
-	@warning_ignore("narrowing_conversion")
-	return Vector2(x_from_origin / CELL_SIDE_LENGTH, absi(y_from_origin / CELL_SIDE_LENGTH))
+static func board_coordinate_to_notation(board_coord: Vector2i) -> String:
+	var x_label: String = HORIZONTAL_LABELS[board_coord.x]
+	var y_label: String = VERTICAL_LABELS[board_coord.y]
+	return x_label + y_label
 
 
-func get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Vector2:
-	var x_offset: float = board_coordinate.x * CELL_SIDE_LENGTH + CELL_SIDE_LENGTH / 2.0
-	var y_offset: float = -board_coordinate.y * CELL_SIDE_LENGTH - CELL_SIDE_LENGTH / 2.0
-	return Vector2(ORIGIN) + Vector2(x_offset, y_offset)
+static func piece_to_type(piece: Piece) -> PieceType:
+	var type: PieceType
+	if piece is Pawn:
+		type = PieceType.PAWN
+	elif piece is Rook:
+		type = PieceType.ROOK
+	elif piece is Knight:
+		type = PieceType.KNIGHT
+	elif piece is Bishop:
+		type = PieceType.BISHOP
+	elif piece is King:
+		type = PieceType.KING
+	elif piece is Queen:
+		type = PieceType.QUEEN
+	else:
+		push_error("Unhandled Piece in Board.piece_to_type: " + str(piece))
+
+	return type
+
+
+static func piece_type_to_human_readable_name(piece_type: Board.PieceType) -> String:
+	var piece_name: String
+	match piece_type:
+		Board.PieceType.PAWN:
+			piece_name = "PAWN"
+		Board.PieceType.ROOK:
+			piece_name = "ROOK"
+		Board.PieceType.KNIGHT:
+			piece_name = "KNIGHT"
+		Board.PieceType.BISHOP:
+			piece_name = "BISHOP"
+		Board.PieceType.KING:
+			piece_name = "KING"
+		Board.PieceType.QUEEN:
+			piece_name = "QUEEN"
+		_:
+			push_error("Unhandled piece type in Board.piece_type_to_human_readable_name")
+
+	return piece_name
 
 
 func _input(event: InputEvent) -> void:
@@ -83,7 +112,7 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	var pieces: Array = find_children("*", "Piece", true, false)
 	for piece: Piece in pieces:
-		var board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
+		var board_coordinate: Vector2i = _get_board_coordinate(piece.global_position)
 		_pieces_by_board_coord[board_coordinate] = piece
 		_piece_to_board_coord[piece] = board_coordinate
 
@@ -92,8 +121,35 @@ func _ready() -> void:
 	_win_dialog.visible = false
 
 
+# Returns (-1, -1) for coords outside of the board
+func _get_board_coordinate(global_coordinate: Vector2) -> Vector2i:
+	var x_from_origin: float = global_coordinate.x - ORIGIN.x
+	var y_from_origin: float = global_coordinate.y - ORIGIN.y
+	if (
+		x_from_origin < 0
+		|| x_from_origin > 8 * CELL_SIDE_LENGTH
+		|| y_from_origin > 0
+		|| y_from_origin < -8 * CELL_SIDE_LENGTH
+	):
+		return Vector2i(-1, -1)
+
+	@warning_ignore("narrowing_conversion")
+	return Vector2(x_from_origin / CELL_SIDE_LENGTH, absi(y_from_origin / CELL_SIDE_LENGTH))
+
+
+func _get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Vector2:
+	var x_offset: float = board_coordinate.x * CELL_SIDE_LENGTH + CELL_SIDE_LENGTH / 2.0
+	var y_offset: float = -board_coordinate.y * CELL_SIDE_LENGTH - CELL_SIDE_LENGTH / 2.0
+	return Vector2(ORIGIN) + Vector2(x_offset, y_offset)
+
+
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	AudioManager.play_effect(_piece_move_audio_stream)
+
+	var current_board_coordinate: Vector2i = _get_board_coordinate(piece.global_position)
+	_happenins_section.record_piece_move(
+		piece_to_type(piece), current_board_coordinate, new_board_coordinate, piece.is_player
+	)
 
 	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
 	if piece_to_remove:
@@ -102,14 +158,15 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 		else:
 			AudioManager.play_effect(_piece_take_audio_stream)
 
+		_happenins_section.record_take(piece_to_type(piece_to_remove), piece_to_remove.is_player)
+
 		_pieces_by_board_coord.erase(new_board_coordinate)
 		_piece_to_board_coord.erase(piece_to_remove)
 		piece_to_remove.queue_free()
 
-	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
 	_pieces_by_board_coord.erase(current_board_coordinate)
 
-	piece.global_position = get_global_position_from_board_coordinate(new_board_coordinate)
+	piece.global_position = _get_global_position_from_board_coordinate(new_board_coordinate)
 	_pieces_by_board_coord[new_board_coordinate] = piece
 	_piece_to_board_coord[piece] = new_board_coordinate
 
@@ -151,7 +208,7 @@ func _is_promotion_candidate(piece: Piece) -> bool:
 
 func _handle_player_turn_click() -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
-	var mouse_board_coordinate: Vector2i = get_board_coordinate(mouse_position)
+	var mouse_board_coordinate: Vector2i = _get_board_coordinate(mouse_position)
 	if _selected_piece:
 		if mouse_board_coordinate != Vector2i(-1, -1):
 			var piece_at_mouse_board_coordinate: Piece = _pieces_by_board_coord.get(
@@ -170,7 +227,7 @@ func _handle_player_turn_click() -> void:
 				piece_at_mouse_board_coordinate.is_selected = true
 				return
 
-			var current_board_coordinate: Vector2i = get_board_coordinate(
+			var current_board_coordinate: Vector2i = _get_board_coordinate(
 				_selected_piece.global_position
 			)
 			var is_valid_move: bool = _selected_piece.is_valid_move(
@@ -188,20 +245,22 @@ func _handle_player_turn_click() -> void:
 				else:
 					if _is_promotion_candidate(_selected_piece):
 						_pawn_promotion_dialog.show()
-						var chosen_piece_type: PawnPromotionDialog.PieceType = await (
+						var chosen_piece_type: Board.PieceType = await (
 							_pawn_promotion_dialog.piece_type_picked
 						)
+
+						_happenins_section.record_promotion(chosen_piece_type, true)
 
 						_pawn_promotion_dialog.hide()
 						var piece_packed_scene: PackedScene
 						match chosen_piece_type:
-							PawnPromotionDialog.PieceType.QUEEN:
+							Board.PieceType.QUEEN:
 								piece_packed_scene = _queen_packed_scene
-							PawnPromotionDialog.PieceType.ROOK:
+							Board.PieceType.ROOK:
 								piece_packed_scene = _rook_packed_scene
-							PawnPromotionDialog.PieceType.BISHOP:
+							Board.PieceType.BISHOP:
 								piece_packed_scene = _bishop_packed_scene
-							PawnPromotionDialog.PieceType.KNIGHT:
+							Board.PieceType.KNIGHT:
 								piece_packed_scene = _knight_packed_scene
 							_:
 								push_error(
@@ -234,7 +293,7 @@ func _get_valid_attacks(
 	# player pieces.
 	var possible_attacks: Array[Attack] = []
 	for attacked_piece_candidate: Piece in attacked_piece_candidates:
-		var attacked_piece_candidate_board_coord: Vector2i = get_board_coordinate(
+		var attacked_piece_candidate_board_coord: Vector2i = _get_board_coordinate(
 			attacked_piece_candidate.global_position
 		)
 		for attacking_piece_candidate: Piece in attacking_piece_candidates:
@@ -242,7 +301,7 @@ func _get_valid_attacks(
 			if _piece_to_board_coord.has(attacking_piece_candidate):
 				attacking_piece_candidate_board_coord = _piece_to_board_coord[attacking_piece_candidate]
 			else:
-				attacking_piece_candidate_board_coord = get_board_coordinate(
+				attacking_piece_candidate_board_coord = _get_board_coordinate(
 					attacking_piece_candidate.global_position
 				)
 
@@ -357,8 +416,8 @@ func _take_enemy_turn() -> void:
 
 
 func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:
-	var piece_a_board_coord: Vector2i = get_board_coordinate(piece_a.global_position)
-	var piece_b_board_coord: Vector2i = get_board_coordinate(piece_b.global_position)
+	var piece_a_board_coord: Vector2i = _get_board_coordinate(piece_a.global_position)
+	var piece_b_board_coord: Vector2i = _get_board_coordinate(piece_b.global_position)
 	if piece_a_board_coord.y > piece_b_board_coord.y:
 		return true
 

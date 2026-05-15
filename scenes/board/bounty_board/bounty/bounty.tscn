@@ -70,3 +70,18 @@ text = "CRIME:"
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "STOLE PACK OF GUM"
+
+[node name="LastSpottedContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=947595422]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LastSpottedContainer" unique_id=415544461]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 6
+text = "LAST SEEN:"
+
+[node name="LastSeenLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LastSpottedContainer" unique_id=739936592]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "A4"

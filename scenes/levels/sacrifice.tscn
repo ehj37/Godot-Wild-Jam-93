@@ -31,6 +31,10 @@ is_player = true
 position = Vector2(147, 105)
 is_player = true
 
+[node name="Pawn" parent="Board/Player" unique_id=1015032063 instance=ExtResource("4_ijbm8")]
+position = Vector2(63, -105)
+is_player = true
+
 [node name="Enemy" type="Node2D" parent="Board" unique_id=400025907]
 
 [node name="Rook2" parent="Board/Enemy" unique_id=197834642 instance=ExtResource("5_ijbm8")]

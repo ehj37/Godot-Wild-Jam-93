@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://baxf5pr6kucta"]
 
 [ext_resource type="Script" uid="uid://b3e5yqski7ntw" path="res://scenes/board/pawn_promotion_dialog/pawn_promotion_dialog.gd" id="1_1xox0"]
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_bfjhs"]
 
 [node name="PawnPromotionDialog" type="PanelContainer" unique_id=1700857045]
 custom_minimum_size = Vector2(320, 240)
+theme = ExtResource("1_bfjhs")
 script = ExtResource("1_1xox0")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1691502528]
@@ -13,18 +15,22 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="QueenButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=251330939]
+custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
 text = "QUEEN"
 
 [node name="RookButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1207865908]
+custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
 text = "ROOK"
 
 [node name="BishopButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1674786600]
+custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
 text = "BISHOP"
 
 [node name="KnightButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1603802599]
+custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
 text = "KNIGHT"
 

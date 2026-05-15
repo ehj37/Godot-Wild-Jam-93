@@ -224,8 +224,8 @@ autowrap_mode = 2
 layout_mode = 0
 offset_left = 189.0
 offset_top = -168.0
-offset_right = 333.0
-offset_bottom = -67.0
+offset_right = 393.0
+offset_bottom = -56.0
 
 [node name="BountyBoard" parent="RightPanel" unique_id=394650227 instance=ExtResource("7_dej46")]
 layout_mode = 2

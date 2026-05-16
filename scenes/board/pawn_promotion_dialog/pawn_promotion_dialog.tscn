@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_bfjhs"]
 
 [node name="PawnPromotionDialog" type="PanelContainer" unique_id=1700857045]
+modulate = Color(1, 1, 1, 0.6862745)
 custom_minimum_size = Vector2(320, 240)
 theme = ExtResource("1_bfjhs")
 script = ExtResource("1_1xox0")
@@ -14,24 +15,34 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1124818968]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1215112284]
+layout_mode = 2
+text = "PICK A PIECE TO REPLACE
+YOUR PAWN"
+horizontal_alignment = 1
+
 [node name="QueenButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=251330939]
 custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "QUEEN"
 
 [node name="RookButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1207865908]
 custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "ROOK"
 
 [node name="BishopButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1674786600]
 custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "BISHOP"
 
 [node name="KnightButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1603802599]
 custom_minimum_size = Vector2(81, 24)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "KNIGHT"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QueenButton" to="." method="_on_queen_button_pressed"]

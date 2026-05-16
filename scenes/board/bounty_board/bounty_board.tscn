@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_bt0ve"]
 [ext_resource type="Script" uid="uid://3ny6jxa0nq30" path="res://scenes/board/bounty_board/bounty_board.gd" id="2_rwucu"]
+[ext_resource type="PackedScene" uid="uid://cfpupq371wyqo" path="res://scenes/star/star.tscn" id="3_rwucu"]
 
 [node name="BountyBoard" type="PanelContainer" unique_id=394650227]
 theme = ExtResource("1_bt0ve")
@@ -17,11 +18,29 @@ theme_override_constants/margin_bottom = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=495110597]
 layout_mode = 2
 
-[node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1411898006]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1753776621]
+layout_mode = 2
+alignment = 1
+
+[node name="Star" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=416987697 instance=ExtResource("3_rwucu")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2066355707]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HeaderLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1411898006]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "BOUNTIES"
 horizontal_alignment = 1
+
+[node name="Star2" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=968188932 instance=ExtResource("3_rwucu")]
+layout_mode = 2
+delay = 0.5
 
 [node name="DividerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1298047137]
 layout_mode = 2

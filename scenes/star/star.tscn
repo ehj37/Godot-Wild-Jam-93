@@ -1,0 +1,173 @@
+[gd_scene format=4 uid="uid://cfpupq371wyqo"]
+
+[ext_resource type="Script" uid="uid://bfifa1pb0eule" path="res://scenes/star/star.gd" id="1_3ji66"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_3ji66"]
+_data = PackedByteArray("AAADAAUAAAABAAAARgAAAEYAAAAsAgAAUklGRiQCAABXRUJQVlA4TBcCAAAvRUAREB8gEEjyBxhyIoFAkr/dBqOIBVM8h97mPwB7F8jR9r9tmz8GCjeQu3EV/m/g9B5OmRqn9IIrpOcCWvW4jyKvoMLHvEC6JFcwhXzAXwoJ9z2i/4zctg2jHQckKZ9BC0TkkXPSgTKCfOWcdKB8O0GJFu5J0Gwx4ZokLJAC2jVJGoAB5ZokutBkIZ2TDpIJwMjU/0llploBhPEyDhbURy/jqwtqzcvEDVr44NH9G7SQenT/Ci1Ij+gC0YJrknd6zN9WzT8A+huQ5tCdsmpeQrUAHkKZvGr+G/JlqakN2R1qeglN3yC7uaZOKV8ualq7CV7M1Mdr4CJT5mZZMb+5oNaq9KZqnrrMb5xk848u898T9PaF8NsT9LbU3MZEMtT8O59Iohfid440KnVnEenWUNsilx+H4CJXJio5XlRmayj+m46Hsls8IRs1unFI3egFdRZld+s22aLRxQsy13LG+rwJFhmfZkxQCON94mBh2njrVfNPNfNbN2hh43jNq6bTRGsOYWr9a6ZqPl8d12nS21D44wlKngrfNikpnrCNmkkcst2aSPBU2K1hiuKJRbSBOLTYkiZeZGzNGBQMzBvE4r+pjWUXIVnILjR18ZQsGl3oeibYYmQzJgAjUyaAcGBntUnChZ0e3tz5HaAa9j6Z/fPtBCVaOEsQssWEM4s4BUL3H4AB5axGe8hq2M6q2O5q2M5q2K4IAA==")
+size_override = Vector2(70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8616"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(0, 0, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buljs"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(14, 0, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lb66"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(14, 0, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slihi"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(28, 0, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noo6d"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(42, 0, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxc2t"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(56, 0, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv15e"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(0, 14, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afp5i"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(14, 14, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvp7y"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(28, 14, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tqbt"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(42, 14, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66wjy"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(56, 14, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmw32"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(0, 28, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es677"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(14, 28, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81me3"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(28, 28, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m45nt"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(42, 28, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1em6p"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(56, 28, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojt6o"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(0, 42, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc7mr"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(14, 42, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw22f"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(28, 42, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v68s"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(42, 42, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e1gi"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(56, 42, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbos2"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(0, 56, 14, 14)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0kt2"]
+atlas = SubResource("PortableCompressedTexture2D_3ji66")
+region = Rect2(14, 56, 14, 14)
+filter_clip = true
+
+[sub_resource type="Animation" id="Animation_84uv1"]
+length = 4.44
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 4.02, 4.04, 4.06, 4.08, 4.1, 4.12, 4.14, 4.16, 4.18, 4.2, 4.22, 4.24, 4.26, 4.28, 4.3, 4.32, 4.34, 4.36, 4.38, 4.4, 4.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("AtlasTexture_e8616"), SubResource("AtlasTexture_buljs"), SubResource("AtlasTexture_3lb66"), SubResource("AtlasTexture_slihi"), SubResource("AtlasTexture_noo6d"), SubResource("AtlasTexture_bxc2t"), SubResource("AtlasTexture_iv15e"), SubResource("AtlasTexture_afp5i"), SubResource("AtlasTexture_gvp7y"), SubResource("AtlasTexture_7tqbt"), SubResource("AtlasTexture_66wjy"), SubResource("AtlasTexture_rmw32"), SubResource("AtlasTexture_es677"), SubResource("AtlasTexture_81me3"), SubResource("AtlasTexture_m45nt"), SubResource("AtlasTexture_1em6p"), SubResource("AtlasTexture_ojt6o"), SubResource("AtlasTexture_jc7mr"), SubResource("AtlasTexture_tw22f"), SubResource("AtlasTexture_0v68s"), SubResource("AtlasTexture_5e1gi"), SubResource("AtlasTexture_pbos2"), SubResource("AtlasTexture_f0kt2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_84uv1"]
+_data = {
+&"glimmer": SubResource("Animation_84uv1")
+}
+
+[node name="Star" type="TextureRect" unique_id=416987697]
+texture_filter = 1
+texture = SubResource("AtlasTexture_e8616")
+script = ExtResource("1_3ji66")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/star/star.aseprite",
+"source_uid": 2099248048835400435
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8cd45873bda6d48e684df3970836f3cc"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=185005200]
+libraries/ = SubResource("AnimationLibrary_84uv1")

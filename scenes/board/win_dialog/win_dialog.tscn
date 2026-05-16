@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_jxtqy"]
 [ext_resource type="Script" uid="uid://bra3fbkke72fn" path="res://scenes/board/win_dialog/win_dialog.gd" id="1_vx7f2"]
+[ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="3_kjoc6"]
 
 [node name="WinDialog" type="PanelContainer" unique_id=836941109]
 theme = ExtResource("1_jxtqy")
@@ -17,7 +18,7 @@ layout_mode = 2
 layout_mode = 2
 text = "ALL BOUNTIES CLAIMED"
 
-[node name="NextLevelButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2073766099]
+[node name="NextLevelButton" parent="MarginContainer/VBoxContainer" unique_id=1766392538 instance=ExtResource("3_kjoc6")]
 custom_minimum_size = Vector2(150, 24)
 layout_mode = 2
 size_flags_horizontal = 4

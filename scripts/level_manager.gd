@@ -1,10 +1,13 @@
 extends Node
 
-const NUMBER_TO_LEVEL_PATH: Dictionary = {
-	0: "res://scenes/levels/intro.tscn",
-	1: "res://scenes/levels/non_targets.tscn",
-	2: "res://scenes/levels/sacrifice.tscn"
-}
+const ORDERED_LEVEL_PATHS: Array[String] = [
+	"res://scenes/levels/intro.tscn",
+	"res://scenes/levels/non_targets.tscn",
+	"res://scenes/levels/sacrifice.tscn",
+	"res://scenes/levels/promotion.tscn",
+	"res://scenes/levels/double_cross.tscn",
+	"res://scenes/levels/forced_promotion.tscn"
+]
 
 var _current_level: int
 
@@ -21,7 +24,7 @@ func _go_to_level(level_number: int) -> void:
 	ScreenFadeManager.fade_out()
 	await ScreenFadeManager.fade_completed
 
-	var level_path: String = NUMBER_TO_LEVEL_PATH.get(level_number)
+	var level_path: String = ORDERED_LEVEL_PATHS[level_number]
 	var level_packed_scene: PackedScene = load(level_path)
 	var level: Level = level_packed_scene.instantiate()
 	var tree: SceneTree = get_tree()

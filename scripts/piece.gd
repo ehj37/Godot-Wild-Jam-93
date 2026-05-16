@@ -80,7 +80,14 @@ const CRIMES: Array[String] = [
 	"FIBBIN",
 	"TELLIN TALL TALES",
 	"BLACKMAILIN",
-	"TWO STEPPIN"
+	"TWO STEPPIN",
+	"SCALLYWAGGIN",
+	"SKULLDUGGERY",
+	"GRAVE PILLAGIN",
+	"THIEVIN",
+	"PUBLIC INTOXICATION",
+	"PARKIN TICKETS",
+	"SNAKE OIL PEDDLIN"
 ]
 
 @export var is_player: bool = false:

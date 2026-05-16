@@ -2,79 +2,6 @@ class_name BountyBoard
 
 extends PanelContainer
 
-const FIRST_NAMES: Array[String] = [
-	"STEAMBOAT",
-	"TUG",
-	"NELSON",
-	"TUCKER",
-	"JOHN",
-	"WILLIAM",
-	"JAMES",
-	"GEORGE",
-	"CHARLES",
-	"HENRY",
-	"WALTER",
-	"WYATT",
-	"SKIP",
-	"TUNGSTEN",
-	"EDWARD",
-	"CLARENCE",
-	"ERNEST",
-	"DUTCH",
-	"ROBINSON",
-	"ELLIOTT",
-	"SAMUEL"
-]
-
-const LAST_NAMES: Array[String] = [
-	"O'DOYLE",
-	"SMITH",
-	"BROWN",
-	"CLARK",
-	"ROBINSON",
-	"KELLY",
-	"EVANS",
-	"ROGERS",
-	"MORRIS",
-	"FISCHER",
-	"ELLIS",
-	"SULLIVAN",
-	"PRICE",
-	"CHAPMAN",
-	"NELSON",
-	"WEBSTER",
-	"BUTLER",
-	"SANDERS",
-	"COBB",
-	"GRIMES",
-	"KELLEY",
-	"ELLIOTT"
-]
-
-const CRIMES: Array[String] = [
-	"STOLE PACK OF GUM",
-	"LOITERING",
-	"COW TIPPING",
-	"TAX EVASION",
-	"FROG CRIMES",
-	"SHENANIGANS",
-	"ARSON",
-	"BANK ROBBERY",
-	"NEFARIOUS DEEDS",
-	"INSIDER TRADING",
-	"HORSE THEFT",
-	"CACTUS VANDALISM",
-	"TRAIN ROBBERY",
-	"SPEEDING (ON HORSE)",
-	"MOONSHININ",
-	"INDECENT LANGUAGE",
-	"RIGGED POKER",
-	"KIDNAPPED DAMSEL",
-	"WITCHCRAFT",
-	"BEIN NO GOOD",
-	"TOMFOOLERY",
-]
-
 var _piece_to_bounty: Dictionary = {}
 
 @onready var _bounty_packed_scene: PackedScene = preload(
@@ -98,6 +25,8 @@ var _piece_to_bounty: Dictionary = {}
 @onready var _rook_icon_packed_scene: PackedScene = preload(
 	"res://scenes/board/bounty_board/bounty/icons/rook_bounty_icon/rook_bounty_icon.tscn"
 )
+@onready
+var _palette_swap_material: ShaderMaterial = preload("res://resources/palette_swap_material.tres")
 @onready var _bounties_container: VBoxContainer = $MarginContainer/VBoxContainer/BountiesContainer
 
 
@@ -125,9 +54,12 @@ func add_bounty(piece: Piece, board_coordinate: Vector2i) -> void:
 			push_error("Unhandled piece type in BountyBoard#add_bounty")
 
 	var piece_icon: Sprite2D = piece_icon_packed_scene.instantiate()
+	var shader_material: ShaderMaterial = _palette_swap_material.duplicate(true)
+	piece_icon.material = shader_material
+	shader_material.set_shader_parameter("is_enabled", !piece.is_player)
 	bounty.set_icon(piece_icon)
-	bounty.set_piece_name(_random_name())
-	bounty.set_crime(_random_crime())
+	bounty.set_piece_name(piece.full_name)
+	bounty.set_crime(piece.crime)
 
 	var board_coordinate_in_notation: String = Board.board_coordinate_to_notation(board_coordinate)
 	bounty.set_last_seen(board_coordinate_in_notation)
@@ -154,13 +86,3 @@ func claim_bounty(piece: Piece) -> void:
 
 	bounty.mark_as_eliminated()
 	bounty.set_last_seen("SIX FEET DEEP")
-
-
-func _random_name() -> String:
-	var random_first_name: String = FIRST_NAMES.pick_random()
-	var random_last_name: String = LAST_NAMES.pick_random()
-	return random_first_name + " " + random_last_name
-
-
-func _random_crime() -> String:
-	return CRIMES.pick_random()

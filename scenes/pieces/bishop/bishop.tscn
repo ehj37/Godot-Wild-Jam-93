@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dexe22l3b7mjp" path="res://scenes/pieces/bishop/bishop.gd" id="1_tnbtm"]
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_b60td"]
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_djns7"]
-[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_tnbtm"]
+[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://resources/palette_swap_material.tres" id="2_tnbtm"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_djns7"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAACQAAACqAAAAUklGRqIAAABXRUJQVlA4TJUAAAAvI8AIECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDg4a26ojcMAtGOhzQE4NkDz/pthw9ycgov8TUP6u5K1htfuqjkBGWzCqkZBOZIYzI7pRJvRiCmS0BaMamZnOyhxGUYSK2aD+gkDOhP6xtlUD4GPadNTu7apHT0BwpIcI0Ml62PsRnl7ppGlCVz0pRZLKawA=")

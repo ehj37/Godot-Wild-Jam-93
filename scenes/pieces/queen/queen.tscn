@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bdl8eri7robli"]
 
 [ext_resource type="Script" uid="uid://ic4kaql04vqa" path="res://scenes/pieces/queen/queen.gd" id="1_3i28x"]
-[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_3i28x"]
+[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://resources/palette_swap_material.tres" id="2_3i28x"]
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_6n2g7"]
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_xqvnh"]
 

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://ctrktiu5vmyoj"]
 
 [ext_resource type="Script" uid="uid://br2n3yvrhbdsw" path="res://scenes/pieces/knight/knight.gd" id="1_cx8at"]
-[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://scenes/pieces/palette_swap_material.tres" id="2_cx8at"]
+[ext_resource type="Material" uid="uid://4hthalh8nine" path="res://resources/palette_swap_material.tres" id="2_cx8at"]
 [ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_t32bd"]
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_ysb8v"]
 

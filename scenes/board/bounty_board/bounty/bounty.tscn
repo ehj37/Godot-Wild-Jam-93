@@ -49,7 +49,7 @@ layout_mode = 2
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MugshotContainer" unique_id=1981101704]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
-color = Color(0.07015244, 0.07015244, 0.070152424, 1)
+color = Color(0.2333675, 0.14401534, 0.068375215, 1)
 
 [node name="JailBars" type="Sprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/MugshotContainer" unique_id=2061853568]
 texture_filter = 1

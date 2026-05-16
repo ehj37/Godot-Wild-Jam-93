@@ -55,7 +55,9 @@ func record_promotion(piece_type: Board.PieceType, is_player: bool) -> void:
 	happenin.set_text(prefix + " PAWN PROMOTED TO " + piece_name)
 
 
-# func _record_take
+func record_bounty_claimed() -> void:
+	var happenin: Happenin = _add_happenin()
+	happenin.set_text("BOUNTY CLAIMED")
 
 
 func _add_happenin() -> Happenin:

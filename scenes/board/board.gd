@@ -31,6 +31,7 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
 @onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
 @onready var _bounty_board: BountyBoard = $RightPanel/BountyBoard
+@onready var _reset_button: Button = $ResetButton
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -165,6 +166,8 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 			AudioManager.play_effect(_piece_take_audio_stream)
 
 		_happenins_section.record_take(piece_to_type(piece_to_remove), piece_to_remove.is_player)
+		if piece_to_remove.is_target:
+			_happenins_section.record_bounty_claimed()
 
 		_pieces_by_board_coord.erase(new_board_coordinate)
 		_piece_to_board_coord.erase(piece_to_remove)
@@ -248,6 +251,8 @@ func _handle_player_turn_click() -> void:
 
 				if _win_condition_met():
 					_win_dialog.show()
+					_reset_button.disabled = true
+
 				else:
 					if _is_promotion_candidate(_selected_piece):
 						_pawn_promotion_dialog.show()
@@ -416,6 +421,7 @@ func _take_enemy_turn() -> void:
 
 	if _win_condition_met():
 		_win_dialog.show()
+		_reset_button.disabled = true
 	else:
 		_listen_for_player_board_inputs = true
 		# TODO: Show turn dialog for player

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://3t33tryiswp"
+path="res://.godot/imported/knight_bounty_icon.aseprite-8e9911fe6a01fbd54afcb306615f1425.res"
+
+[deps]
+
+source_file="res://scenes/board/bounty_board/bounty/icons/knight_bounty_icon/knight_bounty_icon.aseprite"
+dest_files=["res://.godot/imported/knight_bounty_icon.aseprite-8e9911fe6a01fbd54afcb306615f1425.res"]
+
+[params]
+

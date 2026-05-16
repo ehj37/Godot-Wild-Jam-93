@@ -1,0 +1,32 @@
+[gd_scene format=4 uid="uid://68k1mhc67tj"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_4w8en"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGgAAABoAAACWAAAAUklGRo4AAABXRUJQVlA4TIIAAAAvGUAGECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDg7aRpKkagZdO4NgFsGojsA+/En1oz0GEf2fAPzd2eLs+DWtckqsKGkw8y1J0xJKGnoYfCudFpQ/BMBCA8D+YC2JgIfBtQ4D/JUkkkQ1DDETe8c3v9bVwhcnM77BWkwA")
+size_override = Vector2(26, 26)
+
+[node name="KnightBountyIcon" type="Sprite2D" unique_id=1298246220]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_4w8en")
+centered = false
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/bounty_board/bounty/icons/knight_bounty_icon/knight_bounty_icon.aseprite",
+"source_uid": 59007703015471843
+}
+metadata/_aseprite_wizard_source_file_hash_ = "66fac9ab2d650658ad678cdb5c6d92f0"

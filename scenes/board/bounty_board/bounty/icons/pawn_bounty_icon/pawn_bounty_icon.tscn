@@ -1,0 +1,32 @@
+[gd_scene format=4 uid="uid://c1k67h3nssuep"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m0nh6"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGgAAABoAAACWAAAAUklGRo4AAABXRUJQVlA4TIEAAAAvGUAGECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDg4i2W4bfQb/WSaQQkBzIlDMn1T0fxqBiP5PQPlflyVcyBIdEuqgaHSoCT4nQJEDlrhxZBo1oc5SNK7rOiPN66nIb/fDotKoJfZGtUgdFPgAqu10AWjjo79U21xsrRQA")
+size_override = Vector2(26, 26)
+
+[node name="PawnBountyIcon" type="Sprite2D" unique_id=743345220]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_m0nh6")
+centered = false
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/bounty_board/bounty/icons/pawn_bounty_icon/pawn_bounty_icon.aseprite",
+"source_uid": 1281048918375461013
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d9ff7c0fbfcf4eccab6d87727d95594f"

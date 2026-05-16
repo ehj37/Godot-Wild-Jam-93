@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://c0t2ssw6n6s1l"]
+[gd_scene format=4 uid="uid://c0t2ssw6n6s1l"]
 
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_6dwmf"]
+[ext_resource type="Script" uid="uid://df1royfpkqi0a" path="res://scenes/board/bounty_board/bounty/bounty.gd" id="2_0pbi6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dwmf"]
 bg_color = Color(0.57254905, 0.34901962, 0.22352941, 1)
@@ -15,9 +16,18 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 corner_detail = 1
 
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_0pbi6"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGgAAABoAAAAyAAAAUklGRioAAABXRUJQVlA4TB4AAAAvGUAGEA8wQiM0QoMc8CCTtoGqqL2amfv9Ef2PJR8=")
+size_override = Vector2(26, 26)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_dsd88"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGgAAABoAAABmAAAAUklGRl4AAABXRUJQVlA4TFEAAAAvGUAGEA8Q8x/zHww3tW3V0X6LX4cChCCLckq62EJBNCAk7XiI6H8kUrNTd2K4pmWZruFEt1PjSbzBh9/fhzd4kp2aE901LNO0DFd3otkpkQAA")
+size_override = Vector2(26, 26)
+
 [node name="Bounty" type="PanelContainer" unique_id=916983990]
 theme = ExtResource("1_6dwmf")
 theme_override_styles/panel = SubResource("StyleBoxFlat_6dwmf")
+script = ExtResource("2_0pbi6")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1114865191]
 layout_mode = 2
@@ -33,9 +43,68 @@ alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1060243925]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1981101704]
-custom_minimum_size = Vector2(25, 25)
+[node name="MugshotContainer" type="BoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=301360717]
 layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MugshotContainer" unique_id=1981101704]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+color = Color(0.07015244, 0.07015244, 0.070152424, 1)
+
+[node name="JailBars" type="Sprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/MugshotContainer" unique_id=2061853568]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_0pbi6")
+centered = false
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/bounty_board/bounty/jail_bars.aseprite",
+"source_uid": 8604117979008004580
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0357d7bcb12a1ce8997c9a742c2893ee"
+
+[node name="EliminatedIcon" type="Sprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/MugshotContainer" unique_id=797262472]
+visible = false
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_dsd88")
+centered = false
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/bounty_board/bounty/eliminated_icon.aseprite",
+"source_uid": 8982664516043971402
+}
+metadata/_aseprite_wizard_source_file_hash_ = "89e4cb1d7e89f6d14cd30c594ab50830"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=116425614]
 layout_mode = 2
@@ -71,17 +140,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "STOLE PACK OF GUM"
 
-[node name="LastSpottedContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=947595422]
+[node name="LastSeenContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=947595422]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LastSpottedContainer" unique_id=415544461]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LastSeenContainer" unique_id=415544461]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 6
 text = "LAST SEEN:"
 
-[node name="LastSeenLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LastSpottedContainer" unique_id=739936592]
+[node name="LastSeenLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/LastSeenContainer" unique_id=739936592]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "A4"

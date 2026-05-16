@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bu60m7hty61gt"]
 
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_bt0ve"]
-[ext_resource type="PackedScene" uid="uid://c0t2ssw6n6s1l" path="res://scenes/board/bounty_board/bounty/bounty.tscn" id="2_sxu6c"]
+[ext_resource type="Script" uid="uid://3ny6jxa0nq30" path="res://scenes/board/bounty_board/bounty_board.gd" id="2_rwucu"]
 
 [node name="BountyBoard" type="PanelContainer" unique_id=394650227]
 theme = ExtResource("1_bt0ve")
+script = ExtResource("2_rwucu")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=889301959]
 layout_mode = 2
@@ -28,8 +29,5 @@ theme_override_colors/font_color = Color(0.3647059, 0.19607843, 0.08627451, 1)
 text = "----------"
 horizontal_alignment = 1
 
-[node name="Bounties" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=907315530]
-layout_mode = 2
-
-[node name="Bounty" parent="MarginContainer/VBoxContainer/Bounties" unique_id=916983990 instance=ExtResource("2_sxu6c")]
+[node name="BountiesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=907315530]
 layout_mode = 2

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bwr5cp5vvmne"
+path="res://.godot/imported/rook_bounty_icon.aseprite-27d5819cfa5d8ee4b4acd14f7e226792.res"
+
+[deps]
+
+source_file="res://scenes/board/bounty_board/bounty/icons/rook_bounty_icon/rook_bounty_icon.aseprite"
+dest_files=["res://.godot/imported/rook_bounty_icon.aseprite-27d5819cfa5d8ee4b4acd14f7e226792.res"]
+
+[params]
+

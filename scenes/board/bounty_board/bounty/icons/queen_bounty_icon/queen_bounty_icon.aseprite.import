@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://2xe7g2qqldgx"
+path="res://.godot/imported/queen_bounty_icon.aseprite-ab160cbc16cc8ed727a0c00b5fa9bc8f.res"
+
+[deps]
+
+source_file="res://scenes/board/bounty_board/bounty/icons/queen_bounty_icon/queen_bounty_icon.aseprite"
+dest_files=["res://.godot/imported/queen_bounty_icon.aseprite-ab160cbc16cc8ed727a0c00b5fa9bc8f.res"]
+
+[params]
+

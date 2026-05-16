@@ -1,0 +1,32 @@
+[gd_scene format=4 uid="uid://b8fgwnka07fnl"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_5f8uq"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGgAAABoAAACSAAAAUklGRooAAABXRUJQVlA4TH4AAAAvGUAGECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDgwiSYpz5+A2YCBxQC0GKNa/qdTxOIjo/wTY7YCvQFgZqisQlr4VNBYkMTpn9UT/bEiqibWpXiwjuQCSyIKkLzSWU+icyIakmkESshiqntn7PbbYWBaisfgCyRM=")
+size_override = Vector2(26, 26)
+
+[node name="KingBountyIcon" type="Sprite2D" unique_id=112801978]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_5f8uq")
+centered = false
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/bounty_board/bounty/icons/king_bounty_icon/king_bounty_icon.aseprite",
+"source_uid": 8839519959118816852
+}
+metadata/_aseprite_wizard_source_file_hash_ = "641c66c3b266bee753cfab1d15a65928"

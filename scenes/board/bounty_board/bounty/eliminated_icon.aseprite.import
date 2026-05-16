@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d08jf4b8ddhw1"
+path="res://.godot/imported/eliminated_icon.aseprite-97c461deb672c59b8c806c40a0d7c0f9.res"
+
+[deps]
+
+source_file="res://scenes/board/bounty_board/bounty/eliminated_icon.aseprite"
+dest_files=["res://.godot/imported/eliminated_icon.aseprite-97c461deb672c59b8c806c40a0d7c0f9.res"]
+
+[params]
+

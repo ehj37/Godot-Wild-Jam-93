@@ -30,6 +30,7 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
 @onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
 @onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
+@onready var _bounty_board: BountyBoard = $RightPanel/BountyBoard
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -115,6 +116,8 @@ func _ready() -> void:
 		var board_coordinate: Vector2i = _get_board_coordinate(piece.global_position)
 		_pieces_by_board_coord[board_coordinate] = piece
 		_piece_to_board_coord[piece] = board_coordinate
+		if piece.is_target:
+			_bounty_board.add_bounty(piece, board_coordinate)
 
 	_pawn_promotion_dialog.visible = false
 	_turn_dialog.visible = false
@@ -150,10 +153,13 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	_happenins_section.record_piece_move(
 		piece_to_type(piece), current_board_coordinate, new_board_coordinate, piece.is_player
 	)
+	if piece.is_target:
+		_bounty_board.update_bounty_last_seen(piece, new_board_coordinate)
 
 	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
 	if piece_to_remove:
 		if piece_to_remove.is_target:
+			_bounty_board.claim_bounty(piece_to_remove)
 			AudioManager.play_effect(_target_taken_audio_stream)
 		else:
 			AudioManager.play_effect(_piece_take_audio_stream)

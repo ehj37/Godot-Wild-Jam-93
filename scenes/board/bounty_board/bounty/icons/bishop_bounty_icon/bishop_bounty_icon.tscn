@@ -1,0 +1,32 @@
+[gd_scene format=4 uid="uid://d36hmdr8ls4k0"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_7312l"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGgAAABoAAACSAAAAUklGRooAAABXRUJQVlA4TH4AAAAvGUAGECcgJCBTDtihEwiQKSE25BCQEFY44P9FzX8AgK+KDgwi2WoDDvKLAYoB8mKgfP+iUj5FQUT/FbZt2yg73T0jLJWNoou5UCYvNogT6MDthPNB/6TLKjtFyTs5UwDEJcvMTB1nZt6UlNn7lAYJM3Te5798FAJA3kxA+gQ=")
+size_override = Vector2(26, 26)
+
+[node name="BishopBountyIcon" type="Sprite2D" unique_id=255073747]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_7312l")
+centered = false
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://scenes/board/bounty_board/bounty/icons/bishop_bounty_icon/bishop_bounty_icon.aseprite",
+"source_uid": 6201029222936223676
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d3db17562a5cf187b18d60cd4e210992"

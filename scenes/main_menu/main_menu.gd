@@ -1,5 +1,8 @@
 extends Control
 
+const THEME_FADE_IN_DURATION: float = 7.5
+
+@onready var _theme_audio_stream: AudioStreamOggVorbis = preload("res://audio_streams/theme.ogg")
 @onready
 var _main_buttons_container: VBoxContainer = $PanelContainer/MarginContainer/MainButtonsContainer
 @onready var _start_button: Button = get_node(
@@ -20,6 +23,8 @@ var _settings_button: Button = $PanelContainer/MarginContainer/MainButtonsContai
 
 
 func _ready() -> void:
+	AudioManager.play_music(_theme_audio_stream, THEME_FADE_IN_DURATION)
+
 	_main_buttons_container.show()
 	_settings_container.hide()
 

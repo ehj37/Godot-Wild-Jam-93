@@ -18,7 +18,7 @@ enum PieceType { PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING }
 
 const CELL_SIDE_LENGTH: int = 42
 const ORIGIN: Vector2i = Vector2i(-4 * CELL_SIDE_LENGTH, 4 * CELL_SIDE_LENGTH)
-const HORIZONTAL_LABELS: Array[String] = ["A", "B", "C", "D", "E", "F", "F", "H"]
+const HORIZONTAL_LABELS: Array[String] = ["A", "B", "C", "D", "E", "F", "G", "H"]
 const VERTICAL_LABELS: Array[String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
 var _pieces_by_board_coord: Dictionary = {}

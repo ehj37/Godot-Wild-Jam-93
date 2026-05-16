@@ -70,7 +70,7 @@ const CRIMES: Array[String] = [
 	"SPEEDIN (ON HORSE)",
 	"MOONSHININ",
 	"INDECENT LANGUAGE",
-	"RIGGED POKER",
+	"CHEATIN AT POKER",
 	"KIDNAPPED DAMSEL",
 	"WITCHCRAFT",
 	"BEIN NO GOOD",
@@ -109,7 +109,7 @@ var full_name: String
 var crime: String
 
 
-func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces: Dictionary) -> bool:
+func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces_by_board_coordinate: Dictionary) -> bool:
 	return false
 
 

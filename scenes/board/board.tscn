@@ -200,7 +200,6 @@ offset_right = 168.0
 offset_bottom = 168.0
 
 [node name="TurnDialog" parent="CenterContainer" unique_id=1483785800 instance=ExtResource("3_knosr")]
-visible = false
 layout_mode = 2
 
 [node name="WinDialog" parent="CenterContainer" unique_id=836941109 instance=ExtResource("4_q07he")]
@@ -210,15 +209,6 @@ layout_mode = 2
 [node name="PawnPromotionDialog" parent="CenterContainer" unique_id=1461739217 instance=ExtResource("2_jnyf0")]
 visible = false
 layout_mode = 2
-
-[node name="ResetButton" parent="." unique_id=1766392538 instance=ExtResource("5_kymhv")]
-layout_mode = 0
-offset_left = 295.0
-offset_top = 144.0
-offset_right = 404.0
-offset_bottom = 184.0
-text = "RESET BOARD"
-autowrap_mode = 2
 
 [node name="RightPanel" type="VBoxContainer" parent="." unique_id=1775474612]
 layout_mode = 0
@@ -232,5 +222,15 @@ layout_mode = 2
 
 [node name="HappeninSection" parent="RightPanel" unique_id=1725440760 instance=ExtResource("7_exf0g")]
 layout_mode = 2
+
+[node name="ResetButton" parent="." unique_id=1766392538 instance=ExtResource("5_kymhv")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_left = 294.0
+offset_top = 138.0
+offset_right = 394.0
+offset_bottom = 178.0
+text = "RESET BOARD"
+autowrap_mode = 2
 
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

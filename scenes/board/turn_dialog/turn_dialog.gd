@@ -2,19 +2,8 @@ class_name TurnDialog
 
 extends PanelContainer
 
-@export var is_player_turn: bool:
+var text: String:
 	set(new_value):
-		is_player_turn = new_value
-		_update_label()
-
-
-func _ready() -> void:
-	_update_label()
-
-
-func _update_label() -> void:
-	var label: Label = $MarginContainer/Label
-	if is_player_turn:
-		label.text = "LEARN EM A LESSON"
-	else:
-		label.text = "BANDITS ARE ABOUT"
+		text = new_value
+		var label: Label = $MarginContainer/Label
+		label.text = new_value

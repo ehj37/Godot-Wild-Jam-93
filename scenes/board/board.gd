@@ -100,33 +100,8 @@ static func piece_type_to_human_readable_name(piece_type: Board.PieceType) -> St
 	return piece_name
 
 
-func _input(event: InputEvent) -> void:
-	if !_listen_for_player_board_inputs:
-		return
-
-	if event is InputEventMouseButton:
-		var event_mouse_button: InputEventMouseButton = event
-		if event_mouse_button.button_index == MOUSE_BUTTON_LEFT:
-			if event_mouse_button.pressed:
-				_handle_player_turn_click()
-
-
-func _ready() -> void:
-	var pieces: Array = find_children("*", "Piece", true, false)
-	for piece: Piece in pieces:
-		var board_coordinate: Vector2i = _get_board_coordinate(piece.global_position)
-		_pieces_by_board_coord[board_coordinate] = piece
-		_piece_to_board_coord[piece] = board_coordinate
-		if piece.is_target:
-			_bounty_board.add_bounty(piece, board_coordinate)
-
-	_pawn_promotion_dialog.visible = false
-	_turn_dialog.visible = false
-	_win_dialog.visible = false
-
-
 # Returns (-1, -1) for coords outside of the board
-func _get_board_coordinate(global_coordinate: Vector2) -> Vector2i:
+static func get_board_coordinate(global_coordinate: Vector2) -> Vector2i:
 	var x_from_origin: float = global_coordinate.x - ORIGIN.x
 	var y_from_origin: float = global_coordinate.y - ORIGIN.y
 	if (
@@ -141,16 +116,59 @@ func _get_board_coordinate(global_coordinate: Vector2) -> Vector2i:
 	return Vector2(x_from_origin / CELL_SIDE_LENGTH, absi(y_from_origin / CELL_SIDE_LENGTH))
 
 
+func _input(event: InputEvent) -> void:
+	if !_listen_for_player_board_inputs:
+		return
+
+	if event is InputEventMouseButton:
+		var event_mouse_button: InputEventMouseButton = event
+		if event_mouse_button.button_index == MOUSE_BUTTON_LEFT:
+			if event_mouse_button.pressed:
+				_handle_player_turn_click()
+
+
+func _ready() -> void:
+	var pieces: Array = find_children("*", "Piece", true, false)
+	for piece: Piece in pieces:
+		var board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
+		_pieces_by_board_coord[board_coordinate] = piece
+		_piece_to_board_coord[piece] = board_coordinate
+		if piece.is_target:
+			_bounty_board.add_bounty(piece, board_coordinate)
+
+	_pawn_promotion_dialog.visible = false
+	_turn_dialog.visible = false
+	_win_dialog.visible = false
+
+
 func _get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Vector2:
 	var x_offset: float = board_coordinate.x * CELL_SIDE_LENGTH + CELL_SIDE_LENGTH / 2.0
 	var y_offset: float = -board_coordinate.y * CELL_SIDE_LENGTH - CELL_SIDE_LENGTH / 2.0
 	return Vector2(ORIGIN) + Vector2(x_offset, y_offset)
 
 
+func _get_player_pieces() -> Array[Piece]:
+	var player_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
+		func(piece: Piece) -> bool: return piece.is_player
+	)
+	var player_pieces: Array[Piece]
+	player_pieces.assign(player_pieces_untyped)
+	return player_pieces
+
+
+func _get_enemy_pieces() -> Array[Piece]:
+	var enemy_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
+		func(piece: Piece) -> bool: return !piece.is_player
+	)
+	var enemy_pieces: Array[Piece]
+	enemy_pieces.assign(enemy_pieces_untyped)
+	return enemy_pieces
+
+
 func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	AudioManager.play_effect(_piece_move_audio_stream)
 
-	var current_board_coordinate: Vector2i = _get_board_coordinate(piece.global_position)
+	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
 	_happenins_section.record_piece_move(
 		piece_to_type(piece), current_board_coordinate, new_board_coordinate, piece.is_player
 	)
@@ -217,7 +235,7 @@ func _is_promotion_candidate(piece: Piece) -> bool:
 
 func _handle_player_turn_click() -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
-	var mouse_board_coordinate: Vector2i = _get_board_coordinate(mouse_position)
+	var mouse_board_coordinate: Vector2i = get_board_coordinate(mouse_position)
 	if _selected_piece:
 		if mouse_board_coordinate != Vector2i(-1, -1):
 			var piece_at_mouse_board_coordinate: Piece = _pieces_by_board_coord.get(
@@ -236,7 +254,7 @@ func _handle_player_turn_click() -> void:
 				piece_at_mouse_board_coordinate.is_selected = true
 				return
 
-			var current_board_coordinate: Vector2i = _get_board_coordinate(
+			var current_board_coordinate: Vector2i = get_board_coordinate(
 				_selected_piece.global_position
 			)
 			var is_valid_move: bool = _selected_piece.is_valid_move(
@@ -281,7 +299,7 @@ func _handle_player_turn_click() -> void:
 						var promotion_piece: Piece = piece_packed_scene.instantiate()
 						_replace_piece(_selected_piece, promotion_piece)
 
-					_take_enemy_turn()
+					_switch_to_enemy_turn()
 			else:
 				AudioManager.play_effect(_piece_unselected_audio_stream)
 		else:
@@ -304,7 +322,7 @@ func _get_valid_attacks(
 	# player pieces.
 	var possible_attacks: Array[Attack] = []
 	for attacked_piece_candidate: Piece in attacked_piece_candidates:
-		var attacked_piece_candidate_board_coord: Vector2i = _get_board_coordinate(
+		var attacked_piece_candidate_board_coord: Vector2i = get_board_coordinate(
 			attacked_piece_candidate.global_position
 		)
 		for attacking_piece_candidate: Piece in attacking_piece_candidates:
@@ -312,7 +330,7 @@ func _get_valid_attacks(
 			if _piece_to_board_coord.has(attacking_piece_candidate):
 				attacking_piece_candidate_board_coord = _piece_to_board_coord[attacking_piece_candidate]
 			else:
-				attacking_piece_candidate_board_coord = _get_board_coordinate(
+				attacking_piece_candidate_board_coord = get_board_coordinate(
 					attacking_piece_candidate.global_position
 				)
 
@@ -328,40 +346,15 @@ func _get_valid_attacks(
 	return possible_attacks
 
 
-func _take_enemy_turn() -> void:
-	_turn_dialog.is_player_turn = false
-	_turn_dialog.show()
-	await get_tree().create_timer(1.0).timeout
-
-	_turn_dialog.hide()
-
-	# I love GDScript it's great
-	var enemy_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
-		func(piece: Piece) -> bool: return !piece.is_player
-	)
-	var player_pieces_untyped: Array = _pieces_by_board_coord.values().filter(
-		func(piece: Piece) -> bool: return piece.is_player
-	)
-	var enemy_pieces: Array[Piece]
-	enemy_pieces.assign(enemy_pieces_untyped)
-	var player_pieces: Array[Piece]
-	player_pieces.assign(player_pieces_untyped)
-
-	var attack: Attack
-
-	# Gross, but should be fine in practice. It's an 8x8 grid with generally few
-	# player pieces.
-	var possible_attacks: Array[Attack] = _get_valid_attacks(enemy_pieces, player_pieces)
+# Contains tie-breaking logic
+func _pick_enemy_attack(possible_attacks: Array[Attack]) -> Attack:
 	var possible_attack_count: int = possible_attacks.size()
 	match possible_attack_count:
 		0:
-			print("Enemy has no attacks")
+			return null
 		1:
-			print("One possible enemy attack.")
-			attack = possible_attacks[0]
-
+			return possible_attacks[0]
 		_:
-			print("Enemy has multiple attacks")
 			var candidate_enemy_pieces: Array = []
 			var candidate_player_pieces: Array = []
 			for possible_attack: Attack in possible_attacks:
@@ -373,63 +366,85 @@ func _take_enemy_turn() -> void:
 				if !candidate_player_pieces.has(player_piece):
 					candidate_player_pieces.append(player_piece)
 
-			# Show every piece that could attack as selected
-			for piece: Piece in candidate_enemy_pieces:
-				piece.is_selected = true
-
-			await get_tree().create_timer(0.5).timeout
-
 			candidate_enemy_pieces.sort_custom(_compare_pieces)
 			var attacking_enemy_piece: Piece = candidate_enemy_pieces[0]
 			var attacks_for_enemy_piece: Array = possible_attacks.filter(
 				func(a: Attack) -> bool: return a.attacking_piece == attacking_enemy_piece
 			)
 			if attacks_for_enemy_piece.size() == 1:
-				print("One attack, no further tiebreaking needed")
-				attack = attacks_for_enemy_piece[0]
-			else:
-				print("Multiple attacks, further tiebreaking needed")
-				candidate_player_pieces.sort_custom(_compare_pieces)
-				var player_piece_to_attack: Piece = candidate_enemy_pieces[0]
-				var attack_i: int = attacks_for_enemy_piece.find_custom(
-					func(attack_for_enemy_piece: Attack) -> bool: return (
-						attack_for_enemy_piece.attacked_piece == player_piece_to_attack
-					)
+				return attacks_for_enemy_piece[0]
+
+			candidate_player_pieces.sort_custom(_compare_pieces)
+			var player_piece_to_attack: Piece = candidate_enemy_pieces[0]
+			var attack_i: int = attacks_for_enemy_piece.find_custom(
+				func(attack_for_enemy_piece: Attack) -> bool: return (
+					attack_for_enemy_piece.attacked_piece == player_piece_to_attack
 				)
-				attack = attacks_for_enemy_piece[attack_i]
+			)
+			return attacks_for_enemy_piece[attack_i]
 
-			for piece: Piece in candidate_enemy_pieces:
-				piece.is_selected = piece == attack.attacking_piece
 
-	if attack:
-		await get_tree().create_timer(0.5).timeout
+func _switch_to_enemy_turn() -> void:
+	_listen_for_player_board_inputs = false
+	var enemy_pieces: Array[Piece] = _get_enemy_pieces()
+	var player_pieces: Array[Piece] = _get_player_pieces()
+	var possible_attacks: Array[Attack] = _get_valid_attacks(enemy_pieces, player_pieces)
+	if possible_attacks.size() == 0:
+		_turn_dialog.text = "NO BANDIT ATTACKS\nPLAYER TURN"
+		_turn_dialog.show()
+		await get_tree().create_timer(1.0).timeout
 
-		var enemy_piece: Piece = attack.attacking_piece
-		enemy_piece.is_selected = true
-		await get_tree().create_timer(0.5).timeout
+		_turn_dialog.hide()
 
-		var player_piece: Piece = attack.attacked_piece
-		var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-		_move_piece(enemy_piece, player_board_coord)
+		_switch_to_player_turn(false)
 
-		if _is_promotion_candidate(enemy_piece):
-			var queen: Queen = _queen_packed_scene.instantiate()
-			_replace_piece(enemy_piece, queen)
-			queen.is_selected = false
-		else:
-			enemy_piece.is_selected = false
+	_take_enemy_turn(possible_attacks)
+
+
+func _switch_to_player_turn(show_dialog: bool = true) -> void:
+	if show_dialog:
+		_turn_dialog.text = "PLAYER TURN"
+		_turn_dialog.show()
+		await get_tree().create_timer(0.75).timeout
+
+		_turn_dialog.hide()
+	_listen_for_player_board_inputs = true
+
+
+func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
+	var attack: Attack = _pick_enemy_attack(possible_attacks)
+
+	_turn_dialog.text = "BANDIT TURN"
+	_turn_dialog.show()
+	await get_tree().create_timer(1.0).timeout
+
+	_turn_dialog.hide()
+
+	var enemy_piece: Piece = attack.attacking_piece
+	enemy_piece.is_selected = true
+	await get_tree().create_timer(0.5).timeout
+
+	var player_piece: Piece = attack.attacked_piece
+	var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
+	_move_piece(enemy_piece, player_board_coord)
+
+	if _is_promotion_candidate(enemy_piece):
+		var queen: Queen = _queen_packed_scene.instantiate()
+		_replace_piece(enemy_piece, queen)
+		queen.is_selected = false
+	else:
+		enemy_piece.is_selected = false
 
 	if _win_condition_met():
 		_win_dialog.show()
 		_reset_button.disabled = true
 	else:
-		_listen_for_player_board_inputs = true
-		# TODO: Show turn dialog for player
+		_switch_to_player_turn()
 
 
 func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:
-	var piece_a_board_coord: Vector2i = _get_board_coordinate(piece_a.global_position)
-	var piece_b_board_coord: Vector2i = _get_board_coordinate(piece_b.global_position)
+	var piece_a_board_coord: Vector2i = get_board_coordinate(piece_a.global_position)
+	var piece_b_board_coord: Vector2i = get_board_coordinate(piece_b.global_position)
 	if piece_a_board_coord.y > piece_b_board_coord.y:
 		return true
 

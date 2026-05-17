@@ -53,6 +53,7 @@ offset_left = -21.0
 offset_top = -21.0
 offset_right = 21.0
 offset_bottom = 21.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="TargetFireFront" parent="." unique_id=34485931 instance=ExtResource("2_t32bd")]

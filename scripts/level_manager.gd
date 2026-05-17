@@ -8,7 +8,8 @@ const ORDERED_LEVEL_PATHS: Array[String] = [
 	"res://scenes/levels/sacrifice.tscn",
 	"res://scenes/levels/promotion.tscn",
 	"res://scenes/levels/double_cross.tscn",
-	"res://scenes/levels/forced_promotion.tscn"
+	"res://scenes/levels/tiebreaking.tscn",
+	"res://scenes/levels/forced_promotion.tscn",
 ]
 
 var shown_intro_dialogs: bool = false

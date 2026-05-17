@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_w6g05"]
 [ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_aefyr"]
+[ext_resource type="PackedScene" uid="uid://bjp185tqup2ns" path="res://scenes/pieces/king/king.tscn" id="3_p7b48"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_kvjc6"]
+[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="5_y44gs"]
 
 [node name="Tiebreaking" type="Node2D" unique_id=696540009]
 script = ExtResource("1_w6g05")
@@ -12,3 +15,60 @@ metadata/_custom_type_script = "uid://twfgb1kflgb"
 [node name="Player" type="Node2D" parent="Board" unique_id=2099720985]
 
 [node name="Bandit" type="Node2D" parent="Board" unique_id=1947739070]
+
+[node name="King" parent="Board" unique_id=842364951 instance=ExtResource("3_p7b48")]
+position = Vector2(-63, -147)
+is_player = true
+
+[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 21)
+
+[node name="Rook2" parent="Board" unique_id=1554469226 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -21)
+
+[node name="Rook3" parent="Board" unique_id=37907451 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -63)
+
+[node name="Rook4" parent="Board" unique_id=429598286 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -105)
+
+[node name="Rook5" parent="Board" unique_id=942561683 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -147)
+is_target = true
+
+[node name="Rook6" parent="Board" unique_id=1414385159 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 63)
+
+[node name="Rook7" parent="Board" unique_id=1917672210 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 105)
+
+[node name="Rook8" parent="Board" unique_id=1302325489 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 147)
+
+[node name="Pawn3" parent="Board" unique_id=107096897 instance=ExtResource("5_y44gs")]
+position = Vector2(147, -63)
+is_player = true
+
+[node name="Pawn4" parent="Board" unique_id=1063726150 instance=ExtResource("5_y44gs")]
+position = Vector2(105, -21)
+is_player = true
+
+[node name="Pawn5" parent="Board" unique_id=2100553953 instance=ExtResource("5_y44gs")]
+position = Vector2(147, 21)
+is_player = true
+
+[node name="Pawn6" parent="Board" unique_id=679167262 instance=ExtResource("5_y44gs")]
+position = Vector2(105, 63)
+is_player = true
+
+[node name="Pawn7" parent="Board" unique_id=498861043 instance=ExtResource("5_y44gs")]
+position = Vector2(147, 105)
+is_player = true
+
+[node name="Pawn8" parent="Board" unique_id=255032921 instance=ExtResource("5_y44gs")]
+position = Vector2(105, 147)
+is_player = true
+
+[node name="King2" parent="Board" unique_id=2139590648 instance=ExtResource("3_p7b48")]
+position = Vector2(147, -147)
+is_player = true

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d1uh6nd2gh41s"]
+
+[ext_resource type="Texture2D" uid="uid://k81d7x5i2prd" path="res://scenes/board/highlight_squares/highlight_square.png" id="1_mj4qu"]
+[ext_resource type="Script" uid="uid://j4afvprwawpr" path="res://scenes/board/highlight_squares/highlight_squares.gd" id="2_0w1c1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0w1c1"]
+texture = ExtResource("1_mj4qu")
+texture_region_size = Vector2i(42, 42)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gr3s3"]
+tile_size = Vector2i(42, 42)
+sources/0 = SubResource("TileSetAtlasSource_0w1c1")
+
+[node name="HighlightSquares" type="TileMapLayer" unique_id=284093895]
+tile_set = SubResource("TileSet_gr3s3")
+script = ExtResource("2_0w1c1")

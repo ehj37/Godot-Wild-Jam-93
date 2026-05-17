@@ -27,6 +27,7 @@ var _selected_piece: Piece
 var _listen_for_player_board_inputs: bool = true
 var _has_shown_tiebreaker_dialog: bool = false
 
+@onready var _highlight_squares: TileMapLayer = $HighlightSquares
 @onready var _pawn_promotion_dialog: PawnPromotionDialog = $CenterContainer/PawnPromotionDialog
 @onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
 @onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
@@ -127,6 +128,24 @@ func _input(event: InputEvent) -> void:
 		if event_mouse_button.button_index == MOUSE_BUTTON_LEFT:
 			if event_mouse_button.pressed:
 				_handle_player_turn_click()
+
+
+# Prob a way to do this in input handling but if it works it works
+func _process(_delta: float) -> void:
+	if !_listen_for_player_board_inputs:
+		_highlight_squares.visible = false
+		return
+
+	_highlight_squares.visible = true
+	_highlight_squares.clear()
+
+	var global_mouse_position: Vector2 = get_global_mouse_position()
+	var mouse_board_coordinate: Vector2 = get_board_coordinate(global_mouse_position)
+	if mouse_board_coordinate == Vector2(-1, -1):
+		return
+
+	var tile_map_coords: Vector2i = _highlight_squares.local_to_map(global_mouse_position)
+	_highlight_squares.set_cell(tile_map_coords, 0, Vector2.ZERO)
 
 
 func _ready() -> void:

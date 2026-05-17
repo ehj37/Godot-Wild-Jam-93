@@ -11,7 +11,7 @@ signal acknowledged
 		body_text = new_value
 		var label: Label = $MarginContainer/VBoxContainer/Label
 		label.text = new_value
-		
+
 @export var button_text: String:
 	set(new_value):
 		button_text = new_value

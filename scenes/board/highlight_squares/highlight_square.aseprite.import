@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dp5rnatyelwxo"
+path="res://.godot/imported/highlight_square.aseprite-5f89a326aaf20b7b26443d9d46ff67e3.res"
+
+[deps]
+
+source_file="res://scenes/board/highlight_squares/highlight_square.aseprite"
+dest_files=["res://.godot/imported/highlight_square.aseprite-5f89a326aaf20b7b26443d9d46ff67e3.res"]
+
+[params]
+

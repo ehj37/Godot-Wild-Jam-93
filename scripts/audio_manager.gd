@@ -15,6 +15,7 @@ func _play(audio_stream: AudioStreamOggVorbis, bus_name: String, fade_in_time: f
 	audio_stream_player.bus = bus_name
 	add_child(audio_stream_player)
 	audio_stream_player.play()
+	audio_stream_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	if fade_in_time > 0:
 		audio_stream_player.volume_linear = 0.0
 		var volume_tween: Tween = audio_stream_player.create_tween()

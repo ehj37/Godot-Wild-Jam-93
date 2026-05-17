@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b8nyaij25qte8" path="res://scenes/board/turn_dialog/turn_dialog.tscn" id="3_knosr"]
 [ext_resource type="PackedScene" uid="uid://c0edtbxxhclfr" path="res://scenes/board/win_dialog/win_dialog.tscn" id="4_q07he"]
 [ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="5_kymhv"]
+[ext_resource type="PackedScene" uid="uid://cvk3i3l2k0xn7" path="res://scenes/board/vip_removed_dialog/vip_removed_dialog.tscn" id="6_k8r4w"]
 [ext_resource type="PackedScene" uid="uid://bu60m7hty61gt" path="res://scenes/board/bounty_board/bounty_board.tscn" id="7_dej46"]
 [ext_resource type="PackedScene" uid="uid://bun0chqbpqxoq" path="res://scenes/board/happenins_section/happenins_section.tscn" id="7_exf0g"]
 [ext_resource type="PackedScene" uid="uid://lgelawtymare" path="res://scenes/acknowledge_dialog/acknowledge_dialog.tscn" id="10_c6wwm"]
@@ -216,6 +217,10 @@ visible = false
 layout_mode = 2
 
 [node name="WinDialog" parent="CenterContainer" unique_id=836941109 instance=ExtResource("4_q07he")]
+visible = false
+layout_mode = 2
+
+[node name="VipRemovedDialog" parent="CenterContainer" unique_id=559300086 instance=ExtResource("6_k8r4w")]
 visible = false
 layout_mode = 2
 

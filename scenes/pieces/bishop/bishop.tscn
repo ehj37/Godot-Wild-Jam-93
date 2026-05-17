@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dexe22l3b7mjp" path="res://scenes/pieces/bishop/bishop.gd" id="1_tnbtm"]
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_b60td"]
-[ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_djns7"]
+[ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/modifier_fire/modifier_fire.tscn" id="2_djns7"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://resources/palette_swap_material.tres" id="2_tnbtm"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_djns7"]
@@ -11,14 +11,17 @@ size_override = Vector2(36, 36)
 
 [node name="Bishop" type="Node2D" unique_id=2137323389]
 script = ExtResource("1_tnbtm")
+is_player = null
+modifier = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_b60td")]
 visible = false
 position = Vector2(0, 8)
 
-[node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_djns7")]
+[node name="ModifierFireBack" parent="." unique_id=311793464 instance=ExtResource("2_djns7")]
 position = Vector2(0, 16)
+fire_variant = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411332080]
 clip_children = 2
@@ -56,5 +59,6 @@ offset_bottom = 21.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="TargetFireFront" parent="." unique_id=132843582 instance=ExtResource("2_djns7")]
+[node name="ModifierFireFront" parent="." unique_id=132843582 instance=ExtResource("2_djns7")]
 position = Vector2(0, 16)
+fire_variant = 0

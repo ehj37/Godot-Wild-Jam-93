@@ -23,8 +23,8 @@ is_player = true
 [node name="Knight" parent="Board" unique_id=784984646 instance=ExtResource("4_6m6xa")]
 position = Vector2(-21, 147)
 is_player = true
-is_target = true
+modifier = 1
 
 [node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_dn2y2")]
 position = Vector2(21, 63)
-is_target = true
+modifier = 1

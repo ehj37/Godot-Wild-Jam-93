@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ic4kaql04vqa" path="res://scenes/pieces/queen/queen.gd" id="1_3i28x"]
 [ext_resource type="Material" uid="uid://4hthalh8nine" path="res://resources/palette_swap_material.tres" id="2_3i28x"]
-[ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/target_fire/target_fire.tscn" id="2_6n2g7"]
+[ext_resource type="PackedScene" uid="uid://cix4xr53ymvts" path="res://scenes/modifier_fire/modifier_fire.tscn" id="2_6n2g7"]
 [ext_resource type="PackedScene" uid="uid://gdajp0vk18nt" path="res://scenes/selected_indicator/selected_indicator.tscn" id="2_xqvnh"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_xqvnh"]
@@ -11,13 +11,15 @@ size_override = Vector2(36, 36)
 
 [node name="Queen" type="Node2D" unique_id=1549790735]
 script = ExtResource("1_3i28x")
+is_player = null
+modifier = null
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_xqvnh")]
 visible = false
 position = Vector2(0, 8)
 
-[node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_6n2g7")]
+[node name="ModifierFireBack" parent="." unique_id=311793464 instance=ExtResource("2_6n2g7")]
 position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=275530499]
@@ -56,5 +58,5 @@ offset_bottom = 21.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="TargetFireFront" parent="." unique_id=1476836745 instance=ExtResource("2_6n2g7")]
+[node name="ModifierFireFront" parent="." unique_id=1476836745 instance=ExtResource("2_6n2g7")]
 position = Vector2(0, 16)

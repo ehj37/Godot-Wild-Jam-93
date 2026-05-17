@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bvb7gghwly6nh"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_6psfm"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_1qnsg"]
+[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="3_0jfgv"]
+
+[node name="VipIntro" type="Node2D" unique_id=654162900]
+script = ExtResource("1_6psfm")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Board" parent="." unique_id=1012986915 instance=ExtResource("2_1qnsg")]
+
+[node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("3_0jfgv")]
+position = Vector2(-63, -147)
+modifier = 1
+
+[node name="Pawn2" parent="Board" unique_id=1531599812 instance=ExtResource("3_0jfgv")]
+position = Vector2(21, -147)
+modifier = 2
+
+[node name="Pawn3" parent="Board" unique_id=597811316 instance=ExtResource("3_0jfgv")]
+position = Vector2(-21, -105)
+is_player = true

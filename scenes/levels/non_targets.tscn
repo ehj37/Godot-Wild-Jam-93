@@ -41,7 +41,7 @@ position = Vector2(63, -21)
 
 [node name="Knight3" parent="Board/Enemy" unique_id=558341968 instance=ExtResource("5_4thsq")]
 position = Vector2(147, -147)
-is_target = true
+modifier = 1
 
 [node name="Pawn3" parent="Board/Enemy" unique_id=324488239 instance=ExtResource("3_rbk3u")]
 position = Vector2(105, -21)

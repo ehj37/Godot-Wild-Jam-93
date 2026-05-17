@@ -26,7 +26,7 @@ is_player = true
 
 [node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_audic")]
 position = Vector2(21, -147)
-is_target = true
+modifier = 1
 
 [node name="Rook2" parent="Board" unique_id=2121465394 instance=ExtResource("4_audic")]
 position = Vector2(-21, -147)

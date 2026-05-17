@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cix4xr53ymvts"]
 
-[ext_resource type="Script" uid="uid://b86w25jcyk01v" path="res://scenes/target_fire/target_fire.gd" id="1_h3fys"]
+[ext_resource type="Script" uid="uid://b86w25jcyk01v" path="res://scenes/modifier_fire/modifier_fire.gd" id="1_h3fys"]
 
 [sub_resource type="Curve" id="Curve_rh1u0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3836207, 1), 0.0, 0.0, 0, 0, Vector2(0.7155173, 0.43859643), 0.0, 0.0, 0, 0, Vector2(1, 0.003508687), 0.0, 0.0, 0, 0]
@@ -10,10 +10,12 @@ point_count = 4
 curve = SubResource("Curve_rh1u0")
 
 [sub_resource type="Gradient" id="Gradient_h3fys"]
+resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.84782606)
 colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_d25pv"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_h3fys")
 
 [sub_resource type="Curve" id="Curve_prvmm"]
@@ -35,6 +37,7 @@ curve_y = SubResource("Curve_v77xd")
 curve_z = SubResource("Curve_ij2x4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tyhgq"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 2, 1)
@@ -53,6 +56,7 @@ directional_velocity_max = 1.0
 directional_velocity_curve = SubResource("CurveXYZTexture_lw28s")
 gravity = Vector3(0, 10, 0)
 scale_max = 3.0
+color = Color(1, 0.74509805, 0, 1)
 color_ramp = SubResource("GradientTexture1D_d25pv")
 alpha_curve = SubResource("CurveTexture_as7dm")
 
@@ -64,6 +68,7 @@ point_count = 3
 curve = SubResource("Curve_risy6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2eq0r"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 2, 1)
@@ -80,16 +85,16 @@ scale_max = 1.5
 color = Color(1, 0.74509805, 0, 1)
 alpha_curve = SubResource("CurveTexture_ysb03")
 
-[node name="TargetFire" type="Node2D" unique_id=311793464]
+[node name="ModifierFire" type="Node2D" unique_id=311793464]
 process_mode = 3
 script = ExtResource("1_h3fys")
 
-[node name="GPUParticlesRed" type="GPUParticles2D" parent="." unique_id=1956934130]
+[node name="GPUParticlesLarge" type="GPUParticles2D" parent="." unique_id=1956934130]
 amount = 35
 preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_tyhgq")
 
-[node name="GPUParticlesOrange" type="GPUParticles2D" parent="." unique_id=773745946]
+[node name="GPUParticlesSmall" type="GPUParticles2D" parent="." unique_id=773745946]
 amount = 40
 preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_2eq0r")

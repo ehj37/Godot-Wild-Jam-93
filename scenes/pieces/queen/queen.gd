@@ -54,4 +54,7 @@ func is_valid_move(from: Vector2i, to: Vector2i, pieces: Dictionary) -> bool:
 		if conflicting_piece.is_player == is_player:
 			return false
 
+		if is_player && conflicting_piece.is_vip():
+			return false
+
 	return true

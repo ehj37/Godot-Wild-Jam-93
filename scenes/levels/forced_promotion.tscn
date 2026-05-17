@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://twfgb1kflgb"
 [node name="Bishop" parent="Board" unique_id=2137323389 instance=ExtResource("3_p33v1")]
 position = Vector2(-105, -105)
 is_player = true
-is_target = true
+modifier = 1
 
 [node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("4_wdxls")]
 position = Vector2(63, 21)
@@ -23,7 +23,7 @@ position = Vector2(63, 21)
 [node name="Bishop2" parent="Board" unique_id=1521902420 instance=ExtResource("3_p33v1")]
 position = Vector2(105, -63)
 is_player = true
-is_target = true
+modifier = 1
 
 [node name="Bishop3" parent="Board" unique_id=333660076 instance=ExtResource("3_p33v1")]
 position = Vector2(-63, -21)

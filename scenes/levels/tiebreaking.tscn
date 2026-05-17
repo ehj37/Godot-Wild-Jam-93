@@ -14,45 +14,45 @@ metadata/_custom_type_script = "uid://twfgb1kflgb"
 
 [node name="Player" type="Node2D" parent="Board" unique_id=2099720985]
 
-[node name="Bandit" type="Node2D" parent="Board" unique_id=1947739070]
-
-[node name="King" parent="Board" unique_id=842364951 instance=ExtResource("3_p7b48")]
+[node name="King" parent="Board/Player" unique_id=842364951 instance=ExtResource("3_p7b48")]
 position = Vector2(-21, -147)
 is_player = true
 
-[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, 21)
-
-[node name="Rook2" parent="Board" unique_id=1554469226 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, -21)
-
-[node name="Rook3" parent="Board" unique_id=37907451 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, -63)
-
-[node name="Rook4" parent="Board" unique_id=429598286 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, -105)
-
-[node name="Rook5" parent="Board" unique_id=942561683 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, -147)
-is_target = true
-
-[node name="Rook6" parent="Board" unique_id=1414385159 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, 63)
-
-[node name="Rook7" parent="Board" unique_id=1917672210 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, 105)
-
-[node name="Rook8" parent="Board" unique_id=1302325489 instance=ExtResource("4_kvjc6")]
-position = Vector2(-147, 147)
-
-[node name="Pawn3" parent="Board" unique_id=107096897 instance=ExtResource("5_y44gs")]
+[node name="Pawn3" parent="Board/Player" unique_id=107096897 instance=ExtResource("5_y44gs")]
 position = Vector2(147, -63)
 is_player = true
 
-[node name="Pawn5" parent="Board" unique_id=2100553953 instance=ExtResource("5_y44gs")]
+[node name="Pawn5" parent="Board/Player" unique_id=2100553953 instance=ExtResource("5_y44gs")]
 position = Vector2(147, 21)
 is_player = true
 
-[node name="King2" parent="Board" unique_id=2139590648 instance=ExtResource("3_p7b48")]
+[node name="King2" parent="Board/Player" unique_id=2139590648 instance=ExtResource("3_p7b48")]
 position = Vector2(147, -147)
 is_player = true
+
+[node name="Bandit" type="Node2D" parent="Board" unique_id=1947739070]
+
+[node name="Rook" parent="Board/Bandit" unique_id=869427859 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 21)
+
+[node name="Rook2" parent="Board/Bandit" unique_id=1554469226 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -21)
+
+[node name="Rook3" parent="Board/Bandit" unique_id=37907451 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -63)
+
+[node name="Rook4" parent="Board/Bandit" unique_id=429598286 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -105)
+
+[node name="Rook5" parent="Board/Bandit" unique_id=942561683 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, -147)
+modifier = 1
+
+[node name="Rook6" parent="Board/Bandit" unique_id=1414385159 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 63)
+
+[node name="Rook7" parent="Board/Bandit" unique_id=1917672210 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 105)
+
+[node name="Rook8" parent="Board/Bandit" unique_id=1302325489 instance=ExtResource("4_kvjc6")]
+position = Vector2(-147, 147)

@@ -4,6 +4,8 @@ class_name Piece
 
 extends Node2D
 
+enum Modifier { NONE, TARGET, VIP }
+
 const FIRST_NAMES: Array[String] = [
 	"STEAMBOAT",
 	"TUG",
@@ -97,10 +99,10 @@ const FLASH_DURATION: float = 0.5
 		is_player = new_value
 		_set_palette()
 
-@export var is_target: bool = false:
+@export var modifier: Modifier:
 	set(new_value):
-		is_target = new_value
-		_set_target_particles()
+		modifier = new_value
+		_set_particles()
 
 var is_selected: bool = false:
 	set(new_value):
@@ -112,6 +114,14 @@ var crime: String
 
 @onready var _flash_color_rect: ColorRect = $Sprite2D/FlashColorRect
 @onready var _flash_audio_stream: AudioStreamOggVorbis = preload("res://audio_streams/flash.ogg")
+
+
+func is_target() -> bool:
+	return modifier == Modifier.TARGET
+
+
+func is_vip() -> bool:
+	return modifier == Modifier.VIP
 
 
 func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces_by_board_coordinate: Dictionary) -> bool:
@@ -127,11 +137,11 @@ func flash() -> void:
 
 func _ready() -> void:
 	_set_palette()
-	_set_target_particles()
 	_set_selected_indicator()
+	_set_particles()
 
 	full_name = _random_name()
-	if is_target:
+	if is_target():
 		crime = _random_crime()
 
 
@@ -141,11 +151,22 @@ func _set_palette() -> void:
 	shader_material.set_shader_parameter("is_enabled", !is_player)
 
 
-func _set_target_particles() -> void:
-	var target_fire_back: TargetFire = $TargetFireBack
-	var target_fire_front: TargetFire = $TargetFireFront
-	target_fire_back.set_emitting(is_target)
-	target_fire_front.set_emitting(is_target)
+func _set_particles() -> void:
+	var modifier_fire_back: ModifierFire = $ModifierFireBack
+	var modifier_fire_front: ModifierFire = $ModifierFireFront
+	if modifier == Modifier.NONE:
+		modifier_fire_back.set_emitting(false)
+		modifier_fire_front.set_emitting(false)
+	elif is_target():
+		modifier_fire_back.set_emitting(true)
+		modifier_fire_front.set_emitting(true)
+		modifier_fire_back.modifier = ModifierFire.Modifier.TARGET
+		modifier_fire_front.modifier = ModifierFire.Modifier.TARGET
+	elif is_vip():
+		modifier_fire_back.set_emitting(true)
+		modifier_fire_front.set_emitting(true)
+		modifier_fire_back.modifier = ModifierFire.Modifier.VIP
+		modifier_fire_front.modifier = ModifierFire.Modifier.VIP
 
 
 func _set_selected_indicator() -> void:

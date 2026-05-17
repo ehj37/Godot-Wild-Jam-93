@@ -33,4 +33,4 @@ position = Vector2(-21, -21)
 
 [node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_thsfd")]
 position = Vector2(21, -21)
-is_target = true
+modifier = 1

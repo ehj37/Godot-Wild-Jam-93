@@ -37,6 +37,7 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _tutorial_section: PanelContainer = $RightPanel/TutorialSection
 @onready var _tutorial_label: Label = $RightPanel/TutorialSection/MarginContainer/TutorialLabel
 @onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
+@onready var _vip_removed_dialog: PanelContainer = $CenterContainer/VipRemovedDialog
 @onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
 @onready var _bounty_board: BountyBoard = $RightPanel/BountyBoard
 @onready var _reset_button: Button = $ResetButton
@@ -181,7 +182,7 @@ func _ready() -> void:
 		var board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
 		_pieces_by_board_coord[board_coordinate] = piece
 		_piece_to_board_coord[piece] = board_coordinate
-		if piece.is_target:
+		if piece.is_target():
 			_bounty_board.add_bounty(piece, board_coordinate)
 
 	if tutorial_text:
@@ -193,6 +194,7 @@ func _ready() -> void:
 	_pawn_promotion_dialog.visible = false
 	_turn_dialog.visible = false
 	_win_dialog.visible = false
+	_vip_removed_dialog.visible = false
 
 
 func _get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Vector2:
@@ -219,26 +221,31 @@ func _get_enemy_pieces() -> Array[Piece]:
 	return enemy_pieces
 
 
-func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
+# Returns true if a VIP piece was removed, false otherwise.
+# Scuffed, but we're sub three hours on this jam
+func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> bool:
 	AudioManager.play_effect(_piece_move_audio_stream)
 
 	var current_board_coordinate: Vector2i = get_board_coordinate(piece.global_position)
 	_happenins_section.record_piece_move(
 		piece_to_type(piece), current_board_coordinate, new_board_coordinate, piece.is_player
 	)
-	if piece.is_target:
+	if piece.is_target():
 		_bounty_board.update_bounty_last_seen(piece, new_board_coordinate)
 
 	var piece_to_remove: Piece = _pieces_by_board_coord.get(new_board_coordinate)
+	var vip_removed: bool = false
 	if piece_to_remove:
-		if piece_to_remove.is_target:
+		if piece_to_remove.is_target():
 			_bounty_board.claim_bounty(piece_to_remove)
 			AudioManager.play_effect(_target_taken_audio_stream)
 		else:
 			AudioManager.play_effect(_piece_take_audio_stream)
 
+		vip_removed = piece_to_remove.is_vip()
+
 		_happenins_section.record_take(piece_to_type(piece_to_remove), piece_to_remove.is_player)
-		if piece_to_remove.is_target:
+		if piece_to_remove.is_target():
 			_happenins_section.record_bounty_claimed()
 
 		_pieces_by_board_coord.erase(new_board_coordinate)
@@ -251,10 +258,12 @@ func _move_piece(piece: Piece, new_board_coordinate: Vector2i) -> void:
 	_pieces_by_board_coord[new_board_coordinate] = piece
 	_piece_to_board_coord[piece] = new_board_coordinate
 
+	return vip_removed
+
 
 func _replace_piece(old_piece: Piece, new_piece: Piece) -> void:
 	new_piece.is_player = old_piece.is_player
-	new_piece.is_target = old_piece.is_target
+	new_piece.modifier = old_piece.modifier
 	new_piece.is_selected = old_piece.is_selected
 	new_piece.global_position = old_piece.global_position
 	var board_coord: Vector2i = _piece_to_board_coord[old_piece]
@@ -271,7 +280,7 @@ func _replace_piece(old_piece: Piece, new_piece: Piece) -> void:
 
 func _win_condition_met() -> bool:
 	var target_pieces: Array = _pieces_by_board_coord.values().filter(
-		func(piece: Piece) -> bool: return piece.is_target
+		func(piece: Piece) -> bool: return piece.is_target()
 	)
 	return target_pieces.is_empty()
 
@@ -318,13 +327,12 @@ func _handle_player_turn_click() -> void:
 				# The player has committed to a move at this point, so don't
 				# want to pay attention to any other board clicks they do.
 				_listen_for_player_board_inputs = false
-
-				_move_piece(_selected_piece, mouse_board_coordinate)
-
-				if _win_condition_met():
+				var vip_removed: bool = _move_piece(_selected_piece, mouse_board_coordinate)
+				if vip_removed:
+					_vip_removed_dialog.show()
+				elif _win_condition_met():
 					_win_dialog.show()
 					_reset_button.disabled = true
-
 				else:
 					if _is_promotion_candidate(_selected_piece):
 						_pawn_promotion_dialog.show()
@@ -493,7 +501,7 @@ func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
 
 	var player_piece: Piece = attack.attacked_piece
 	var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
-	_move_piece(enemy_piece, player_board_coord)
+	var vip_removed: bool = _move_piece(enemy_piece, player_board_coord)
 
 	if _is_promotion_candidate(enemy_piece):
 		var queen: Queen = _queen_packed_scene.instantiate()
@@ -502,6 +510,8 @@ func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
 	else:
 		enemy_piece.is_selected = false
 
+	if vip_removed:
+		_vip_removed_dialog.show()
 	if _win_condition_met():
 		_win_dialog.show()
 		_reset_button.disabled = true
@@ -519,10 +529,6 @@ func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:
 		return false
 
 	return piece_a_board_coord.x > piece_b_board_coord.x
-
-
-func _on_reset_button_pressed() -> void:
-	get_tree().reload_current_scene()
 
 
 # Need to be very careful about not showing multiple dialogs at once.
@@ -545,3 +551,7 @@ func _on_multi_enemy_tiebreak() -> void:
 
 		get_tree().paused = false
 		LevelManager.shown_multi_enemy_tiebreak_dialog = true
+
+
+func _on_reset_button_pressed() -> void:
+	get_tree().reload_current_scene()

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cvk3i3l2k0xn7"]
+
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_ajawa"]
+[ext_resource type="Script" uid="uid://dte2qattgycqo" path="res://scenes/board/vip_removed_dialog/vip_removed_dialog.gd" id="2_hr7kt"]
+[ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="2_jhj7n"]
+
+[node name="VipRemovedDialog" type="PanelContainer" unique_id=559300086]
+custom_minimum_size = Vector2(258, 0)
+theme = ExtResource("1_ajawa")
+script = ExtResource("2_hr7kt")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2034851526]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=870040940]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=20481109]
+layout_mode = 2
+text = "PROTECTED PIECE ELIMINATED.
+BEST GIVE 'ER ANOTHER SHOT."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResetButton" parent="MarginContainer/VBoxContainer" unique_id=1766392538 instance=ExtResource("2_jhj7n")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RESET BOARD"
+autowrap_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

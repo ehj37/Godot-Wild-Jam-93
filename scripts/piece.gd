@@ -90,6 +90,8 @@ const CRIMES: Array[String] = [
 	"SNAKE OIL PEDDLIN"
 ]
 
+const FLASH_DURATION: float = 0.5
+
 @export var is_player: bool = false:
 	set(new_value):
 		is_player = new_value
@@ -108,9 +110,19 @@ var is_selected: bool = false:
 var full_name: String
 var crime: String
 
+@onready var _flash_color_rect: ColorRect = $Sprite2D/FlashColorRect
+@onready var _flash_audio_stream: AudioStreamOggVorbis = preload("res://audio_streams/flash.ogg")
+
 
 func is_valid_move(_from: Vector2i, _to: Vector2i, _pieces_by_board_coordinate: Dictionary) -> bool:
 	return false
+
+
+func flash() -> void:
+	var alpha_tween: Tween = create_tween()
+	_flash_color_rect.color.a = 1.0
+	alpha_tween.tween_property(_flash_color_rect, "color:a", 0.0, FLASH_DURATION)
+	AudioManager.play_effect(_flash_audio_stream)
 
 
 func _ready() -> void:

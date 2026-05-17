@@ -14,12 +14,14 @@ script = ExtResource("1_88pmu")
 metadata/_custom_type_script = "uid://ctya1tplf224y"
 
 [node name="SelectedIndicator" parent="." unique_id=1677880840 instance=ExtResource("2_ysb03")]
+visible = false
 position = Vector2(0, 8)
 
 [node name="TargetFireBack" parent="." unique_id=311793464 instance=ExtResource("2_as7dm")]
 position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1307037906]
+clip_children = 2
 texture_filter = 1
 material = ExtResource("2_88pmu")
 texture = SubResource("PortableCompressedTexture2D_ysb03")
@@ -45,6 +47,13 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 5985039672084606314
 }
 metadata/_aseprite_wizard_source_file_hash_ = "2f3ea7268443bd31db89e77b2180932f"
+
+[node name="FlashColorRect" type="ColorRect" parent="Sprite2D" unique_id=1677019467]
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+color = Color(1, 1, 1, 0)
 
 [node name="TargetFireFront" parent="." unique_id=1948279229 instance=ExtResource("2_as7dm")]
 position = Vector2(0, 16)

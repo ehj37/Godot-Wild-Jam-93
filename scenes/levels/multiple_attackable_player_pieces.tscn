@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d0lihk45f4xy5"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_cttvj"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_5mfqq"]
+[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="4_m1ce5"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_thsfd"]
+
+[node name="MultipleAttackablePlayerPieces" type="Node2D" unique_id=2025309248]
+script = ExtResource("1_cttvj")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Board" parent="." unique_id=1012986915 instance=ExtResource("2_5mfqq")]
+tutorial_text = "IF A BANDIT PIECE CAN ATTACK MULTIPLE PLAYER PIECES, THE PLAYER PIECE WITH THE HIGHEST NUMBER THEN LETTER IS ATTACKED"
+
+[node name="Player" type="Node2D" parent="Board" unique_id=2028225287]
+
+[node name="Bandit" type="Node2D" parent="Board" unique_id=1648248139]
+
+[node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("4_m1ce5")]
+position = Vector2(-21, 63)
+is_player = true
+
+[node name="Pawn2" parent="Board" unique_id=580688825 instance=ExtResource("4_m1ce5")]
+position = Vector2(21, -105)
+is_player = true
+
+[node name="Pawn3" parent="Board" unique_id=784669249 instance=ExtResource("4_m1ce5")]
+position = Vector2(21, 63)
+is_player = true
+
+[node name="Pawn4" parent="Board" unique_id=1286177270 instance=ExtResource("4_m1ce5")]
+position = Vector2(-21, -21)
+
+[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_thsfd")]
+position = Vector2(21, -21)
+is_target = true

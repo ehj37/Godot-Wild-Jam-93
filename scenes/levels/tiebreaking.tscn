@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dx7ndn0w4v2re"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_w6g05"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_aefyr"]
+
+[node name="Tiebreaking" type="Node2D" unique_id=696540009]
+script = ExtResource("1_w6g05")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Board" parent="." unique_id=1012986915 instance=ExtResource("2_aefyr")]
+
+[node name="Player" type="Node2D" parent="Board" unique_id=2099720985]
+
+[node name="Bandit" type="Node2D" parent="Board" unique_id=1947739070]

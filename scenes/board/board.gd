@@ -21,20 +21,23 @@ const ORIGIN: Vector2i = Vector2i(-4 * CELL_SIDE_LENGTH, 4 * CELL_SIDE_LENGTH)
 const HORIZONTAL_LABELS: Array[String] = ["A", "B", "C", "D", "E", "F", "G", "H"]
 const VERTICAL_LABELS: Array[String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
+@export var tutorial_text: String
+
 var _pieces_by_board_coord: Dictionary = {}
 var _piece_to_board_coord: Dictionary = {}
 var _selected_piece: Piece
 var _listen_for_player_board_inputs: bool = true
-var _has_shown_tiebreaker_dialog: bool = false
 
 @onready var _highlight_squares: TileMapLayer = $HighlightSquares
 @onready var _pawn_promotion_dialog: PawnPromotionDialog = $CenterContainer/PawnPromotionDialog
 @onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
+@onready var _turn_label: Label = $RightPanel/PanelContainer/MarginContainer/TurnLabel
+@onready var _tutorial_section: PanelContainer = $RightPanel/TutorialSection
+@onready var _tutorial_label: Label = $RightPanel/TutorialSection/MarginContainer/TutorialLabel
 @onready var _win_dialog: WinDialog = $CenterContainer/WinDialog
 @onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
 @onready var _bounty_board: BountyBoard = $RightPanel/BountyBoard
 @onready var _reset_button: Button = $ResetButton
-@onready var _tiebreaker_dialog: AcknowledgeDialog = $TiebreakerDialog
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -157,10 +160,15 @@ func _ready() -> void:
 		if piece.is_target:
 			_bounty_board.add_bounty(piece, board_coordinate)
 
+	if tutorial_text:
+		_tutorial_label.text = tutorial_text
+		_tutorial_section.show()
+	else:
+		_tutorial_section.hide()
+
 	_pawn_promotion_dialog.visible = false
 	_turn_dialog.visible = false
 	_win_dialog.visible = false
-	_tiebreaker_dialog.visible = false
 
 
 func _get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Vector2:
@@ -397,7 +405,7 @@ func _pick_enemy_attack(possible_attacks: Array[Attack]) -> Attack:
 				return attacks_for_enemy_piece[0]
 
 			candidate_player_pieces.sort_custom(_compare_pieces)
-			var player_piece_to_attack: Piece = candidate_enemy_pieces[0]
+			var player_piece_to_attack: Piece = candidate_player_pieces[0]
 			var attack_i: int = attacks_for_enemy_piece.find_custom(
 				func(attack_for_enemy_piece: Attack) -> bool: return (
 					attack_for_enemy_piece.attacked_piece == player_piece_to_attack
@@ -421,10 +429,13 @@ func _switch_to_enemy_turn() -> void:
 		_switch_to_player_turn(false)
 		return
 
+	_turn_label.text = "BANDIT TURN"
 	_take_enemy_turn(possible_attacks)
 
 
 func _switch_to_player_turn(show_dialog: bool = true) -> void:
+	_turn_label.text = "YOUR TURN"
+
 	if show_dialog:
 		_turn_dialog.text = "PLAYER TURN"
 		_turn_dialog.show()
@@ -440,21 +451,15 @@ func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
 	_turn_dialog.text = "BANDIT TURN"
 	_turn_dialog.show()
 
-	if !_has_shown_tiebreaker_dialog:
-		_tiebreaker_dialog.show()
-		get_tree().paused = true
-		await _tiebreaker_dialog.acknowledged
-
-		get_tree().paused = false
-		_has_shown_tiebreaker_dialog = true
-
 	await get_tree().create_timer(1.0).timeout
 
 	_turn_dialog.hide()
 
 	var enemy_piece: Piece = attack.attacking_piece
 	enemy_piece.is_selected = true
-	await get_tree().create_timer(0.5).timeout
+	enemy_piece.flash()
+
+	await get_tree().create_timer(1.5).timeout
 
 	var player_piece: Piece = attack.attacked_piece
 	var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]

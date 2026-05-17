@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bb1wyyq6472ad"]
+
+[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_yb1lr"]
+[ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_3ks3p"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_audic"]
+[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="4_x3fwp"]
+
+[node name="MultipleBanditAttackTiebreaker" type="Node2D" unique_id=387856775]
+script = ExtResource("1_yb1lr")
+metadata/_custom_type_script = "uid://twfgb1kflgb"
+
+[node name="Board" parent="." unique_id=1012986915 instance=ExtResource("2_3ks3p")]
+tutorial_text = "IF MULTIPLE BANDIT PIECES CAN ATTACK, TIE GOES TO THE PIECE WITH THE HIGHEST NUMBER, THEN THE HIGHEST LETTER."
+
+[node name="Player" type="Node2D" parent="Board" unique_id=2057055028]
+
+[node name="Bandit" type="Node2D" parent="Board" unique_id=239360729]
+
+[node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("4_x3fwp")]
+position = Vector2(-21, -21)
+is_player = true
+
+[node name="Pawn2" parent="Board" unique_id=1399635776 instance=ExtResource("4_x3fwp")]
+position = Vector2(21, -21)
+is_player = true
+
+[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_audic")]
+position = Vector2(147, -147)
+is_target = true
+
+[node name="Rook2" parent="Board" unique_id=2121465394 instance=ExtResource("4_audic")]
+position = Vector2(-147, -147)

@@ -21,6 +21,7 @@ position = Vector2(0, 8)
 position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=275530499]
+clip_children = 2
 texture_filter = 1
 material = ExtResource("2_3i28x")
 texture = SubResource("PortableCompressedTexture2D_xqvnh")
@@ -46,6 +47,13 @@ metadata/_aseprite_wizard_config_ = {
 "source_uid": 6599454386817102361
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b8fd49b4d532c648c226eab9726f593f"
+
+[node name="FlashColorRect" type="ColorRect" parent="Sprite2D" unique_id=1849457447]
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+color = Color(1, 1, 1, 0)
 
 [node name="TargetFireFront" parent="." unique_id=1476836745 instance=ExtResource("2_6n2g7")]
 position = Vector2(0, 16)

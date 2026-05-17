@@ -19,6 +19,8 @@ modifier = 1
 
 [node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("4_wdxls")]
 position = Vector2(63, 21)
+is_player = false
+modifier = 0
 
 [node name="Bishop2" parent="Board" unique_id=1521902420 instance=ExtResource("3_p33v1")]
 position = Vector2(105, -63)
@@ -26,22 +28,31 @@ is_player = true
 modifier = 1
 
 [node name="Bishop3" parent="Board" unique_id=333660076 instance=ExtResource("3_p33v1")]
-position = Vector2(-63, -21)
+position = Vector2(-21, -63)
+is_player = false
+modifier = 2
 
 [node name="Bishop4" parent="Board" unique_id=1178386670 instance=ExtResource("3_p33v1")]
 position = Vector2(63, -63)
+is_player = false
+modifier = 2
 
 [node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("5_ey7iv")]
 position = Vector2(-147, 21)
 is_player = true
+modifier = 0
 
 [node name="Rook2" parent="Board" unique_id=1482274642 instance=ExtResource("5_ey7iv")]
 position = Vector2(147, -105)
 is_player = true
+modifier = 0
 
 [node name="Rook3" parent="Board" unique_id=223395062 instance=ExtResource("5_ey7iv")]
-position = Vector2(-105, -147)
+position = Vector2(-147, -147)
 is_player = true
+modifier = 0
 
 [node name="Pawn2" parent="Board" unique_id=2078981870 instance=ExtResource("4_wdxls")]
 position = Vector2(105, -21)
+is_player = false
+modifier = 0

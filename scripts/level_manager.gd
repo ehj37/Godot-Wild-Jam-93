@@ -6,6 +6,7 @@ const ORDERED_LEVEL_PATHS: Array[String] = [
 	"res://scenes/levels/multiple_bandit_attack_tiebreaker.tscn",
 	"res://scenes/levels/multiple_attackable_player_pieces.tscn",
 	"res://scenes/levels/sacrifice.tscn",
+	"res://scenes/levels/vip_intro.tscn",
 	"res://scenes/levels/promotion.tscn",
 	"res://scenes/levels/double_cross.tscn",
 	"res://scenes/levels/tiebreaking.tscn",
@@ -16,6 +17,8 @@ var shown_intro_dialogs: bool = false
 var shown_bandit_turn_dialog: bool = false
 var shown_multi_player_tiebreak_dialog: bool = false
 var shown_multi_enemy_tiebreak_dialog: bool = false
+var shown_double_cross_dialog: bool = false
+var shown_vip_intro_dialog: bool = false
 var current_level_number: int
 var displayed_level_numbers: Array[int] = []
 

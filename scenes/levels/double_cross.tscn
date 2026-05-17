@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://chr568ysjbjmq"]
 
-[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_2kwsk"]
+[ext_resource type="Script" uid="uid://cju8ugnyw25xo" path="res://scenes/levels/double_cross.gd" id="1_6m6xa"]
 [ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_h0k1d"]
 [ext_resource type="PackedScene" uid="uid://c8q3juyiv7ag2" path="res://scenes/pieces/bishop/bishop.tscn" id="4_5vj1f"]
 [ext_resource type="PackedScene" uid="uid://ctrktiu5vmyoj" path="res://scenes/pieces/knight/knight.tscn" id="4_6m6xa"]
 [ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_dn2y2"]
+[ext_resource type="PackedScene" uid="uid://lgelawtymare" path="res://scenes/acknowledge_dialog/acknowledge_dialog.tscn" id="6_hejoi"]
 
 [node name="DoubleCross" type="Node2D" unique_id=2128199871]
-script = ExtResource("1_2kwsk")
+script = ExtResource("1_6m6xa")
 metadata/_custom_type_script = "uid://twfgb1kflgb"
 
 [node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_h0k1d")]
@@ -19,6 +20,7 @@ metadata/_custom_type_script = "uid://twfgb1kflgb"
 [node name="Bishop2" parent="Board" unique_id=1477807828 instance=ExtResource("4_5vj1f")]
 position = Vector2(-147, 21)
 is_player = true
+modifier = 0
 
 [node name="Knight" parent="Board" unique_id=784984646 instance=ExtResource("4_6m6xa")]
 position = Vector2(-21, 147)
@@ -27,4 +29,16 @@ modifier = 1
 
 [node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_dn2y2")]
 position = Vector2(21, 63)
+is_player = false
 modifier = 1
+
+[node name="DoubleCrossDialog" parent="." unique_id=669467661 instance=ExtResource("6_hejoi")]
+visible = false
+offset_left = -126.0
+offset_top = -63.0
+offset_right = 124.0
+offset_bottom = 33.0
+body_text = "WE'RE NOT ABOVE A LITTLE BIT OF DUBLE CROSSING HERE."
+button_text = "THEY GOT IT COMIN"
+
+[connection signal="acknowledged" from="DoubleCrossDialog" to="." method="_on_double_cross_dialog_acknowledged"]

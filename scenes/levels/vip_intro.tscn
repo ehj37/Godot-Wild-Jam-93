@@ -1,23 +1,83 @@
 [gd_scene format=3 uid="uid://bvb7gghwly6nh"]
 
-[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_6psfm"]
+[ext_resource type="Script" uid="uid://cxujo3t846ndy" path="res://scenes/levels/vip_intro.gd" id="1_824s3"]
 [ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_1qnsg"]
-[ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="3_0jfgv"]
+[ext_resource type="PackedScene" uid="uid://lgelawtymare" path="res://scenes/acknowledge_dialog/acknowledge_dialog.tscn" id="4_824s3"]
+[ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_q33st"]
+[ext_resource type="PackedScene" uid="uid://ctrktiu5vmyoj" path="res://scenes/pieces/knight/knight.tscn" id="5_7yh3g"]
+[ext_resource type="PackedScene" uid="uid://c8q3juyiv7ag2" path="res://scenes/pieces/bishop/bishop.tscn" id="6_008g5"]
+[ext_resource type="PackedScene" uid="uid://bdl8eri7robli" path="res://scenes/pieces/queen/queen.tscn" id="6_toves"]
 
 [node name="VipIntro" type="Node2D" unique_id=654162900]
-script = ExtResource("1_6psfm")
+script = ExtResource("1_824s3")
 metadata/_custom_type_script = "uid://twfgb1kflgb"
 
 [node name="Board" parent="." unique_id=1012986915 instance=ExtResource("2_1qnsg")]
+tutorial_text = "IF A GREEN PIECE IS TAKEN, THE LEVEL IS LOST"
 
-[node name="Pawn" parent="Board" unique_id=1015032063 instance=ExtResource("3_0jfgv")]
-position = Vector2(-63, -147)
-modifier = 1
+[node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_q33st")]
+position = Vector2(-63, 147)
+is_player = true
+modifier = 0
 
-[node name="Pawn2" parent="Board" unique_id=1531599812 instance=ExtResource("3_0jfgv")]
-position = Vector2(21, -147)
+[node name="Queen" parent="Board" unique_id=1549790735 instance=ExtResource("6_toves")]
+position = Vector2(21, -21)
+is_player = false
 modifier = 2
 
-[node name="Pawn3" parent="Board" unique_id=597811316 instance=ExtResource("3_0jfgv")]
-position = Vector2(-21, -105)
-is_player = true
+[node name="Queen2" parent="Board" unique_id=1948514540 instance=ExtResource("6_toves")]
+position = Vector2(-105, 147)
+is_player = false
+modifier = 2
+
+[node name="Queen3" parent="Board" unique_id=1863169152 instance=ExtResource("6_toves")]
+position = Vector2(-21, -147)
+is_player = false
+modifier = 2
+
+[node name="Bishop" parent="Board" unique_id=2137323389 instance=ExtResource("6_008g5")]
+position = Vector2(-105, 21)
+is_player = false
+modifier = 1
+
+[node name="Queen4" parent="Board" unique_id=1769701726 instance=ExtResource("6_toves")]
+position = Vector2(147, -147)
+is_player = false
+modifier = 2
+
+[node name="Bishop2" parent="Board" unique_id=471369134 instance=ExtResource("6_008g5")]
+position = Vector2(21, -105)
+is_player = false
+modifier = 0
+
+[node name="Bishop4" parent="Board" unique_id=1111184116 instance=ExtResource("6_008g5")]
+position = Vector2(21, 63)
+is_player = false
+modifier = 0
+
+[node name="Bishop5" parent="Board" unique_id=1089798619 instance=ExtResource("6_008g5")]
+position = Vector2(-147, -105)
+is_player = false
+modifier = 0
+
+[node name="Knight" parent="Board" unique_id=784984646 instance=ExtResource("5_7yh3g")]
+position = Vector2(-147, 21)
+is_player = false
+modifier = 1
+
+[node name="Knight2" parent="Board" unique_id=274227017 instance=ExtResource("5_7yh3g")]
+position = Vector2(-105, 63)
+is_player = false
+modifier = 0
+
+[node name="VipDialog" parent="." unique_id=669467661 instance=ExtResource("4_824s3")]
+visible = false
+offset_left = -126.0
+offset_top = -63.0
+offset_right = 124.0
+offset_bottom = 78.0
+mouse_filter = 2
+body_text = "WE'RE MOSTLY FINE WITH COLLATERAL DAMAGE, BUT THESE HERE GREEN PIECES ARE IMPORTANT, AND BEST NOT GET CROAKED."
+button_text = "ROGER THAT"
+
+[connection signal="acknowledged" from="VipDialog" to="." method="_on_vip_dialog_acknowledged"]

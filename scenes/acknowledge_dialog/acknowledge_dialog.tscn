@@ -6,7 +6,11 @@
 
 [node name="AcknowledgeDialog" type="PanelContainer" unique_id=669467661]
 process_mode = 3
-custom_minimum_size = Vector2(200, 0)
+z_index = 5
+custom_minimum_size = Vector2(250, 0)
+offset_right = 250.0
+offset_bottom = 96.0
+size_flags_vertical = 4
 theme = ExtResource("1_sdrqi")
 script = ExtResource("1_ja2fl")
 

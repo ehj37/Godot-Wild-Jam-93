@@ -9,10 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="5_kymhv"]
 [ext_resource type="PackedScene" uid="uid://bu60m7hty61gt" path="res://scenes/board/bounty_board/bounty_board.tscn" id="7_dej46"]
 [ext_resource type="PackedScene" uid="uid://bun0chqbpqxoq" path="res://scenes/board/happenins_section/happenins_section.tscn" id="7_exf0g"]
+[ext_resource type="PackedScene" uid="uid://lgelawtymare" path="res://scenes/acknowledge_dialog/acknowledge_dialog.tscn" id="10_c6wwm"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ci4ar"]
 _data = PackedByteArray("AAADAAUAAAABAAAAUAEAAFEBAAC2AQAAUklGRq4BAABXRUJQVlA4TKEBAAAvTwFUADegqG0bONh29wDtOyIBEjLdMb5yv0lR20Zsqut5i9PNfwC8HREhfV+8bASQW1uL3nzGwusMDSAqSHpAWXtin/Hrv4tc8et9GRER/Vektg2DIWeTjkdYmDw74XBzT9jLGzbC4eGRsJM3fPfPeaJNRmRIm9QxXP7HPBONQJuUN3QCbVLd8NgJuVRCUje0MBm5hOKGI49a3TD6Fx2R4fI/5ploBHVD3KQT5A1LJaRjJ2R1QwsTNly6rjqG2x+LjuH385kv/2OeiUagTcobOoE2qW547IRcKiGpG1qYjFxCccORR61uGP2Ljshw+R/zTDSCuiFu0gnyhqUS0rETsrqhhQkbLl1XHcPtj0XH8Pv5zJf/Mc9EI9Am5Q2dQJtUNzx2Qi6VkNQNLUxGLqG44cijVjeM/kVHZLj8j3kmGkHdEDfpBHnDUgnp2AlZyBDKWJiw4dJ11THc/lh0DL+fz3z5H/NMNAJtUt7QCbRJdcNjJ+RSCUnd0MJk5BKKG448anXD6F90RIbL/5hnohHUDXGTTpA3LJWQjp2Q1Q0tSgwA")
 size_override = Vector2(336, 337)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6wwm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 0, 1)
 
 [node name="Board" type="Control" unique_id=1012986915]
 texture_filter = 1
@@ -229,7 +238,7 @@ layout_mode = 2
 
 [node name="TurnLabel" type="Label" parent="RightPanel/PanelContainer/MarginContainer" unique_id=2110728713]
 layout_mode = 2
-text = "YOUR TURN"
+text = "YER TURN"
 horizontal_alignment = 1
 
 [node name="TutorialSection" type="PanelContainer" parent="RightPanel" unique_id=1046247745]
@@ -259,5 +268,54 @@ offset_right = 394.0
 offset_bottom = 178.0
 text = "RESET BOARD"
 autowrap_mode = 2
+
+[node name="MultiEnemyTiebreakDialog" parent="." unique_id=669467661 instance=ExtResource("10_c6wwm")]
+visible = false
+layout_mode = 0
+body_text = "IF MULTIPLE BANDITS CAN ATTACK, THE BANDIT WITH THE HIGHEST NUMBER, THEN THE HIGHEST LETTER IS THE ONE THAT ATTACKS."
+button_text = "YESSIREE"
+
+[node name="RedRectangles" type="Node2D" parent="MultiEnemyTiebreakDialog" unique_id=1936644712]
+
+[node name="Panel" type="Panel" parent="MultiEnemyTiebreakDialog/RedRectangles" unique_id=1275384570]
+offset_left = -185.0
+offset_top = -158.0
+offset_right = -169.0
+offset_bottom = 155.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6wwm")
+
+[node name="Panel2" type="Panel" parent="MultiEnemyTiebreakDialog/RedRectangles" unique_id=968505999]
+offset_left = -157.0
+offset_top = 170.0
+offset_right = 153.0
+offset_bottom = 186.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6wwm")
+
+[node name="MultiPlayerTiebreakDialog" parent="." unique_id=657882649 instance=ExtResource("10_c6wwm")]
+visible = false
+layout_mode = 0
+offset_left = 48.0
+offset_top = -27.0
+offset_right = 248.0
+offset_bottom = 69.0
+body_text = "IF A BANDIT CAN ATTACK MULTIPLE PIECES, THE BANDIT ATTACKS THE PIECE WITH THE HIGHEST NUMBER, THEN THE HIGHEST LETTER."
+button_text = "RIGHT ON"
+
+[node name="RedRectangles" type="Node2D" parent="MultiPlayerTiebreakDialog" unique_id=730118176]
+position = Vector2(-47, 27)
+
+[node name="Panel" type="Panel" parent="MultiPlayerTiebreakDialog/RedRectangles" unique_id=1991367102]
+offset_left = -185.0
+offset_top = -158.0
+offset_right = -169.0
+offset_bottom = 155.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6wwm")
+
+[node name="Panel2" type="Panel" parent="MultiPlayerTiebreakDialog/RedRectangles" unique_id=2139071644]
+offset_left = -157.0
+offset_top = 170.0
+offset_right = 153.0
+offset_bottom = 186.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6wwm")
 
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

@@ -1,38 +1,123 @@
 [gd_scene format=3 uid="uid://cjyanhidwjyeu"]
 
-[ext_resource type="Script" uid="uid://twfgb1kflgb" path="res://scripts/level.gd" id="1_3kqdl"]
+[ext_resource type="Script" uid="uid://cvy1awlv5opnn" path="res://scenes/levels/intro.gd" id="1_p8wlm"]
 [ext_resource type="PackedScene" uid="uid://bosca8xpswa8q" path="res://scenes/board/board.tscn" id="2_gs2wg"]
 [ext_resource type="PackedScene" uid="uid://chsq7xisphgil" path="res://scenes/pieces/pawn/pawn.tscn" id="3_egpjd"]
 [ext_resource type="PackedScene" uid="uid://c8q3juyiv7ag2" path="res://scenes/pieces/bishop/bishop.tscn" id="4_p8wlm"]
 [ext_resource type="PackedScene" uid="uid://5kbxsqevlaud" path="res://scenes/pieces/rook/rook.tscn" id="4_ty81x"]
+[ext_resource type="PackedScene" uid="uid://lgelawtymare" path="res://scenes/acknowledge_dialog/acknowledge_dialog.tscn" id="6_p8wlm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7i1al"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 0, 1)
 
 [node name="Intro" type="Node2D" unique_id=246301739]
-script = ExtResource("1_3kqdl")
+script = ExtResource("1_p8wlm")
 metadata/_custom_type_script = "uid://twfgb1kflgb"
 
 [node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_gs2wg")]
+tutorial_text = "CLAIM BANDIT BOUNTIES TO BEAT THE LEVEL."
 
 [node name="Player" type="Node2D" parent="Board" unique_id=633832245]
 
 [node name="Pawn" parent="Board/Player" unique_id=1015032063 instance=ExtResource("3_egpjd")]
 position = Vector2(-21, -21)
 is_player = true
-is_target = false
 
 [node name="Enemy" type="Node2D" parent="Board" unique_id=1278295183]
 
 [node name="Bishop" parent="Board/Enemy" unique_id=2137323389 instance=ExtResource("4_p8wlm")]
 position = Vector2(-21, -147)
-is_target = false
 
 [node name="Rook" parent="Board/Enemy" unique_id=869427859 instance=ExtResource("4_ty81x")]
 position = Vector2(21, -147)
 is_target = true
 
-[node name="Pawn" parent="Board/Enemy" unique_id=1968120019 instance=ExtResource("3_egpjd")]
-position = Vector2(-105, 63)
-is_target = false
-
 [node name="Pawn2" parent="Board/Enemy" unique_id=974343524 instance=ExtResource("3_egpjd")]
 position = Vector2(147, -105)
-is_target = false
+
+[node name="TutorialDialogContainer" type="Control" parent="." unique_id=1456726928]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="HowdyDialog" parent="TutorialDialogContainer" unique_id=669467661 instance=ExtResource("6_p8wlm")]
+visible = false
+layout_mode = 0
+offset_left = 84.0
+offset_top = -21.0
+offset_right = 284.0
+offset_bottom = 45.0
+body_text = "HOWDY PARTNER"
+button_text = "HOWDY"
+
+[node name="PremiseDialog" parent="TutorialDialogContainer" unique_id=1317779478 instance=ExtResource("6_p8wlm")]
+visible = false
+layout_mode = 0
+offset_left = 61.0
+offset_top = -40.0
+offset_right = 311.0
+offset_bottom = 86.0
+body_text = "THERE BE SOME NO GOOD SON OF A GUNS OUT AND ABOUT, AND IT'S UP TO YOU TO GIVE EM WHAT FOR."
+button_text = "SURE THING"
+
+[node name="TakeDialog" parent="TutorialDialogContainer" unique_id=886407779 instance=ExtResource("6_p8wlm")]
+visible = false
+layout_mode = 0
+offset_left = 126.0
+offset_top = -42.0
+offset_right = 326.0
+offset_bottom = 84.0
+body_text = "TAKE BANDIT PIECES WITH BOUNTIES ON THEM TO CLEAR THE LEVEL."
+button_text = "ALRIGHT"
+
+[node name="ResetDialog" parent="TutorialDialogContainer" unique_id=231611931 instance=ExtResource("6_p8wlm")]
+visible = false
+layout_mode = 0
+offset_left = 168.0
+offset_right = 368.0
+offset_bottom = 126.0
+body_text = "IF YOU GET STUCK, DON'T HESITATE TO CLICK THIS HERE BUTTON."
+button_text = "WILL DO"
+
+[node name="Node" type="Node2D" parent="TutorialDialogContainer/ResetDialog" unique_id=1502925194]
+
+[node name="ResetButtonOutline" type="Panel" parent="TutorialDialogContainer/ResetDialog/Node" unique_id=2039372986]
+offset_left = 121.0
+offset_top = 133.0
+offset_right = 231.0
+offset_bottom = 183.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7i1al")
+
+[node name="GameStartDialog" parent="TutorialDialogContainer" unique_id=46597887 instance=ExtResource("6_p8wlm")]
+visible = false
+layout_mode = 0
+offset_left = -105.0
+offset_top = -63.0
+offset_right = 95.0
+offset_bottom = 63.0
+body_text = "THAT'S ENOUGH GUM FLAPPIN FOR NOW. SHOW 'EM A GOOD TIME."
+button_text = "YEEHAW"
+
+[node name="BanditTurnDialog" parent="TutorialDialogContainer" unique_id=1704077790 instance=ExtResource("6_p8wlm")]
+visible = false
+layout_mode = 0
+offset_left = 119.0
+offset_top = -65.0
+offset_right = 369.0
+offset_bottom = 91.0
+body_text = "BANDITS WILL ONLY MOVE IF THEY CAN ATTACK. NONE OF YER PIECES ARE IN DANGER, SO THE BANDITS WILL SKIP THEIR TURN."
+button_text = "THAT SO?"
+
+[connection signal="player_turn_over" from="Board" to="." method="_on_board_player_turn_over"]
+[connection signal="acknowledged" from="TutorialDialogContainer/HowdyDialog" to="TutorialDialogContainer/PremiseDialog" method="show"]
+[connection signal="acknowledged" from="TutorialDialogContainer/PremiseDialog" to="TutorialDialogContainer/TakeDialog" method="show"]
+[connection signal="acknowledged" from="TutorialDialogContainer/TakeDialog" to="TutorialDialogContainer/ResetDialog" method="show"]
+[connection signal="acknowledged" from="TutorialDialogContainer/ResetDialog" to="TutorialDialogContainer/GameStartDialog" method="show"]
+[connection signal="acknowledged" from="TutorialDialogContainer/GameStartDialog" to="." method="_on_game_start_dialog_acknowledged"]

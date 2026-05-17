@@ -11,43 +11,33 @@ script = ExtResource("1_ko7hp")
 metadata/_custom_type_script = "uid://twfgb1kflgb"
 
 [node name="Board" parent="." unique_id=1073423775 instance=ExtResource("2_8upi7")]
+tutorial_text = "IN CASE YER NEW TO THIS HERE CHESS GAME, PAWNS IN THE SECOND ROW CAN MOVE UP TWO SPACES."
 
 [node name="Player" type="Node2D" parent="Board" unique_id=1407668279]
 
 [node name="Pawn" parent="Board/Player" unique_id=1015032063 instance=ExtResource("3_rbk3u")]
 position = Vector2(105, 105)
 is_player = true
-is_target = false
 
 [node name="Enemy" type="Node2D" parent="Board" unique_id=1734051967]
 
-[node name="Rook" parent="Board/Enemy" unique_id=869427859 instance=ExtResource("4_4thsq")]
-position = Vector2(-147, 63)
-is_target = false
-
 [node name="Pawn" parent="Board/Enemy" unique_id=901697465 instance=ExtResource("3_rbk3u")]
 position = Vector2(-21, 21)
-is_target = false
 
 [node name="Pawn2" parent="Board/Enemy" unique_id=22290821 instance=ExtResource("3_rbk3u")]
 position = Vector2(-105, -63)
-is_target = false
 
 [node name="Rook2" parent="Board/Enemy" unique_id=1843989835 instance=ExtResource("4_4thsq")]
 position = Vector2(147, -21)
-is_target = false
 
 [node name="Knight" parent="Board/Enemy" unique_id=784984646 instance=ExtResource("5_4thsq")]
 position = Vector2(105, -63)
-is_target = false
 
 [node name="Rook3" parent="Board/Enemy" unique_id=1871186309 instance=ExtResource("4_4thsq")]
 position = Vector2(105, -105)
-is_target = false
 
 [node name="Knight2" parent="Board/Enemy" unique_id=63843850 instance=ExtResource("5_4thsq")]
 position = Vector2(63, -21)
-is_target = false
 
 [node name="Knight3" parent="Board/Enemy" unique_id=558341968 instance=ExtResource("5_4thsq")]
 position = Vector2(147, -147)
@@ -55,4 +45,3 @@ is_target = true
 
 [node name="Pawn3" parent="Board/Enemy" unique_id=324488239 instance=ExtResource("3_rbk3u")]
 position = Vector2(105, -21)
-is_target = false

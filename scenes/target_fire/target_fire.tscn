@@ -81,12 +81,15 @@ color = Color(1, 0.74509805, 0, 1)
 alpha_curve = SubResource("CurveTexture_ysb03")
 
 [node name="TargetFire" type="Node2D" unique_id=311793464]
+process_mode = 3
 script = ExtResource("1_h3fys")
 
 [node name="GPUParticlesRed" type="GPUParticles2D" parent="." unique_id=1956934130]
 amount = 35
+preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_tyhgq")
 
 [node name="GPUParticlesOrange" type="GPUParticles2D" parent="." unique_id=773745946]
 amount = 40
+preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_2eq0r")

@@ -14,6 +14,8 @@ class Attack:
 		self.attacked_piece = attacked_piece
 
 
+signal player_turn_over
+
 enum PieceType { PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING }
 
 const CELL_SIDE_LENGTH: int = 42
@@ -38,6 +40,8 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
 @onready var _bounty_board: BountyBoard = $RightPanel/BountyBoard
 @onready var _reset_button: Button = $ResetButton
+@onready var _multi_enemy_tiebreak_dialog: AcknowledgeDialog = $MultiEnemyTiebreakDialog
+@onready var _multi_player_tiebreak_dialog: AcknowledgeDialog = $MultiPlayerTiebreakDialog
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -329,6 +333,7 @@ func _handle_player_turn_click() -> void:
 						var promotion_piece: Piece = piece_packed_scene.instantiate()
 						_replace_piece(_selected_piece, promotion_piece)
 
+					player_turn_over.emit()
 					_switch_to_enemy_turn()
 			else:
 				AudioManager.play_effect(_piece_unselected_audio_stream)
@@ -396,6 +401,9 @@ func _pick_enemy_attack(possible_attacks: Array[Attack]) -> Attack:
 				if !candidate_player_pieces.has(player_piece):
 					candidate_player_pieces.append(player_piece)
 
+			if candidate_enemy_pieces.size() > 1:
+				_on_multi_enemy_tiebreak()
+
 			candidate_enemy_pieces.sort_custom(_compare_pieces)
 			var attacking_enemy_piece: Piece = candidate_enemy_pieces[0]
 			var attacks_for_enemy_piece: Array = possible_attacks.filter(
@@ -403,6 +411,8 @@ func _pick_enemy_attack(possible_attacks: Array[Attack]) -> Attack:
 			)
 			if attacks_for_enemy_piece.size() == 1:
 				return attacks_for_enemy_piece[0]
+
+			_on_multi_player_tiebreak()
 
 			candidate_player_pieces.sort_custom(_compare_pieces)
 			var player_piece_to_attack: Piece = candidate_player_pieces[0]
@@ -423,7 +433,7 @@ func _switch_to_enemy_turn() -> void:
 	if possible_attacks.size() == 0:
 		_turn_dialog.text = "NO BANDIT ATTACKS\nPLAYER TURN"
 		_turn_dialog.show()
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0, false).timeout
 
 		_turn_dialog.hide()
 		_switch_to_player_turn(false)
@@ -434,12 +444,12 @@ func _switch_to_enemy_turn() -> void:
 
 
 func _switch_to_player_turn(show_dialog: bool = true) -> void:
-	_turn_label.text = "YOUR TURN"
+	_turn_label.text = "YER TURN"
 
 	if show_dialog:
 		_turn_dialog.text = "PLAYER TURN"
 		_turn_dialog.show()
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.75, false).timeout
 
 		_turn_dialog.hide()
 	_listen_for_player_board_inputs = true
@@ -451,7 +461,7 @@ func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
 	_turn_dialog.text = "BANDIT TURN"
 	_turn_dialog.show()
 
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 
 	_turn_dialog.hide()
 
@@ -459,7 +469,7 @@ func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
 	enemy_piece.is_selected = true
 	enemy_piece.flash()
 
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 
 	var player_piece: Piece = attack.attacked_piece
 	var player_board_coord: Vector2i = _piece_to_board_coord[player_piece]
@@ -493,3 +503,25 @@ func _compare_pieces(piece_a: Piece, piece_b: Piece) -> bool:
 
 func _on_reset_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+# Need to be very careful about not showing multiple dialogs at once.
+# Dialog system not set up to handle that gracefully.
+func _on_multi_player_tiebreak() -> void:
+	if !LevelManager.shown_multi_player_tiebreak_dialog:
+		_multi_player_tiebreak_dialog.show()
+		get_tree().paused = true
+		await _multi_player_tiebreak_dialog.acknowledged
+
+		get_tree().paused = false
+		LevelManager.shown_multi_player_tiebreak_dialog = true
+
+
+func _on_multi_enemy_tiebreak() -> void:
+	if !LevelManager.shown_multi_enemy_tiebreak_dialog:
+		_multi_enemy_tiebreak_dialog.show()
+		get_tree().paused = true
+		await _multi_enemy_tiebreak_dialog.acknowledged
+
+		get_tree().paused = false
+		LevelManager.shown_multi_enemy_tiebreak_dialog = true

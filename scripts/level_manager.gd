@@ -3,12 +3,18 @@ extends Node
 const ORDERED_LEVEL_PATHS: Array[String] = [
 	"res://scenes/levels/intro.tscn",
 	"res://scenes/levels/non_targets.tscn",
+	"res://scenes/levels/multiple_bandit_attack_tiebreaker.tscn",
+	"res://scenes/levels/multiple_attackable_player_pieces.tscn",
 	"res://scenes/levels/sacrifice.tscn",
 	"res://scenes/levels/promotion.tscn",
 	"res://scenes/levels/double_cross.tscn",
 	"res://scenes/levels/forced_promotion.tscn"
 ]
 
+var shown_intro_dialogs: bool = false
+var shown_bandit_turn_dialog: bool = false
+var shown_multi_player_tiebreak_dialog: bool = false
+var shown_multi_enemy_tiebreak_dialog: bool = false
 var _current_level: int
 
 

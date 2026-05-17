@@ -25,6 +25,7 @@ var _pieces_by_board_coord: Dictionary = {}
 var _piece_to_board_coord: Dictionary = {}
 var _selected_piece: Piece
 var _listen_for_player_board_inputs: bool = true
+var _has_shown_tiebreaker_dialog: bool = false
 
 @onready var _pawn_promotion_dialog: PawnPromotionDialog = $CenterContainer/PawnPromotionDialog
 @onready var _turn_dialog: TurnDialog = $CenterContainer/TurnDialog
@@ -32,6 +33,7 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _happenins_section: HappeninsSection = $RightPanel/HappeninSection
 @onready var _bounty_board: BountyBoard = $RightPanel/BountyBoard
 @onready var _reset_button: Button = $ResetButton
+@onready var _tiebreaker_dialog: AcknowledgeDialog = $TiebreakerDialog
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -139,6 +141,7 @@ func _ready() -> void:
 	_pawn_promotion_dialog.visible = false
 	_turn_dialog.visible = false
 	_win_dialog.visible = false
+	_tiebreaker_dialog.visible = false
 
 
 func _get_global_position_from_board_coordinate(board_coordinate: Vector2i) -> Vector2:
@@ -389,6 +392,7 @@ func _switch_to_enemy_turn() -> void:
 	var enemy_pieces: Array[Piece] = _get_enemy_pieces()
 	var player_pieces: Array[Piece] = _get_player_pieces()
 	var possible_attacks: Array[Attack] = _get_valid_attacks(enemy_pieces, player_pieces)
+
 	if possible_attacks.size() == 0:
 		_turn_dialog.text = "NO BANDIT ATTACKS\nPLAYER TURN"
 		_turn_dialog.show()
@@ -416,6 +420,15 @@ func _take_enemy_turn(possible_attacks: Array[Attack]) -> void:
 
 	_turn_dialog.text = "BANDIT TURN"
 	_turn_dialog.show()
+
+	if !_has_shown_tiebreaker_dialog:
+		_tiebreaker_dialog.show()
+		get_tree().paused = true
+		await _tiebreaker_dialog.acknowledged
+
+		get_tree().paused = false
+		_has_shown_tiebreaker_dialog = true
+
 	await get_tree().create_timer(1.0).timeout
 
 	_turn_dialog.hide()

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8nyaij25qte8" path="res://scenes/board/turn_dialog/turn_dialog.tscn" id="3_knosr"]
 [ext_resource type="PackedScene" uid="uid://c0edtbxxhclfr" path="res://scenes/board/win_dialog/win_dialog.tscn" id="4_q07he"]
 [ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="5_kymhv"]
+[ext_resource type="PackedScene" uid="uid://lgelawtymare" path="res://scenes/acknowledge_dialog/acknowledge_dialog.tscn" id="6_rpdi3"]
 [ext_resource type="PackedScene" uid="uid://bu60m7hty61gt" path="res://scenes/board/bounty_board/bounty_board.tscn" id="7_dej46"]
 [ext_resource type="PackedScene" uid="uid://bun0chqbpqxoq" path="res://scenes/board/happenins_section/happenins_section.tscn" id="7_exf0g"]
 
@@ -200,6 +201,7 @@ offset_right = 168.0
 offset_bottom = 168.0
 
 [node name="TurnDialog" parent="CenterContainer" unique_id=1483785800 instance=ExtResource("3_knosr")]
+visible = false
 layout_mode = 2
 
 [node name="WinDialog" parent="CenterContainer" unique_id=836941109 instance=ExtResource("4_q07he")]
@@ -232,5 +234,16 @@ offset_right = 394.0
 offset_bottom = 178.0
 text = "RESET BOARD"
 autowrap_mode = 2
+
+[node name="TiebreakerDialog" parent="." unique_id=669467661 instance=ExtResource("6_rpdi3")]
+z_index = 5
+custom_minimum_size = Vector2(204, 0)
+layout_mode = 0
+offset_left = 152.0
+offset_top = -76.0
+offset_right = 356.0
+offset_bottom = 76.0
+body_text = "IF MULTIPLE BANDIT PIECES CAN MOVE, TIE GOES TO HIGHEST NUMBER THEN HIGHEST LETTER. E.G. A4 OVER A3"
+button_text = "OKIE DOKIE"
 
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

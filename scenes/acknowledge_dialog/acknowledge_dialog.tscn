@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://lgelawtymare"]
+
+[ext_resource type="Script" uid="uid://bgifntnrjf887" path="res://scenes/acknowledge_dialog/acknowledge_dialog.gd" id="1_ja2fl"]
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_sdrqi"]
+[ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="3_13jby"]
+
+[node name="AcknowledgeDialog" type="PanelContainer" unique_id=669467661]
+process_mode = 3
+custom_minimum_size = Vector2(200, 0)
+theme = ExtResource("1_sdrqi")
+script = ExtResource("1_ja2fl")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=568527944]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1660154582]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1493929395]
+layout_mode = 2
+text = "FISH WISH DISH FROG DOG LOG"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" parent="MarginContainer/VBoxContainer" unique_id=1766392538 instance=ExtResource("3_13jby")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "FISHWISHDISH"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

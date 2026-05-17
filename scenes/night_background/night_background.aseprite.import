@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bojfbapnrhjkn"
+path="res://.godot/imported/night_background.aseprite-cdd66dd6d676e8b8ccd75eda147450b3.res"
+
+[deps]
+
+source_file="res://scenes/night_background/night_background.aseprite"
+dest_files=["res://.godot/imported/night_background.aseprite-cdd66dd6d676e8b8ccd75eda147450b3.res"]
+
+[params]
+

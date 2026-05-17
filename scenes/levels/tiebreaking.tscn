@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://twfgb1kflgb"
 [node name="Bandit" type="Node2D" parent="Board" unique_id=1947739070]
 
 [node name="King" parent="Board" unique_id=842364951 instance=ExtResource("3_p7b48")]
-position = Vector2(-63, -147)
+position = Vector2(-21, -147)
 is_player = true
 
 [node name="Rook" parent="Board" unique_id=869427859 instance=ExtResource("4_kvjc6")]
@@ -49,24 +49,8 @@ position = Vector2(-147, 147)
 position = Vector2(147, -63)
 is_player = true
 
-[node name="Pawn4" parent="Board" unique_id=1063726150 instance=ExtResource("5_y44gs")]
-position = Vector2(105, -21)
-is_player = true
-
 [node name="Pawn5" parent="Board" unique_id=2100553953 instance=ExtResource("5_y44gs")]
 position = Vector2(147, 21)
-is_player = true
-
-[node name="Pawn6" parent="Board" unique_id=679167262 instance=ExtResource("5_y44gs")]
-position = Vector2(105, 63)
-is_player = true
-
-[node name="Pawn7" parent="Board" unique_id=498861043 instance=ExtResource("5_y44gs")]
-position = Vector2(147, 105)
-is_player = true
-
-[node name="Pawn8" parent="Board" unique_id=255032921 instance=ExtResource("5_y44gs")]
-position = Vector2(105, 147)
 is_player = true
 
 [node name="King2" parent="Board" unique_id=2139590648 instance=ExtResource("3_p7b48")]

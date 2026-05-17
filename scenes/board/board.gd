@@ -42,6 +42,10 @@ var _listen_for_player_board_inputs: bool = true
 @onready var _reset_button: Button = $ResetButton
 @onready var _multi_enemy_tiebreak_dialog: AcknowledgeDialog = $MultiEnemyTiebreakDialog
 @onready var _multi_player_tiebreak_dialog: AcknowledgeDialog = $MultiPlayerTiebreakDialog
+@onready var _level_number_container: HBoxContainer = $CenterContainer/LevelNumberContainer
+@onready var _level_number_label: Label = $CenterContainer/LevelNumberContainer/LevelNumberLabel
+@onready
+var _total_level_count_label: Label = $CenterContainer/LevelNumberContainer/TotalLevelCountLabel
 # PIECE PACKED SCENES
 @onready var _queen_packed_scene: PackedScene = preload("res://scenes/pieces/queen/queen.tscn")
 @onready var _rook_packed_scene: PackedScene = preload("res://scenes/pieces/rook/rook.tscn")
@@ -156,6 +160,22 @@ func _process(_delta: float) -> void:
 
 
 func _ready() -> void:
+	var current_level_number: int = LevelManager.current_level_number
+	if !LevelManager.displayed_level_numbers.has(current_level_number):
+		_level_number_container.modulate.a = 1.0
+		LevelManager.displayed_level_numbers.append(current_level_number)
+
+		var total_level_count: int = LevelManager.ORDERED_LEVEL_PATHS.size()
+		_level_number_label.text = str(current_level_number + 1)
+		_total_level_count_label.text = str(total_level_count)
+
+		var level_number_container_alpha_tween: Tween = _level_number_container.create_tween()
+		level_number_container_alpha_tween.tween_property(
+			_level_number_container, "modulate:a", 0.0, 3.0
+		)
+	else:
+		_level_number_container.modulate.a = 0.0
+
 	var pieces: Array = find_children("*", "Piece", true, false)
 	for piece: Piece in pieces:
 		var board_coordinate: Vector2i = get_board_coordinate(piece.global_position)

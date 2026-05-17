@@ -1,30 +1,9 @@
-[gd_scene format=4 uid="uid://cds0j4bkx486c"]
+[gd_scene format=3 uid="uid://cds0j4bkx486c"]
 
 [ext_resource type="Script" uid="uid://7kfbrbdl3p52" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
 [ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_ob46e"]
 [ext_resource type="PackedScene" uid="uid://c4aaukyvbog8c" path="res://scenes/upgraded_button/upgraded_button.tscn" id="3_ob46e"]
-
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ob46e"]
-_data = PackedByteArray("AAADAAUAAAABAAAAgAIAAGgBAACuCAAAUklGRqYIAABXRUJQVlA4TJoIAAAvf8JZALehoG0jJzn+EI/M+gGBTNom3wTNv7aSSdukwuZf0f75V5u2AbOn6I74CiEQIYjKLQAhNoAQG0Agn67csQQCyflrDxERETzAkmxbVeMeIO7u7pn/2B6Bs5/de89ZXxH9h+M2kiQp0yFqDz+FfoEs2XbbRsq5xc45z8waZv9rYzABknh4+Ivov8O2bSSJ9wnbgYOrYG1iV2vuyniX6+zS5C422YXaOz8/12D3Na89xet/AF/VdImlvuFgTkRQ/hE/7WClb5jvG/aCp0Msd4gFErCmt29YTAgxlPsjPGyKgvgpwREeMvRhXQ1wGWh9vUyIFYlihMhIMVGYIzxOSoYwsR4KdITHSOkQIeVDsJQqA0VKuTJQlJTtCA+MgiI+en8CUYGNDRMlPMJDoriICPsBuAw0GAgUMwPFQsdYq4scHuGRIABcBhpMb5ERBSYKfITHAH0YqC1zBqKfCxALuIXI4VCg5BmIeDUxKDJoZ6L8RzjpnAHKmUjmCM8cCCfghAzENgHgMtBoZM/QERmIaX4Bz0y44whnmW/AMfqwORIALgNtbgp4JQORSyLJI/wM4QinloBnMhCxOsKgyOCV9eCfI5xUzgK9Nl2UgfiUS5xCCWoll4HyHSKJ5agMRCtXZSBKIXeEb23Rh63/teCxDEQgB4I+WUHIz0Db2wJ+y0DUcSOIYwK5I3x7en0I0jgTlBEALgNtq3ViBiIOckf4zo5XwRSB/magIoMnJtx5hLPEt+CIgEczEEEEgMtAO2q7R5JH+BnCCcQUv2YgaiSJQZFBjJbgwyOcI97NQAwBLgPt7tCH3V0JF4dINgi4OQNxQcDRGYgK9oOrMxAPBJydgVjQPbZcBz7sejwDscHnGYgLXs9AzgsCeOD5DMQC4DLQ3h592PtfCwHIQB4TCEEG8len2OkeSR7hZwhHuLcEgMtA+/s5xOZyeMpEMI5wP0UGbrIf4pGBXEQfDvb7hB1kQuTBgQBwGejw8MB+iEsGck1X2G0XPjzCHSMQmwzkFhMBOsJ9Ei14pM9gJAMdqg1SBvJGHRwECI4JVAZyS6gykB/awX5Q4BLgMtCRGuAy0NGRgEMy0BnCEQ6fRMxCJHr2Q38ykL+/C4NOIHIZCLhAAjaB8GUg/I4CmIHAy+0Rnlg5A4EXxAyEVhc4yCw2lwO6LIRIDkc4bMBloOPjYxvRzEAgBRcQScQzRAIkENMMBE8PcBAggCMAXAY6ORGIbAYCxkCvTqCgABaB8GYgUOyHAGcgRARCnIHwoA+npwJhzkBYCAQ6AyERd+AgEO0MBIIAcBno1N7CHeHJ5Ag/I2iEn6qNeQYyLwEcZBaby4FD5I9w0zAACsHPQBDUz0Bg4ey0yTIWIs/OBBDIQPYIQJCBzGn4EPXvwmwRACEDWSKAQgaygwzsGdEiYp6B7CEiAxkACGyhIgNZwkUGWlqG8BTrOD8/twFcBro4FwAuA11cmPD/EX6GcISvSACRDLSeVnBG1ndhF8ZOAJMMtBb6cHkpwEoGWoYALRloESZcc4QnsGcgQ7EG+4GYDLSAToBSBrq6MlHrCIfku7DJBLjJQFMJoJOB5kkBJ2HGLBLwhMhJ7AeAMtAMucVzgGK8tsBKBpoKoww0Vss4zxGeghITkRQi5wAuA12rAS4DXV/jhRHsh4BmIAihJkBVBlKCDCoCaGUgOQG4MtAAnjzCk8kRfoZwhA8AWAaSKA2ewcbmcqh46Ai/5XCEqwCXgW7UAJeBbm4yhPcwR6MzXCEUIisCvGWgTAC4DFRNK7juAERkIAUB4DLQjdrQZiAIIcQNDheJ29vegJMMJCAAXAa6nVzcsJsAcBno7k4AtQzUIg81AdwyUCEAXAYaj/3g9gyUTI7wM2MjXKMemMpASg3+NUvfhQ1A2BEughu0GMtAOjxkoFVDLpUj/ML/GQjLIfJeDXAZ6P5egLUM1Gr4QNd3YYUAcBmoGgHgMtDDfXHwHq14eAAAhs5AUgJ4ZSAZAXdkIEZDQgCxDNQnAFwGehDrIDzxGY8PEriFyMdHAdYyUEOAtgxUgQ+ZQDQzEMSoRgC4DFRNEzwghke1dGWgEfjKQFphO8LT6iN8tTjueXoSgCwD9TRFKL8L25BEh/0QjAx06+IIf36ODe5ci5YAbBmoVnq8kx/Z9E4DtxBZjQBYGUhDAK0MJNcUefwuLFAZaAS+MpBepDIQ7tAjLER21QVcGUgDuAz08pwgblnAy3hNwJaBagK4ZaCiR3hgBtUIoJaBWgK0ZaCKQIwzUFp9hA+OLAMIfgYaT8MHnr4LU0MsA/URBxXgMtCrGuAy0OuriSId4RclzEC4oyFAWwaqNAdcGSgz0d0Rjs53YdUI8JaBCvsBuAxUDWoQkqArROohloGUfJ+BnI63t/bx0gIIyUC7CQCXgd7f3/4fksSDg/DkXLQEYMtANQHcMlA2vZMALgNVQxk0BKKXgSD/L+xdLV0ZaISkM1CQoQdcBvr4+LDBWAbqMsHIEZ6WGOEdAsBloM+PpuDmu7BNH63xmoh8Brq1OMJrIODOYhQCwGWgagTAykAanEFOAK4MNMJnqDIQ5lCqeQI55Lsw+s5AaohlIKXgZSCc0dMUH3iFyC81wGWgry8B1jJQo3S4jQ0qArxloEwAuAxUTR/wliQewogvsW0ApwzU9QVcBpIDVAZK3QcSfOG6G31NwdR3YSrAZaDvb/rw8yOAWgZq/eN7GsBloJ/JnYTXjvDV4sPXKASAy0DVCECWgXpMZPIIj+F3YbsJgJaBxFDLQEI9yECsQAi2ECkAXAaS44AMxHf8/prI8hH+GLgM1BKALQPVEsRbknhwEJ5sRiGBW4isRgCsDKQhgFYGkiMNI/wGIwN59L+wAQDLQBLp4y3cUKIsA2kAl4H+7HH3Ef5NwQj/+xNgLQM1nIV/bsazkagIsJOB5kRGGcQPbgE=")
-size_override = Vector2(640, 360)
-
-[sub_resource type="Curve" id="Curve_ob46e"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18103448, 0.81052625), 0.0, 0.0, 0, 0, Vector2(0.34913793, 0.22807014), 0.0, 0.0, 0, 0, Vector2(0.5732759, 0.9017543), 0.0, 0.0, 0, 0, Vector2(0.99568963, 0), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="CurveTexture" id="CurveTexture_uqeha"]
-curve = SubResource("Curve_ob46e")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ob46e"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(320, 150, 1)
-gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_uqeha")
-
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_uqeha"]
-_data = PackedByteArray("AAADAAUAAAABAAAAgAIAAGgBAACwAAAAUklGRqgAAABXRUJQVlA4TJwAAAAvf8JZEA8QEfMfwm0kya5yD2k+Mvhp4P3EdGZoTFJ4IXwTvShzCg0vov8TYNH/0f/R/9H//78OceRgRurDNPIwe3lzMMmoTRNYjkpC/67RPdTcNRWTv2MGOBnOsZJSFNUw1d1jd9D47pnePUupXKOspPKIcpOnf/e0cRzI8YbRpCT7K0+yvjLSRlKJMsKxPU7182v0dhYk3SGK/gY=")
-size_override = Vector2(640, 360)
+[ext_resource type="PackedScene" uid="uid://hgatspwfdogv" path="res://scenes/night_background/night_background.tscn" id="3_uqeha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob46e"]
 bg_color = Color(0, 0, 0, 1)
@@ -45,67 +24,7 @@ anchors_preset = 0
 theme = ExtResource("1_ob46e")
 script = ExtResource("1_fsom3")
 
-[node name="BackgroundSky" type="Sprite2D" parent="." unique_id=1948576874]
-texture_filter = 1
-position = Vector2(320, 180)
-texture = SubResource("PortableCompressedTexture2D_ob46e")
-metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true,
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"convert_fps_field": 60.0,
-"convert_ms_field": 16.0,
-"convert_to_fps": false,
-"embed_tex": true,
-"i_mode": 1,
-"keep_anim_length": false,
-"layers": ["sky"],
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "",
-"scale": "1.0",
-"slice": "",
-"source": "res://scenes/main_menu/background.aseprite",
-"source_uid": 3387949288955559981
-}
-metadata/_aseprite_wizard_source_file_hash_ = "e5f00ec1efa6aa876d7b0be0a0823de9"
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=387499234]
-position = Vector2(320, 158)
-amount = 40
-lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_ob46e")
-
-[node name="BackgroundSilhouette" type="Sprite2D" parent="." unique_id=985299516]
-texture_filter = 1
-position = Vector2(320, 180)
-texture = SubResource("PortableCompressedTexture2D_uqeha")
-metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true,
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"convert_fps_field": 60.0,
-"convert_ms_field": 16.0,
-"convert_to_fps": false,
-"embed_tex": true,
-"i_mode": 1,
-"keep_anim_length": false,
-"layers": ["silhouette"],
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "",
-"scale": "1.0",
-"slice": "",
-"source": "res://scenes/main_menu/background.aseprite",
-"source_uid": 3387949288955559981
-}
-metadata/_aseprite_wizard_source_file_hash_ = "e5f00ec1efa6aa876d7b0be0a0823de9"
+[node name="NightBackground" parent="." unique_id=1240820146 instance=ExtResource("3_uqeha")]
 
 [node name="TitleLabel" type="Label" parent="." unique_id=824296585]
 layout_mode = 0

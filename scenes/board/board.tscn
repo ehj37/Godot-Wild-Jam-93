@@ -223,6 +223,31 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="LevelNumberContainer" type="HBoxContainer" parent="CenterContainer" unique_id=782845639]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="CenterContainer/LevelNumberContainer" unique_id=731748271]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "LEVEL"
+
+[node name="LevelNumberLabel" type="Label" parent="CenterContainer/LevelNumberContainer" unique_id=1466035502]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "999"
+
+[node name="SlashLabel" type="Label" parent="CenterContainer/LevelNumberContainer" unique_id=2107549790]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "/"
+
+[node name="TotalLevelCountLabel" type="Label" parent="CenterContainer/LevelNumberContainer" unique_id=1316262364]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "999"
+
 [node name="RightPanel" type="VBoxContainer" parent="." unique_id=1775474612]
 layout_mode = 0
 offset_left = 189.0
@@ -272,7 +297,7 @@ autowrap_mode = 2
 [node name="MultiEnemyTiebreakDialog" parent="." unique_id=669467661 instance=ExtResource("10_c6wwm")]
 visible = false
 layout_mode = 0
-body_text = "IF MULTIPLE BANDITS CAN ATTACK, THE BANDIT WITH THE HIGHEST NUMBER, THEN THE HIGHEST LETTER IS THE ONE THAT ATTACKS."
+body_text = "IF MULTIPLE BANDITS CAN ATTACK, THE BANDIT WITH THE HIGHEST NUMBER THEN THE HIGHEST LETTER IS THE ONE THAT ATTACKS."
 button_text = "YESSIREE"
 
 [node name="RedRectangles" type="Node2D" parent="MultiEnemyTiebreakDialog" unique_id=1936644712]

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bnwcimsro87lo"]
+
+[ext_resource type="PackedScene" uid="uid://hgatspwfdogv" path="res://scenes/night_background/night_background.tscn" id="1_2yi6y"]
+[ext_resource type="Theme" uid="uid://d4eqxmq7c5om8" path="res://themes/rooks_n_crooks.tres" id="1_misvs"]
+[ext_resource type="Script" uid="uid://18gl5qglxnv4" path="res://scenes/win_screen/win_screen.gd" id="2_1d1ta"]
+
+[node name="WinScreen" type="Control" unique_id=376241617]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_misvs")
+script = ExtResource("2_1d1ta")
+
+[node name="NightBackground" parent="." unique_id=1240820146 instance=ExtResource("1_2yi6y")]
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=473381461]
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 0
+offset_top = -61.0
+offset_right = 640.0
+offset_bottom = 299.0
+
+[node name="LabelContainer" type="VBoxContainer" parent="CenterContainer" unique_id=489867449]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/LabelContainer" unique_id=578201364]
+layout_mode = 2
+text = "GOOD SHOOTIN PARTNER
+"
+
+[node name="Label2" type="Label" parent="CenterContainer/LabelContainer" unique_id=919940597]
+layout_mode = 2
+text = "HAVEN'T SEEN THE BOUNTY BOARD THAT CLEAR
+AT LEAST THREE SUMMERS SINCE
+"
+
+[node name="Label3" type="Label" parent="CenterContainer/LabelContainer" unique_id=1118556796]
+layout_mode = 2
+text = "'PRECIATE YOU FOR PLAYIN THIS HERE GAME
+"
+
+[node name="Label4" type="Label" parent="CenterContainer/LabelContainer" unique_id=81114689]
+layout_mode = 2
+text = "
+"
+
+[node name="Label5" type="Label" parent="CenterContainer/LabelContainer" unique_id=1065755696]
+layout_mode = 2
+text = "'TILL NEXT TIME...
+"

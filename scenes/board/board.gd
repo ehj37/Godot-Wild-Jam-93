@@ -399,8 +399,8 @@ func _switch_to_enemy_turn() -> void:
 		await get_tree().create_timer(1.0).timeout
 
 		_turn_dialog.hide()
-
 		_switch_to_player_turn(false)
+		return
 
 	_take_enemy_turn(possible_attacks)
 

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ejxrds5aft6y"
+path="res://.godot/imported/cover.aseprite-5146121ae72f13cbc41debd6b4b8af56.res"
+
+[deps]
+
+source_file="res://itch/cover.aseprite"
+dest_files=["res://.godot/imported/cover.aseprite-5146121ae72f13cbc41debd6b4b8af56.res"]
+
+[params]
+
